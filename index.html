@@ -121,7 +121,7 @@ section{position:relative}
 /* ---------- works ---------- */
 .works{display:grid;grid-template-columns:repeat(6,1fr);gap:20px}
 .work{clip-path:inset(0 round var(--radius));grid-column:span 3;display:flex;flex-direction:column;border-radius:var(--radius);background:var(--card);border:1px solid var(--line);overflow:hidden;transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .3s}
-.work:hover{transform:translateY(-4px);border-color:var(--line-2)}
+.work:hover{transform:translateY(-4px) translateZ(0);border-color:var(--line-2)}
 .work.wide{grid-column:span 6;display:grid;grid-template-columns:1.35fr 1fr}
 .work.third{grid-column:span 2}
 .look{position:relative;aspect-ratio:4/3;overflow:hidden;isolation:isolate}
@@ -296,6 +296,25 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;background:var(--bg)
   .fc{transition:none}
   *{transition-duration:.01ms!important}
 }
+
+/* CORNER-GUARD: keep live gradients inside rounded corners on every GPU */
+.work,.step{-webkit-mask-image:-webkit-radial-gradient(white,black);mask-image:linear-gradient(#000,#000);transform:translateZ(0)}
+.work .look{border-radius:calc(var(--radius) - 1px) calc(var(--radius) - 1px) 0 0}
+.work.wide .look{border-radius:calc(var(--radius) - 1px) 0 0 calc(var(--radius) - 1px)}
+.look canvas.lg,.step-vis canvas{border-radius:inherit}
+.step-vis{border-radius:0 27px 27px 0}
+.step:nth-child(even) .step-vis{border-radius:27px 0 0 27px}
+@media (max-width:1000px){
+  .work.wide .look{border-radius:calc(var(--radius) - 1px) calc(var(--radius) - 1px) 0 0}
+  .step-vis,.step:nth-child(even) .step-vis{border-radius:0 0 27px 27px;border-left:0;border-right:0;border-top:1px solid var(--line)}
+}
+
+/* SEAM-FIX */
+.cta::after{content:"";position:absolute;inset:auto 0 0;height:30%;background:linear-gradient(transparent,var(--bg));z-index:-1;pointer-events:none}
+footer{border-top:0}
+.copy{padding-right:72px}
+@media (max-width:720px){.copy{padding-right:64px}}
+
 </style>
 </head>
 <body>
