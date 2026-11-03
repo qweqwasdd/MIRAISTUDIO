@@ -1,0 +1,977 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>ÉCLAT, клиника эстетической медицины</title>
+<meta name="description" content="Клиника эстетической косметологии и дерматологии. Аппаратные, инъекционные и уходовые методики, онлайн-запись.">
+<link rel="preload" href="fonts/tenor-sans.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Tenor Sans";src:url(fonts/tenor-sans.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Cormorant Garamond";src:url(fonts/cormorant.woff2) format("woff2");font-weight:300 700;font-style:normal;font-display:swap}
+@font-face{font-family:"Cormorant Garamond";src:url(fonts/cormorant-italic.woff2) format("woff2");font-weight:300 700;font-style:italic;font-display:swap}
+@font-face{font-family:"Manrope";src:url(fonts/manrope.woff2) format("woff2");font-weight:200 800;font-style:normal;font-display:swap}
+</style>
+<style>
+/* =========================================================
+   ДИЗАЙН-СИСТЕМА ÉCLAT
+   Фарфор, шёлк-кашемир, эспрессо, матовое шампанское золото.
+   Скругления: карточки и фото 2px (почти острые), арка в первом экране, кнопки-пилюли.
+   ========================================================= */
+:root{
+  --background: hsl(36, 33%, 97%);
+  --surface: hsl(34, 28%, 93%);
+  --foreground: hsl(24, 18%, 14%);
+  --primary: hsl(32, 38%, 48%);           /* шампанская бронза: линии, курсив, крупные акценты */
+  --primary-text: hsl(32, 40%, 36%);      /* та же бронза темнее: мелкие подписи, чтобы читались */
+  --primary-foreground: hsl(36, 33%, 97%);
+  --blush: hsl(18, 35%, 88%);
+  --espresso: hsl(24, 22%, 18%);
+  --muted-foreground: hsl(25, 10%, 42%);
+  --border: hsl(32, 22%, 84%);
+  --ok: hsl(140, 25%, 38%);
+  --err: hsl(8, 45%, 45%);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-veil: cubic-bezier(0.76, 0, 0.24, 1);
+  --display: "Tenor Sans", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Cormorant Garamond", "Times New Roman", serif;
+  --sans: Manrope, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --wrap: 1380px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:88px;-webkit-text-size-adjust:100%}
+body{background:var(--background);color:var(--foreground);font-family:var(--sans);font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:1.5px solid var(--primary);outline-offset:4px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 40px}
+@media(max-width:1023px){.wrap{padding:0 28px}}
+@media(max-width:767px){.wrap{padding:0 20px}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.label{font-family:var(--sans);font-weight:500;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--primary-text)}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4vw,56px);line-height:1.1;letter-spacing:-0.005em}
+h2 em,.it{font-style:italic;color:var(--primary)}
+p{max-width:62ch}
+.muted{color:var(--muted-foreground)}
+
+/* двойная шампанская линия у заголовков разделов */
+.dbl{position:relative;padding:18px 0;display:flex;justify-content:space-between;align-items:center;gap:24px}
+.dbl::before,.dbl::after{content:"";position:absolute;left:0;right:0;height:5px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.dbl::before{top:0}.dbl::after{bottom:0}
+
+/* кнопки */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:54px;padding:0 30px;border-radius:999px;font-family:var(--sans);font-weight:500;font-size:13px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;white-space:nowrap;transition:background-color .4s var(--ease),color .4s var(--ease),border-color .4s var(--ease),transform .2s var(--ease)}
+.btn:active{transform:scale(.98)}
+.btn-solid{background:var(--espresso);color:var(--primary-foreground)}
+.btn-solid:hover{background:hsl(24,22%,26%)}
+.btn-ghost{border:1px solid var(--foreground);color:var(--foreground)}
+.btn-ghost:hover{background:var(--foreground);color:var(--background)}
+.btn-outline{border:1px solid var(--primary);color:var(--foreground);min-height:44px;padding:0 22px;font-size:12px}
+.btn-outline:hover{background:var(--primary);color:var(--primary-foreground)}
+.btn svg{width:16px;height:16px;stroke-width:1.5}
+
+/* ---------- ширма при входе ---------- */
+
+/* ---------- шапка ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:40;height:80px;transition:background-color .5s var(--ease),border-color .5s var(--ease),backdrop-filter .5s;border-bottom:1px solid transparent}
+.nav.solid{background:hsla(36,33%,97%,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom-color:var(--border)}
+.nav .wrap{height:100%;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px}
+.nav-links{display:flex;gap:28px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.nav-links a{text-decoration:none;color:var(--muted-foreground);transition:color .3s}
+.nav-links a:hover{color:var(--foreground)}
+.mark{text-align:center;text-decoration:none;line-height:1}
+.mark b{display:block;font-family:var(--display);font-weight:400;font-size:26px;letter-spacing:.18em}
+.mark span{display:block;font-size:9px;letter-spacing:.32em;color:var(--primary-text);margin-top:6px;font-weight:500}
+.nav-right{display:flex;justify-content:flex-end;align-items:center;gap:12px}
+.burger{display:none;width:44px;height:44px;place-items:center}
+.burger svg{width:22px;height:22px;stroke-width:1.4}
+.menu{position:fixed;inset:80px 0 auto 0;z-index:39;background:var(--background);border-bottom:1px solid var(--border);padding:12px 20px 28px;display:none}
+.menu.open{display:block}
+.menu a{display:block;padding:16px 0;border-bottom:1px solid var(--border);text-decoration:none;font-family:var(--display);font-size:20px;letter-spacing:.06em;text-transform:uppercase}
+@media(max-width:1023px){
+  .nav .wrap{grid-template-columns:auto 1fr}
+  .nav-links{display:none}
+  .mark{text-align:left}
+  .burger{display:grid}
+  .nav .btn-outline .long{display:none}
+}
+@media(min-width:1024px){.nav .btn-outline .short{display:none}.menu{display:none!important}}
+
+/* ---------- первый экран ---------- */
+.hero{position:relative;min-height:100dvh;padding:128px 0 72px;display:flex;align-items:center;overflow:hidden}
+.hero .wrap{position:relative;width:100%;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(340px,.65fr);gap:72px;align-items:center}
+.hero-title{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(40px,4.6vw,112px);line-height:.98;letter-spacing:-0.015em;margin:26px 0 30px}
+.hero-title span{display:block}
+@media(min-width:901px){.hero-title span{white-space:nowrap}}
+.hero-line{font-family:var(--serif);font-style:italic;font-size:clamp(20px,1.8vw,26px);line-height:1.45;color:var(--muted-foreground);max-width:30em}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:40px}
+.arch-frame{position:relative;width:100%;max-width:440px;justify-self:end;margin:18px 18px 0 0}
+.arch-frame::before{content:"";position:absolute;inset:-18px -18px 18px 18px;border:1px solid var(--primary);opacity:.55;border-radius:999px 999px 2px 2px;pointer-events:none}
+.arch{position:relative;aspect-ratio:3/4.2;max-height:calc(100dvh - 220px);width:100%;border-radius:999px 999px 2px 2px;overflow:hidden;background:linear-gradient(180deg,var(--surface),var(--blush))}
+.arch img{filter:saturate(.72) sepia(.1) contrast(1.02) brightness(1.02);transform:scale(1.08);transition:opacity 1.2s var(--ease),transform 2.4s var(--ease)}
+.arch img.ok{transform:scale(1)}
+.arch img,.ph img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s var(--ease)}
+.arch img.ok,.ph img.ok{opacity:1}
+.js .rise{opacity:0;transform:translateY(50px)}
+.js .go .rise{opacity:1;transform:none;transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.js .go .rise:nth-child(2){transition-delay:.15s}.js .go .rise:nth-child(3){transition-delay:.3s}.js .go .rise:nth-child(4){transition-delay:.45s}
+@media(max-width:900px){
+  .hero{padding:96px 0 56px;min-height:auto}
+  .hero .wrap{grid-template-columns:1fr;gap:28px}
+  .arch-frame{order:-1;max-width:none;justify-self:stretch;margin:12px 12px 0 0}
+  .arch-frame::before{inset:-12px -12px 12px 12px;border-radius:999px 999px 2px 2px / 220px 220px 2px 2px}
+  .arch{aspect-ratio:auto;height:min(40dvh,360px);max-height:none;border-radius:999px 999px 2px 2px / 220px 220px 2px 2px}
+  .hero-title{font-size:clamp(32px,9vw,48px);margin:18px 0 20px}
+  .hero-cta{margin-top:28px}
+  .hero-cta .btn{flex:1 1 100%}
+}
+
+section{padding:112px 0}
+@media(max-width:767px){section{padding:80px 0}}
+
+/* ---------- направления ---------- */
+.protocols{margin-top:8px;list-style:none}
+.proto{border-bottom:1px solid var(--border)}
+.proto-row{width:100%;display:grid;grid-template-columns:72px 1fr auto auto;gap:28px;align-items:center;padding:30px 20px;text-align:left;transition:background-color .5s var(--ease)}
+.proto-row:hover,.proto.open .proto-row{background:var(--surface)}
+.proto-row:focus-visible{outline-offset:-2px}
+.proto-idx{font-family:var(--serif);font-size:22px;color:var(--primary)}
+.proto-title{font-family:var(--display);font-size:clamp(24px,3.2vw,48px);line-height:1.05;text-transform:uppercase;letter-spacing:-0.01em}
+.proto-meta{display:flex;flex-direction:column;align-items:flex-end;gap:6px;text-align:right}
+.proto-meta .dur{font-size:14px;color:var(--muted-foreground)}
+.proto-more{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;white-space:nowrap}
+.proto-more svg{width:16px;height:16px;stroke-width:1.5;transition:transform .4s var(--ease)}
+.proto.open .proto-more svg{transform:rotate(90deg)}
+.proto-thumb{display:none}
+.proto-body{display:none;padding:0 20px 34px 120px;background:var(--surface)}
+.proto.open .proto-body{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end;animation:fade .5s var(--ease) both}
+.proto-body p{color:var(--muted-foreground)}
+@keyframes fade{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.cursor-img{position:fixed;left:0;top:0;width:250px;aspect-ratio:3/4;z-index:30;pointer-events:none;border-radius:2px;overflow:hidden;opacity:0;background:var(--blush);box-shadow:0 30px 60px -30px hsla(24,30%,20%,.45);transition:opacity .35s var(--ease)}
+.cursor-img img{width:100%;height:100%;object-fit:cover}
+.cursor-img.on{opacity:1}
+@media(max-width:1023px),(hover:none){
+  .cursor-img{display:none}
+  .proto-row{grid-template-columns:64px 1fr;gap:16px;padding:22px 0}
+  .proto-thumb{display:block;width:64px;height:84px;border-radius:999px 999px 2px 2px;overflow:hidden;background:var(--blush)}
+  .proto-thumb img{width:100%;height:100%;object-fit:cover}
+  .proto-idx{display:none}
+  .proto-meta{grid-column:2;flex-direction:row;flex-wrap:wrap;align-items:center;gap:6px 16px;text-align:left}
+  .proto-more{grid-column:2}
+  .proto-body{padding:0 0 28px 80px}
+  .proto.open .proto-body{grid-template-columns:1fr}
+}
+@media(max-width:767px){.proto-body{padding:0 0 28px 0}.proto-row:hover,.proto.open .proto-row,.proto.open .proto-body{background:transparent}}
+
+/* ---------- программы ---------- */
+.prog-head{display:flex;justify-content:space-between;align-items:end;gap:32px;margin-bottom:48px}
+.programs{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.prog{display:flex;flex-direction:column;gap:16px;text-align:left}
+.prog .ph{aspect-ratio:3/4;overflow:hidden;border-radius:2px;background:linear-gradient(180deg,var(--surface),var(--blush))}
+.prog .ph img{transition:opacity 1s var(--ease),transform .8s var(--ease)}
+.prog:hover .ph img{transform:scale(1.05)}
+.prog h3{font-family:var(--display);font-weight:400;font-size:21px;line-height:1.25;text-transform:uppercase;letter-spacing:.01em}
+.prog p{font-size:15px;color:var(--muted-foreground)}
+.prog-foot{display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid var(--border);margin-top:auto}
+.prog-price{font-family:var(--sans);font-weight:500;font-size:19px;letter-spacing:.01em;font-variant-numeric:lining-nums tabular-nums}
+@media(max-width:1023px){.programs{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:767px){
+  .prog-head{flex-direction:column;align-items:flex-start}
+  .programs{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:16px;margin:0 -20px;padding:0 20px 8px;scrollbar-width:none}
+  .programs::-webkit-scrollbar{display:none}
+  .prog{flex:0 0 78%;scroll-snap-align:start}
+}
+
+/* ---------- этапы визита ---------- */
+.journey{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:48px}
+.step{border-top:1px solid var(--primary);padding-top:26px}
+.step-n{font-family:var(--serif);font-style:italic;font-size:30px;color:var(--primary);line-height:1}
+.step h3{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:19px;letter-spacing:.02em;margin:16px 0 12px}
+.step p{color:var(--muted-foreground);font-size:15px}
+@media(max-width:860px){.journey{grid-template-columns:1fr;gap:32px}}
+
+/* ---------- о клинике ---------- */
+.clinic{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;align-items:center}
+.clinic .ph{aspect-ratio:3/4.1;border-radius:2px;overflow:hidden;background:linear-gradient(180deg,var(--surface),var(--blush))}
+.clinic-text p{margin-top:24px;color:var(--muted-foreground)}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;padding-top:28px;border-top:1px solid var(--border)}
+.facts b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(40px,4.4vw,64px);line-height:1}
+.facts span{display:block;margin-top:10px;font-size:13px;color:var(--muted-foreground);line-height:1.45}
+@media(max-width:900px){.clinic{grid-template-columns:1fr;gap:40px}.clinic .ph{aspect-ratio:4/3.4}}
+@media(max-width:520px){.facts{grid-template-columns:1fr;gap:20px}}
+
+/* ---------- клуб привилегий ---------- */
+.club{background:#231c18;color:#f7f4ef}
+.club .label{color:hsl(36,45%,68%)}
+.club h2 em{color:hsl(36,45%,68%)}
+.club-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:end}
+.perks{list-style:none;border-top:1px solid hsla(36,45%,68%,.35)}
+.perks li{display:flex;gap:18px;align-items:baseline;padding:20px 0;border-bottom:1px solid hsla(36,45%,68%,.35);font-size:17px}
+.perks li span{font-family:var(--serif);font-style:italic;color:hsl(36,45%,68%);font-size:20px}
+.club .btn{margin-top:40px;background:hsl(36,45%,68%);color:#231c18}
+.club .btn:hover{background:hsl(36,45%,76%)}
+@media(max-width:900px){.club-grid{grid-template-columns:1fr;gap:40px}}
+
+/* ---------- визит ---------- */
+.visit{display:grid;grid-template-columns:1fr 1fr;gap:72px}
+.visit dl{margin-top:36px}
+.visit dl div{display:grid;grid-template-columns:160px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--border)}
+.visit dt{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--primary-text);padding-top:4px}
+.visit dd{font-family:var(--serif);font-size:24px;line-height:1.3}
+.visit dd a{text-decoration:none}
+.visit-side{align-self:end}
+.visit-side p{color:var(--muted-foreground);margin-bottom:28px}
+.visit-actions{display:flex;flex-wrap:wrap;gap:12px}
+@media(max-width:900px){.visit{grid-template-columns:1fr;gap:40px}.visit dl div{grid-template-columns:1fr;gap:4px}.visit-actions .btn{flex:1 1 100%}}
+
+/* ---------- подвал ---------- */
+footer{position:relative;overflow:hidden;padding:0 0 40px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding:56px 0 48px}
+.foot-grid h4{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--primary-text);margin-bottom:18px}
+.foot-grid a,.foot-grid button{display:block;text-decoration:none;color:var(--muted-foreground);font-size:14px;line-height:2.1;text-align:left;transition:color .3s}
+.foot-grid a:hover,.foot-grid button:hover{color:var(--foreground)}
+.foot-brand b{font-family:var(--display);font-weight:400;font-size:24px;letter-spacing:.18em}
+.foot-brand p{font-size:14px;color:var(--muted-foreground);margin-top:12px;max-width:30ch}
+.legal{font-size:12px;color:var(--muted-foreground);line-height:1.6;display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-between;padding-top:24px}
+.warn{max-width:none;margin:0 auto;font-family:var(--display);text-transform:uppercase;letter-spacing:.06em;font-size:clamp(14px,1.6vw,22px);text-align:center;color:var(--muted-foreground);padding:28px 0}
+.watermark{font-family:var(--display);font-size:11.5vw;line-height:.8;white-space:nowrap;text-align:center;opacity:.05;user-select:none;pointer-events:none;margin-top:24px}
+@media(max-width:860px){.foot-grid{grid-template-columns:1fr 1fr}.foot-brand{grid-column:1/-1}}
+
+/* появление при прокрутке */
+.js [data-reveal]{opacity:0;transform:translateY(30px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.js [data-reveal].in{opacity:1;transform:none}
+
+/* мобильная кнопка записи */
+.fab{position:fixed;left:16px;right:16px;bottom:max(14px,env(safe-area-inset-bottom));z-index:35;opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .4s var(--ease),transform .4s var(--ease);box-shadow:0 20px 40px -20px hsla(24,30%,20%,.6)}
+.fab.on{opacity:1;transform:none;pointer-events:auto}
+@media(min-width:1024px){.fab{display:none}}
+
+/* ======================= ЗАПИСЬ ======================= */
+.scrim{position:fixed;inset:0;z-index:60;background:hsla(24,22%,18%,.28);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .5s var(--ease)}
+.scrim.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;z-index:61;width:min(460px,100%);background:var(--background);display:flex;flex-direction:column;transform:translateX(102%);transition:transform .7s var(--ease-veil),box-shadow .7s var(--ease-veil);visibility:hidden}
+.drawer.on{transform:none;visibility:visible;box-shadow:-30px 0 60px -40px hsla(24,30%,20%,.5)}
+@media(max-width:767px){.drawer{top:auto;width:100%;height:min(100dvh,800px);transform:translateY(102%);border-radius:18px 18px 0 0}}
+.d-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 24px;border-bottom:1px solid var(--border)}
+.d-head b{font-family:var(--display);font-weight:400;letter-spacing:.18em;font-size:18px}
+.d-head span{display:block;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--primary-text);font-weight:500}
+.icon-btn{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--border);transition:border-color .3s}
+.icon-btn:hover{border-color:var(--foreground)}
+.icon-btn svg{width:18px;height:18px;stroke-width:1.5}
+.d-actions{display:flex;gap:8px}
+.chat-body{flex:1;overflow-y:auto;padding:22px 20px;display:flex;flex-direction:column;gap:10px;overscroll-behavior:contain}
+.msg{max-width:88%;padding:12px 16px;font-size:15px;line-height:1.5;white-space:pre-line;animation:pop .45s var(--ease) both;border-radius:16px}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.bot{background:var(--surface);align-self:flex-start;border-bottom-left-radius:3px}
+.me{background:var(--espresso);color:var(--primary-foreground);align-self:flex-end;border-bottom-right-radius:3px}
+.msg.ok{background:hsl(140,22%,92%)}
+.msg.err{background:hsl(8,45%,94%)}
+.typing{display:flex;gap:5px;padding:16px 18px}
+.typing i{width:6px;height:6px;border-radius:50%;background:var(--primary);opacity:.5;animation:dot 1.1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes dot{0%,60%,100%{transform:none;opacity:.35}30%{transform:translateY(-4px);opacity:1}}
+.chips{display:flex;flex-wrap:wrap;gap:8px;animation:pop .45s var(--ease) both}
+.chip{border:1px solid var(--border);background:var(--background);border-radius:999px;padding:10px 16px;font-size:14px;text-align:left;text-decoration:none;color:var(--foreground);transition:border-color .3s,background-color .3s}
+.chip:hover{border-color:var(--primary)}
+.chip small{display:block;color:var(--muted-foreground);font-size:12px}
+.chip.wide{border-radius:14px}
+.chip.primary{background:var(--espresso);border-color:var(--espresso);color:var(--primary-foreground)}
+.chip.primary:hover{background:hsl(24,22%,26%)}
+.chip.back{border-style:dashed;color:var(--muted-foreground)}
+.summary{align-self:stretch;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:10px 0;font-size:14px;animation:pop .45s var(--ease) both}
+.summary .r{display:flex;justify-content:space-between;gap:16px;padding:6px 2px}
+.summary .r span{color:var(--muted-foreground)}
+.summary .r b{text-align:right;font-weight:500}
+.summary.old{opacity:.45}
+.consent{font-size:12px;color:var(--muted-foreground);line-height:1.5;align-self:stretch}
+.consent button{text-decoration:underline;font-size:12px;color:var(--foreground)}
+.chat-input{display:flex;gap:10px;padding:14px 16px;border-top:1px solid var(--border)}
+.chat-input[hidden]{display:none}
+.chat-input input{flex:1;min-width:0;border:1px solid var(--border);background:#fff;color:var(--foreground);border-radius:999px;padding:13px 18px;font:16px var(--sans);outline:none;transition:border-color .3s}
+.chat-input input:focus{border-color:var(--primary)}
+.chat-input input::placeholder{color:var(--muted-foreground)}
+.send{width:50px;height:50px;border-radius:50%;background:var(--espresso);color:var(--primary-foreground);display:grid;place-items:center;flex:none}
+.send svg{width:18px;height:18px;stroke-width:1.5}
+.d-foot{font-size:11px;text-align:center;color:var(--muted-foreground);padding:0 16px 12px}
+
+/* окно политики */
+dialog{margin:auto;border:0;padding:0;width:min(720px,calc(100% - 32px));max-height:min(80dvh,820px);background:var(--background);color:var(--foreground);box-shadow:0 40px 80px -40px hsla(24,30%,20%,.6)}
+dialog::backdrop{background:hsla(24,22%,18%,.4)}
+.dlg{display:flex;flex-direction:column;max-height:min(80dvh,820px)}
+.dlg-head{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid var(--border)}
+.dlg-head h3{font-family:var(--serif);font-weight:400;font-size:26px}
+.dlg-body{overflow-y:auto;padding:24px;font-size:14px;line-height:1.7}
+.dlg-body h4{font-weight:600;margin:18px 0 6px}
+.dlg-body p{margin-bottom:8px}
+
+/* запасной символ, если иконки не загрузились */
+.fb{font-size:18px;line-height:1}
+.icons-ok .fb{display:none}
+
+/* ---------- появление первого экрана ---------- */
+.js .hero .arch{clip-path:inset(100% 0 0 0);transition:clip-path 1.5s cubic-bezier(.22,1,.36,1) .1s}
+.js .hero.lit .arch{clip-path:inset(0 0 0 0)}
+.js .hero .arch img{--glow:blur(14px) brightness(1.12)}
+.js .hero .arch img{filter:saturate(.72) sepia(.1) contrast(1.02) var(--glow);transition:opacity 1s var(--ease),transform 2.6s var(--ease),filter 1.8s var(--ease)}
+.js .hero.lit .arch img{--glow:blur(0) brightness(1.02)}
+.js .hero .arch-frame::before{opacity:0;transform:translate(-10px,10px);transition:opacity 1.2s var(--ease) .7s,transform 1.4s var(--ease) .7s}
+.js .hero.lit .arch-frame::before{opacity:.55;transform:none}
+/* ---------- телефон: ничего не шире экрана ---------- */
+html,body{overflow-x:clip}
+@media(max-width:900px){
+  .hero .wrap{grid-template-columns:minmax(0,1fr)}
+  .hero-cta .btn{white-space:normal;text-align:center;line-height:1.35;padding:14px 22px}
+}
+@media(max-width:1023px){.proto-row{grid-template-columns:64px minmax(0,1fr)}.proto-title{hyphens:auto;overflow-wrap:break-word}.menu{bottom:0;overflow-y:auto}}
+@media(max-width:480px){
+  .nav .wrap{gap:10px}
+  .nav-right{gap:4px}
+  .mark b{font-size:22px;letter-spacing:.14em}
+  .nav .btn-outline{min-height:42px;padding:0 16px;letter-spacing:.1em}
+  .btn{letter-spacing:.1em;padding:0 22px}
+  .hero-title{font-size:clamp(28px,9.4vw,40px)}
+  .hero-line{font-size:19px}
+  .proto-title{font-size:18px;letter-spacing:0}
+  .visit .btn,.club .btn{white-space:normal;text-align:center}
+}
+@media(max-width:350px){.proto-title{font-size:15.5px}.proto-row{grid-template-columns:56px minmax(0,1fr);gap:12px}.proto-thumb{width:56px;height:74px}}
+@media (prefers-reduced-motion: reduce){
+  .js .hero .arch{clip-path:none!important;transition:none!important}
+  .js .hero .arch img{--glow:brightness(1.02)}
+  .js .hero .arch-frame::before{opacity:.55;transform:none;transition:none}
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js [data-reveal],.rise{opacity:1!important;transform:none!important}
+  .cursor-img{display:none}
+}
+</style>
+</head>
+<body>
+
+<div id="topSentinel" style="position:absolute;top:0;height:40px;width:1px" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <nav class="nav-links" aria-label="Разделы">
+      <a href="#protocols">Направления</a>
+      <a href="#programs">Программы</a>
+      <a href="#clinic">О клинике</a>
+      <a href="#club">Клуб привилегий</a>
+    </nav>
+    <a class="mark" href="#top"><b data-c="brand"></b><span data-c="est"></span></a>
+    <div class="nav-right">
+      <button class="btn btn-outline" data-book><span class="long">Записаться</span><span class="short">Запись</span></button>
+      <button class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="menu"><i data-lucide="menu"></i><span class="fb" aria-hidden="true">≡</span></button>
+    </div>
+  </div>
+</header>
+<div class="menu" id="menu">
+  <a href="#protocols">Направления</a>
+  <a href="#programs">Программы</a>
+  <a href="#clinic">О клинике</a>
+  <a href="#club">Клуб привилегий</a>
+  <a href="#visit">Контакты</a>
+</div>
+
+<main id="top">
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div id="heroText">
+        <p class="label rise" data-c="heroLabel"></p>
+        <h1 class="hero-title rise"><span data-c="heroTitle1"></span><span data-c="heroTitle2"></span></h1>
+        <p class="hero-line rise" data-c="heroLine"></p>
+        <div class="hero-cta rise">
+          <button class="btn btn-solid" data-book>Записаться на консультацию</button>
+          <a class="btn btn-ghost" href="#protocols">Протоколы ухода</a>
+        </div>
+      </div>
+      <div class="arch-frame" data-reveal><div class="arch" data-photo="hero"></div></div>
+    </div>
+  </section>
+
+  <section id="protocols">
+    <div class="wrap">
+      <div class="dbl" data-reveal><span class="label">Направления клиники</span><span class="label" id="protoCount"></span></div>
+      <ul class="protocols" id="protoList"></ul>
+    </div>
+  </section>
+  <div class="cursor-img" id="cursorImg" aria-hidden="true"><img alt=""></div>
+
+  <section id="programs" style="padding-top:0">
+    <div class="wrap">
+      <div class="prog-head" data-reveal>
+        <h2>Авторские <em>программы</em> преображения.</h2>
+        <p class="muted" style="max-width:36ch">Комплексы из нескольких методик. Состав и курс врач уточняет на консультации.</p>
+      </div>
+      <div class="programs" id="progList"></div>
+    </div>
+  </section>
+
+  <section id="journey" style="background:var(--surface)">
+    <div class="wrap">
+      <div class="dbl" data-reveal><span class="label">Этапы вашего визита</span></div>
+      <div class="journey" id="journeyList"></div>
+    </div>
+  </section>
+
+  <section id="clinic">
+    <div class="wrap clinic">
+      <div class="ph" data-photo="clinic" data-reveal></div>
+      <div class="clinic-text" data-reveal>
+        <p class="label">О клинике</p>
+        <h2 style="margin-top:18px">Медицинская этика и <em>спокойная</em> эстетика.</h2>
+        <p data-c="clinicText"></p>
+        <div class="facts" id="facts"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="club" id="club">
+    <div class="wrap club-grid">
+      <div data-reveal>
+        <p class="label">Для постоянных пациентов</p>
+        <h2 style="margin-top:18px">Клуб привилегий <em>ÉCLAT Private</em>.</h2>
+        <button class="btn" data-club>Оформить карту пациента</button>
+      </div>
+      <ul class="perks" id="perks" data-reveal></ul>
+    </div>
+  </section>
+
+  <section id="visit">
+    <div class="wrap visit">
+      <div data-reveal>
+        <div class="dbl"><span class="label">Как нас найти</span></div>
+        <dl>
+          <div><dt>Адрес</dt><dd data-c="address"></dd></div>
+          <div><dt>Часы работы</dt><dd data-c="hours"></dd></div>
+          <div><dt>Телефон</dt><dd><a id="phoneLink"></a></dd></div>
+        </dl>
+      </div>
+      <div class="visit-side" data-reveal>
+        <p data-c="parking"></p>
+        <div class="visit-actions">
+          <button class="btn btn-solid" data-book>Записаться</button>
+          <a class="btn btn-ghost" id="waLink" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="btn btn-ghost" id="callLink">Позвонить</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="dbl"><span class="label" data-c="brandFull"></span><span class="label" data-c="city"></span></div>
+    <div class="foot-grid">
+      <div class="foot-brand"><b data-c="brand"></b><p data-c="footerText"></p></div>
+      <div><h4>Клиника</h4><a href="#protocols">Направления</a><a href="#programs">Программы</a><a href="#journey">Этапы визита</a><a href="#club">Клуб привилегий</a></div>
+      <div><h4>Пациентам</h4><button type="button" data-book>Онлайн-запись</button><a id="waLink2" target="_blank" rel="noopener">WhatsApp</a><a id="callLink2">Позвонить</a><a href="#visit">Как добраться</a></div>
+      <div><h4>Документы</h4><button type="button" data-privacy>Политика конфиденциальности</button><span id="licenseLine" class="muted" style="font-size:14px;line-height:1.6;display:block;margin-top:6px"></span></div>
+    </div>
+    <p class="warn" data-reveal>Имеются противопоказания, необходима консультация специалиста</p>
+    <div class="dbl" style="padding:10px 0"></div>
+    <div class="legal"><span>© <span id="year"></span> <span data-c="brandFull"></span></span><span>Фото: Unsplash</span><span id="madeBy"></span></div>
+  </div>
+  <div class="watermark" aria-hidden="true">ÉCLAT CLINIC</div>
+</footer>
+
+<button class="btn btn-solid fab" data-book>Записаться</button>
+
+<!-- запись: боковая панель на компьютере, шторка на телефоне -->
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Онлайн-запись" aria-hidden="true">
+  <div class="d-head">
+    <div><b data-c="brand"></b><span>Онлайн-запись</span></div>
+    <div class="d-actions">
+      <button class="icon-btn" id="restart" aria-label="Начать запись заново"><i data-lucide="rotate-ccw"></i><span class="fb" aria-hidden="true">↻</span></button>
+      <button class="icon-btn" id="close" aria-label="Закрыть"><i data-lucide="x"></i><span class="fb" aria-hidden="true">×</span></button>
+    </div>
+  </div>
+  <div class="chat-body" id="chatBody" aria-live="polite"></div>
+  <form class="chat-input" id="chatForm" hidden>
+    <label class="sr" for="chatInput">Ответ</label>
+    <input id="chatInput" autocomplete="off">
+    <button class="send" type="submit" aria-label="Отправить ответ"><i data-lucide="arrow-up-right"></i><span class="fb" aria-hidden="true">→</span></button>
+  </form>
+  <div class="d-foot" id="demoNote"></div>
+</aside>
+
+<dialog id="privacy" aria-labelledby="privacyTitle">
+  <div class="dlg">
+    <div class="dlg-head"><h3 id="privacyTitle">Политика конфиденциальности</h3><button class="icon-btn" data-close-privacy aria-label="Закрыть"><i data-lucide="x"></i><span class="fb" aria-hidden="true">×</span></button></div>
+    <div class="dlg-body" id="privacyBody"></div>
+  </div>
+</dialog>
+
+<script>
+/* =========================================================
+   НАСТРОЙКИ ПОД КЛИЕНТА: меняйте только этот блок.
+   ========================================================= */
+const CONFIG = {
+  brand: "ÉCLAT",
+  brandFull: "ÉCLAT Clinic",
+  est: "EST. 2018",
+  city: "Красноярск",
+  address: "Центральный район",                 // реальный адрес клиники
+  hours: "Ежедневно с 10:00 до 22:00",
+  phone: "+7 900 000-00-00",
+  phoneRaw: "+79000000000",
+  whatsapp: "79000000000",
+  parking: "Бесплатная парковка для пациентов во внутреннем дворе. Предупредите администратора при записи.",
+
+  heroLabel: "Доказательная косметология · Красноярск",
+  heroTitle1: "Искусство чистой",
+  heroTitle2: "и сияющей кожи",
+  heroLine: "Бережные аппаратные и инъекционные методики, которые сохраняют естественную мимику и индивидуальность.",
+
+  // Направления: строки с превью за курсором. desc раскрывается по нажатию.
+  protocols: [
+    { title: "SMAS-лифтинг Ultraformer MPT", duration: "60 минут", tag: "Аппаратная подтяжка",
+      desc: "Сфокусированный ультразвук воздействует на глубокие слои кожи. Зоны и количество линий врач определяет на консультации.",
+      img: "img/1570172619644-600.webp" },
+    { title: "Биоревитализация и коллагенотерапия", duration: "45 минут", tag: "Инъекционная эстетика",
+      desc: "Инъекции препаратов гиалуроновой кислоты или коллагена. Препарат и схему подбирает врач после осмотра.",
+      img: "img/1512290923902-600.webp" },
+    { title: "Фотоомоложение BBL Hero", duration: "40 минут", tag: "Лазерная терапия",
+      desc: "Широкополосный свет для работы с пигментацией и сосудистым рисунком. Проводится курсом, в период низкой солнечной активности.",
+      img: "img/1522337360788-600.webp" },
+    { title: "Молекулярные уходы Biologique", duration: "90 минут", tag: "Эстетическая дерматология",
+      desc: "Профессиональные уходы по протоколам Biologique Recherche, подбираются по состоянию кожи в день визита.",
+      img: "img/1540555700478-600.webp" }
+  ],
+
+  programs: [
+    { title: "Сияние и ровный тон", tag: "Glass Skin", text: "BBL Forever Young, гидропилинг и пептидная маска.", price: "от 24 000 ₽",
+      img: "img/1596755389378-800.webp" },
+    { title: "Архитектура контуров лица", tag: "Контуры", text: "Векторный лифтинг Радиесс и аппаратный дренаж.", price: "от 42 000 ₽",
+      img: "img/1515377905703-800.webp" },
+    { title: "Глубокое клеточное обновление", tag: "Обновление", text: "Экзосомальная терапия и микроигольчатый RF-лифтинг.", price: "от 38 000 ₽",
+      img: "img/1761718210089-800.webp" }
+  ],
+
+  journey: [
+    { title: "Цифровая 3D-диагностика", text: "Приём начинается с оптического сканирования кожи на аппарате Janus Pro: сосудистый рисунок, меланин, микрорельеф." },
+    { title: "Персональный протокол", text: "Врач-дерматокосметолог составляет индивидуальный план процедур без гиперкоррекции и навязанных услуг." },
+    { title: "Сопровождение после процедуры", text: "Подбираем домашний уход и остаёмся на связи на всём периоде восстановления." }
+  ],
+
+  clinicText: "Клиника ÉCLAT создана врачами-дерматологами как пространство спокойствия и научно обоснованной эстетики. Работаем на оригинальном оборудовании с регистрационными удостоверениями.",
+  facts: [                                       // только реальные цифры клиники
+    { value: "14", label: "лет врачебного опыта" },
+    { value: "100%", label: "сертифицированные препараты" },
+    { value: "98%", label: "пациентов приходят по рекомендации" }
+  ],
+  perks: [
+    "Приоритетная запись к ведущим врачам клиники",
+    "Фиксированная скидка 15% на курсовые протоколы",
+    "Комплиментарная 3D-диагностика кожи каждые полгода"
+  ],
+  footerText: "Клиника эстетической медицины. Аппаратная, инъекционная косметология и эстетическая дерматология.",
+  license: "",                                   // номер лицензии на медицинскую деятельность: обязательно для клиники
+
+  // Персональные данные: кто оператор (для текста политики)
+  operator: "MIRAI, разработчик концепт-проекта",
+  operatorEmail: "sempervukhin@mail.ru",
+
+  // Куда уходят заявки
+  submit: {
+    demo: true,                               // ДЕМО: заявки никуда не уходят, бот всегда пишет «Заявка отправлена». Для настоящего сайта: false
+    email: "sempervukhin@mail.ru",               // FormSubmit: первая заявка пришлёт письмо активации
+    webhook: ""                                  // вебхук n8n или другого сервера
+  },
+  consultation: { title: "Консультация врача-дерматокосметолога", sub: "с 3D-диагностикой кожи" },
+  workDays: [0,1,2,3,4,5,6],
+  slots: ["10:00","11:30","13:00","14:30","16:00","17:30","19:00","20:30"],
+  botHello: "Добрый день! Я помогу записаться в клинику ÉCLAT. Это займёт около минуты.",
+
+  madeBy: { text: "Концепт-проект MIRAI: клиника, цены и цифры вымышлены. ← к работам MIRAI", url: "../../#work" },
+  demoNote: "Демо-версия сайта от MIRAI"                  // после продажи: ""
+};
+</script>
+
+<script>
+/* иконки Lucide (ISC), встроены в страницу вместо загрузки с CDN */
+window.lucide={createIcons:function(o){var P={"arrow-right":'<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',"arrow-up-right":'<path d="M7 7h10v10"/><path d="M7 17 17 7"/>',"menu":'<line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>',"rotate-ccw":'<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>',"x":'<path d="M18 6 6 18"/><path d="m6 6 12 12"/>'};
+var sw=(o&&o.attrs&&o.attrs['stroke-width'])||2;
+document.querySelectorAll('i[data-lucide]').forEach(function(i){var n=i.getAttribute('data-lucide');if(!P[n])return;var t=document.createElement('span');t.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="'+sw+'" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-'+n+'" aria-hidden="true">'+P[n]+'</svg>';i.replaceWith(t.firstChild);});}};
+</script>
+<script>
+(function(){
+  'use strict';
+  const C = CONFIG;
+  const root = document.documentElement;
+  root.classList.add('js');
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const esc = s => String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine = matchMedia('(hover: hover) and (pointer: fine) and (min-width: 1024px)');
+  const mobile = matchMedia('(max-width: 767px)');
+  const pad = n => String(n).padStart(2, '0');
+  const ICON = { arrow: '<i data-lucide="arrow-right"></i><span class="fb" aria-hidden="true">→</span>' };
+
+  /* ---------- контент ---------- */
+  // проверенные фото на замену, если ссылка из настроек не открылась
+  const FALLBACK = [
+    'img/1761718210089-900.webp',
+    'img/1643684391140-900.webp',
+    'img/1731514771613-900.webp',
+    'img/1570172619644-900.webp'
+  ];
+  $$('[data-c]').forEach(el => { const v = C[el.dataset.c]; if (v != null) el.textContent = v; });
+
+  function photo(box, src, alt, eager){
+    if (!src) return;
+    const img = new Image(); img.alt = alt || ''; img.decoding = 'async';
+    if (!eager) img.loading = 'lazy';
+    img.onload = () => img.classList.add('ok');
+    img.onerror = () => {
+      const next = FALLBACK.find(u => !tried.has(u));
+      if (next){ tried.add(next); img.src = next; } else img.remove();
+    };
+    const tried = new Set([src]);
+    img.src = src; box.appendChild(img);
+  }
+  photo($('[data-photo="hero"]'), 'img/1616394584738-1400.webp', 'Уход за кожей лица', true);
+  photo($('[data-photo="clinic"]'), 'img/1629909613654-1000.webp', 'Кабинет клиники');
+
+  $('#protoCount').textContent = `${pad(C.protocols.length)} направления`;
+  $('#protoList').innerHTML = C.protocols.map((p, i) => `
+    <li class="proto" data-reveal style="transition-delay:${i * 0.08}s">
+      <button class="proto-row" type="button" aria-expanded="false" aria-controls="pb${i}" data-proto="${i}">
+        <span class="proto-idx">${pad(i + 1)}</span>
+        <span class="proto-thumb" aria-hidden="true"><img src="${esc(p.img)}" alt="" loading="lazy" data-fb="${i}"></span>
+        <span class="proto-title">${esc(p.title)}</span>
+        <span class="proto-meta"><span class="label">${esc(p.tag)}</span><span class="dur">${esc(p.duration)}</span></span>
+        <span class="proto-more"><span class="more-t">Подробнее</span> ${ICON.arrow}</span>
+      </button>
+      <div class="proto-body" id="pb${i}">
+        <p>${esc(p.desc)}</p>
+        <button class="btn btn-solid" type="button" data-book-item="proto:${i}">Записаться</button>
+      </div>
+    </li>`).join('');
+
+  $$('img[data-fb]').forEach(im => im.onerror = () => { im.onerror = () => im.remove(); im.src = FALLBACK[+im.dataset.fb % FALLBACK.length]; });
+
+  $('#progList').innerHTML = C.programs.map((p, i) => `
+    <article class="prog" data-reveal style="transition-delay:${i * 0.12}s">
+      <div class="ph" data-src="${esc(p.img)}"></div>
+      <p class="label">${esc(p.tag)}</p>
+      <h3>${esc(p.title)}</h3>
+      <p>${esc(p.text)}</p>
+      <div class="prog-foot"><span class="prog-price">${esc(p.price)}</span><button class="proto-more" type="button" data-book-item="prog:${i}">Записаться ${ICON.arrow}</button></div>
+    </article>`).join('');
+  $$('.prog .ph').forEach(b => photo(b, b.dataset.src, ''));
+
+  $('#journeyList').innerHTML = C.journey.map((s, i) => `
+    <div class="step" data-reveal style="transition-delay:${i * 0.1}s"><span class="step-n">${pad(i + 1)}.</span><h3>${esc(s.title)}</h3><p>${esc(s.text)}</p></div>`).join('');
+  $('#facts').innerHTML = C.facts.map(f => `<div><b>${esc(f.value)}</b><span>${esc(f.label)}</span></div>`).join('');
+  $('#perks').innerHTML = C.perks.map((t, i) => `<li><span>${pad(i + 1)}</span>${esc(t)}</li>`).join('');
+
+  const tel = $('#phoneLink'); tel.textContent = C.phone; tel.href = 'tel:' + C.phoneRaw;
+  ['#callLink', '#callLink2'].forEach(s => $(s).href = 'tel:' + C.phoneRaw);
+  ['#waLink', '#waLink2'].forEach(s => $(s).href = 'https://wa.me/' + C.whatsapp);
+  $('#licenseLine').textContent = C.license ? `Лицензия на медицинскую деятельность ${C.license}` : '';
+  $('#year').textContent = new Date().getFullYear();
+  if (C.madeBy && C.madeBy.text) $('#madeBy').innerHTML = `<a href="${esc(C.madeBy.url)}">${esc(C.madeBy.text)}</a>`;
+  $('#demoNote').textContent = C.demoNote || '';
+
+  /* ---------- заголовок первого экрана: две строки на компьютере ---------- */
+  const title = $('.hero-title');
+  function fitTitle(){
+    title.style.fontSize = '';
+    if (innerWidth <= 900) return;
+    const box = $('#heroText').clientWidth;
+    const widest = Math.max(...$$('span', title).map(s => s.scrollWidth));
+    if (widest > box){ const fs = parseFloat(getComputedStyle(title).fontSize); title.style.fontSize = Math.floor(fs * box / widest * 0.98) + 'px'; }
+  }
+  fitTitle();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitTitle);
+  let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(fitTitle, 120); });
+
+  /* ---------- иконки ---------- */
+  function icons(){ if (window.lucide){ lucide.createIcons({ attrs: { 'stroke-width': 1.5 } }); root.classList.add('icons-ok'); } }
+  window.addEventListener('load', icons);
+
+  /* ---------- ширма и первый экран ---------- */
+  /* первый экран: фото проявляется в арке снизу вверх, как сияние кожи после ухода */
+  const hero = $('#hero');
+  if (reduce){ hero.classList.add('lit'); $('#heroText').classList.add('go'); }
+  else requestAnimationFrame(() => requestAnimationFrame(() => { hero.classList.add('lit'); setTimeout(() => $('#heroText').classList.add('go'), 250); }));
+
+  /* ---------- шапка, меню, появление ---------- */
+  const nav = $('#nav'), fab = $('.fab');
+  new IntersectionObserver(([e]) => nav.classList.toggle('solid', !e.isIntersecting)).observe($('#topSentinel'));
+  let heroGone = false;
+  new IntersectionObserver(([e]) => { heroGone = !e.isIntersecting; fab.classList.toggle('on', heroGone && !drawerOpen()); }, { rootMargin: '-140px 0px 0px 0px' }).observe($('#hero'));
+  const burger = $('#burger'), menu = $('#menu');
+  burger.onclick = () => { const o = !menu.classList.contains('open'); menu.classList.toggle('open', o); burger.setAttribute('aria-expanded', o); nav.classList.add('solid'); };
+  $$('#menu a').forEach(a => a.addEventListener('click', () => { menu.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); }));
+  const rev = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); rev.unobserve(e.target); } }), { threshold: 0.12 });
+  $$('[data-reveal]').forEach(el => rev.observe(el));
+
+  /* ---------- направления: раскрытие и превью за курсором (пружина) ---------- */
+  $$('[data-proto]').forEach(btn => btn.addEventListener('click', () => {
+    const li = btn.parentElement, open = !li.classList.contains('open');
+    $$('.proto.open').forEach(x => { x.classList.remove('open'); $('.proto-row', x).setAttribute('aria-expanded', 'false'); });
+    li.classList.toggle('open', open); btn.setAttribute('aria-expanded', open);
+    $$('.proto').forEach(x => $('.more-t', x).textContent = x.classList.contains('open') ? 'Свернуть' : 'Подробнее');
+    hidePreview();
+  }));
+
+  const cur = $('#cursorImg'), curImg = $('img', cur);
+  const sp = { x: 0, y: 0, vx: 0, vy: 0, tx: 0, ty: 0, s: .85, vs: 0, ts: .85, raf: 0, on: false };
+  function tick(){
+    const k = 150, d = 20, dt = 1 / 60;
+    sp.vx += ((sp.tx - sp.x) * k - sp.vx * d) * dt; sp.x += sp.vx * dt;
+    sp.vy += ((sp.ty - sp.y) * k - sp.vy * d) * dt; sp.y += sp.vy * dt;
+    sp.vs += ((sp.ts - sp.s) * k - sp.vs * d) * dt; sp.s += sp.vs * dt;
+    cur.style.transform = `translate3d(${sp.x}px, ${sp.y}px, 0) scale(${sp.s}) rotate(-3deg)`;
+    const moving = Math.abs(sp.tx - sp.x) + Math.abs(sp.ty - sp.y) + Math.abs(sp.ts - sp.s) > 0.3;
+    sp.raf = (sp.on || moving) ? requestAnimationFrame(tick) : 0;
+  }
+  const list = $('#protoList');
+  // превью показывается только над закрытой строкой и всегда в стороне от курсора,
+  // чтобы не закрывать то, на что человек нажимает
+  function hidePreview(){ sp.on = false; sp.ts = .85; cur.classList.remove('on'); }
+  const W = 250, H = 333, GAP = 36;
+  list.addEventListener('pointermove', e => {
+    if (!fine.matches || reduce) return;
+    const row = e.target.closest('.proto-row');
+    if (!row || row.parentElement.classList.contains('open')) return hidePreview();
+    const p = C.protocols[+row.dataset.proto];
+    const left = e.clientX > innerWidth * 0.55;
+    const tx = left ? e.clientX - W - GAP : e.clientX + GAP;
+    const ty = Math.min(Math.max(e.clientY - H / 2, 90), innerHeight - H - 16);
+    if (curImg.dataset.want !== p.img){ curImg.dataset.want = p.img; delete curImg.dataset.f; cur.style.visibility = ''; curImg.src = p.img; }
+    sp.tx = tx; sp.ty = ty;
+    if (!sp.on){ sp.on = true; if (!cur.classList.contains('on')){ sp.x = sp.tx; sp.y = sp.ty; } sp.ts = 1; cur.classList.add('on'); }
+    if (!sp.raf) sp.raf = requestAnimationFrame(tick);
+  });
+  list.addEventListener('pointerleave', hidePreview);
+  list.addEventListener('pointerdown', hidePreview);
+  curImg.onerror = () => { const f = FALLBACK.find(u => u !== curImg.src && !curImg.dataset.f); if (f){ curImg.dataset.f = '1'; curImg.src = f; } else cur.style.visibility = 'hidden'; };
+  curImg.onload = () => { cur.style.visibility = ''; };
+
+  /* ---------- политика конфиденциальности ---------- */
+  const dlg = $('#privacy');
+  $('#privacyBody').innerHTML = `
+    <p class="muted">Шаблон. Перед запуском сайта клиника проверяет текст с юристом и вписывает свои данные.</p>
+    <h4>1. Оператор</h4><p>Оператор персональных данных: ${esc(C.operator)}. Контакт по вопросам обработки данных: ${esc(C.operatorEmail)}.</p>
+    <h4>2. Какие данные мы получаем</h4><p>Через онлайн-запись: имя, номер телефона, выбранная процедура, дата и время визита.</p>
+    <h4>3. Зачем</h4><p>Чтобы связаться с вами, подтвердить или перенести запись и напомнить о визите.</p>
+    <h4>4. Правовое основание</h4><p>Ваше согласие, которое вы даёте, нажимая «Отправить заявку» (Федеральный закон № 152-ФЗ «О персональных данных»).</p>
+    <h4>5. Хранение и передача</h4><p>Данные храним не дольше, чем нужно для этих целей, и не передаём третьим лицам, кроме сервисов, через которые принимаются заявки.</p>
+    <h4>6. Ваши права</h4><p>Вы можете запросить сведения о своих данных, их исправление или удаление, а также отозвать согласие, написав на ${esc(C.operatorEmail)}.</p>`;
+  document.addEventListener('click', e => {
+    if (e.target.closest('[data-privacy]')) dlg.showModal();
+    if (e.target.closest('[data-close-privacy]') || e.target === dlg) dlg.close();
+  });
+
+  /* ---------- запись: панель ---------- */
+  const drawer = $('#drawer'), scrim = $('#scrim');
+  const drawerOpen = () => drawer.classList.contains('on');
+  let lastFocus = null;
+  function openDrawer(){
+    lastFocus = document.activeElement;
+    drawer.classList.add('on'); scrim.classList.add('on'); drawer.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden'; fab.classList.remove('on'); menu.classList.remove('open');
+    setTimeout(() => $('#close').focus({ preventScroll: true }), 50);
+  }
+  function closeDrawer(){
+    drawer.classList.remove('on'); scrim.classList.remove('on'); drawer.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = ''; fab.classList.toggle('on', heroGone);
+    if (lastFocus) lastFocus.focus({ preventScroll: true });
+  }
+  $('#close').onclick = closeDrawer; scrim.onclick = closeDrawer;
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && drawerOpen() && !dlg.open) closeDrawer(); });
+  $('#restart').onclick = () => start();
+
+  const items = [{ title: C.consultation.title, sub: C.consultation.sub }]
+    .concat(C.protocols.map(p => ({ title: p.title, sub: `${p.tag}, ${p.duration}` })))
+    .concat(C.programs.map(p => ({ title: `Программа «${p.title}»`, sub: p.price })));
+  function book(opts){ openDrawer(); if (opts || !started) start(opts); }
+  document.addEventListener('click', e => {
+    if (e.target.closest('[data-book]')) return book();
+    if (e.target.closest('[data-club]')) return book({ club: true });
+    const b = e.target.closest('[data-book-item]');
+    if (b){ const [kind, i] = b.dataset.bookItem.split(':'); return book({ item: items[kind === 'proto' ? 1 + +i : 1 + C.protocols.length + +i] }); }
+  });
+
+  /* ---------- расписание (демо) ---------- */
+  const DAYS = ['вс','пн','вт','ср','чт','пт','сб'];
+  const MONTHS = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+  const fmtDay = d => `${d.getDate()} ${MONTHS[d.getMonth()]}, ${DAYS[d.getDay()]}`;
+  const plural = (n, f) => { const a = n % 10, b = n % 100; return a === 1 && b !== 11 ? f[0] : a >= 2 && a <= 4 && (b < 10 || b >= 20) ? f[1] : f[2]; };
+  function hash(str){ let h = 2166136261; for (const ch of str){ h ^= ch.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; }
+  const freeTimes = d => C.slots.filter(t => hash(`eclat ${d.getFullYear()}-${d.getMonth()}-${d.getDate()} ${t}`) % 10 >= 4);
+  function workDates(n){
+    const out = []; const d = new Date(); d.setHours(0,0,0,0);
+    for (let i = 1; out.length < n && i < 60; i++){ const x = new Date(d); x.setDate(d.getDate() + i); if (C.workDays.includes(x.getDay()) && freeTimes(x).length) out.push(x); }
+    return out;
+  }
+
+  /* ---------- телефон: +7 закреплён ---------- */
+  function phoneDigits(raw){ let d = String(raw).replace(/^\s*\+?\s*7/, '').replace(/\D/g, ''); if (/^[78]/.test(d)) d = d.slice(1); return d.slice(0, 10); }
+  function formatPhone(d){ let o = '+7 '; if (d.length) o += '(' + d.slice(0, 3); if (d.length > 3) o += ') ' + d.slice(3, 6); if (d.length > 6) o += '-' + d.slice(6, 8); if (d.length > 8) o += '-' + d.slice(8, 10); return o; }
+
+  /* ---------- чат ---------- */
+  const body = $('#chatBody'), form = $('#chatForm'), input = $('#chatInput');
+  let state = {}, onText = null, timers = [], askBack = null, snapshot = null, sending = false, runId = 0, started = false;
+  const later = (fn, ms) => timers.push(setTimeout(fn, reduce ? 40 : ms));
+  const scroll = () => { body.scrollTop = body.scrollHeight; };
+
+  input.addEventListener('input', () => { if (input.dataset.mask !== 'phone') return; input.value = formatPhone(phoneDigits(input.value)); input.setSelectionRange(input.value.length, input.value.length); });
+  input.addEventListener('keydown', e => { if (input.dataset.mask === 'phone' && e.key === 'Backspace' && input.value.length <= 3) e.preventDefault(); });
+  input.addEventListener('focus', () => { if (input.dataset.mask === 'phone') setTimeout(() => input.setSelectionRange(input.value.length, input.value.length), 0); });
+
+  function say(text, then, cls){
+    const t = document.createElement('div'); t.className = 'msg bot typing'; t.innerHTML = '<i></i><i></i><i></i>';
+    body.appendChild(t); scroll();
+    later(() => { t.className = 'msg bot' + (cls ? ' ' + cls : ''); t.textContent = text; scroll(); if (then) later(then, 220); }, 500 + Math.min(text.length * 7, 650));
+  }
+  function me(text){ const m = document.createElement('div'); m.className = 'msg me'; m.textContent = text; body.appendChild(m); scroll(); }
+  function backChip(wrap, onBack){
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'chip back'; b.textContent = 'Назад';
+    b.onclick = () => { wrap.remove(); form.hidden = true; onText = null; askBack = null; $$('.hint', body).forEach(x => x.remove()); me('Назад'); onBack(); };
+    wrap.appendChild(b);
+  }
+  function chips(list, cb, onBack){
+    const wrap = document.createElement('div'); wrap.className = 'chips';
+    list.forEach(it => {
+      const b = document.createElement(it.href ? 'a' : 'button');
+      b.className = 'chip' + (it.primary ? ' primary' : '') + (it.sub ? ' wide' : '');
+      if (it.href) b.href = it.href; else b.type = 'button';
+      b.innerHTML = esc(it.label) + (it.sub ? `<small>${esc(it.sub)}</small>` : '');
+      if (!it.href) b.onclick = () => { wrap.remove(); me(it.label); cb(it.value); };
+      wrap.appendChild(b);
+    });
+    if (onBack) backChip(wrap, onBack);
+    body.appendChild(wrap); scroll();
+  }
+  function ask(kind, cb, onBack){
+    form.hidden = false;
+    if (kind === 'phone'){ input.dataset.mask = 'phone'; input.type = 'tel'; input.inputMode = 'tel'; input.autocomplete = 'tel'; input.placeholder = '+7 (900) 000-00-00'; input.value = '+7 '; }
+    else { input.dataset.mask = ''; input.type = 'text'; input.inputMode = 'text'; input.autocomplete = 'given-name'; input.placeholder = 'Ваше имя'; input.value = ''; }
+    if (drawerOpen()) input.focus({ preventScroll: true });
+    onText = cb;
+    if (onBack){ askBack = document.createElement('div'); askBack.className = 'chips'; backChip(askBack, onBack); body.appendChild(askBack); scroll(); }
+  }
+  function hint(text){
+    $$('.hint', body).forEach(x => x.remove());
+    const h = document.createElement('div'); h.className = 'msg bot hint err'; h.textContent = text;
+    askBack ? body.insertBefore(h, askBack) : body.appendChild(h); scroll();
+  }
+  form.addEventListener('submit', e => {
+    e.preventDefault(); if (!onText) return;
+    let v = input.value.trim();
+    if (input.dataset.mask === 'phone'){ if (phoneDigits(v).length !== 10) return hint('Нужно 10 цифр после +7, например +7 (913) 123-45-67'); v = formatPhone(phoneDigits(v)); }
+    else if (v.length < 2) return hint('Напишите, пожалуйста, имя');
+    $$('.hint', body).forEach(x => x.remove());
+    if (askBack){ askBack.remove(); askBack = null; }
+    const cb = onText; onText = null; form.hidden = true; me(v); cb(v);
+  });
+
+  // шаги
+  const next = fn => state.editing ? stepReview() : fn();
+  const backOr = fn => state.editing ? cancelEdit : fn;
+  function startEdit(f){ snapshot = { ...state }; state.editing = f; }
+  function cancelEdit(){ if (snapshot) state = snapshot; snapshot = null; stepReview(); }
+
+  function stepItem(){
+    say(state.editing ? 'Выберите другую процедуру:' : 'На какую процедуру хотите записаться? Если не уверены, начните с консультации.', () => chips(
+      items.map(it => ({ label: it.title, sub: it.sub, value: it })),
+      it => { state.item = it; next(stepDay); },
+      state.editing ? cancelEdit : null));
+  }
+  function stepDay(){
+    const dates = workDates(7);
+    say('Выберите день. Показываю только дни со свободным временем.', () => chips(
+      dates.map(d => ({ label: fmtDay(d), sub: `${freeTimes(d).length} ${plural(freeTimes(d).length, ['окно','окна','окон'])}`, value: d })),
+      d => { state.date = d; stepTime(); },
+      state.editing ? cancelEdit : stepItem));
+  }
+  function stepTime(){
+    const free = freeTimes(state.date);
+    say(`Свободное время на ${fmtDay(state.date)}:`, () => chips(free.map(t => ({ label: t, value: t })),
+      t => { state.time = t; next(stepName); }, state.editing === 'time' ? cancelEdit : stepDay));
+  }
+  function stepName(){
+    say(state.editing ? 'Напишите имя ещё раз:' : 'Как к вам обращаться?', () =>
+      ask('name', v => { state.name = v; next(stepPhone); }, backOr(state.club ? null : stepTime)));
+  }
+  function stepPhone(){
+    say(state.editing ? 'Введите правильный номер, +7 уже стоит:' : `${state.name}, оставьте номер телефона, по нему администратор подтвердит ${state.club ? 'заявку' : 'запись'}.`, () =>
+      ask('phone', v => { state.phone = v; next(stepReview); }, backOr(stepName)));
+  }
+  const fields = () => state.club
+    ? [['Заявка', 'Карта ÉCLAT Private'], ['Имя', state.name], ['Телефон', state.phone]]
+    : [['Процедура', state.item.title], ['Когда', `${fmtDay(state.date)}, ${state.time}`], ['Имя', state.name], ['Телефон', state.phone]];
+
+  function stepReview(){
+    state.editing = false; snapshot = null;
+    $$('.summary', body).forEach(x => x.classList.add('old'));
+    say('Проверьте заявку:', () => {
+      const s = document.createElement('div'); s.className = 'summary';
+      s.innerHTML = fields().map(([k, v]) => `<div class="r"><span>${esc(k)}</span><b>${esc(v)}</b></div>`).join('');
+      body.appendChild(s);
+      const c = document.createElement('p'); c.className = 'consent';
+      c.innerHTML = 'Нажимая «Отправить заявку», вы соглашаетесь на обработку персональных данных согласно <button type="button" data-privacy>политике конфиденциальности</button>.';
+      body.appendChild(c); scroll();
+      later(() => chips([{ label: 'Отправить заявку', primary: true, value: 'send' }, { label: 'Изменить', value: 'edit' }],
+        v => { c.remove(); v === 'send' ? stepSend() : stepEdit(); }), 200);
+    });
+  }
+  function stepEdit(){
+    const list = state.club ? [] : [{ label: 'Процедуру', value: 'item' }, { label: 'День и время', value: 'day' }, { label: 'Только время', value: 'time' }];
+    list.push({ label: 'Имя', value: 'name' }, { label: 'Телефон', value: 'phone' }, { label: 'Ничего, всё верно', value: 'back' });
+    say('Что исправить?', () => chips(list, v => {
+      if (v === 'back') return stepReview();
+      startEdit(v); ({ item: stepItem, day: stepDay, time: stepTime, name: stepName, phone: stepPhone })[v]();
+    }));
+  }
+
+  async function submit(){
+    if (C.submit.demo){ await new Promise(r => setTimeout(r, 900)); return true; }
+    const data = Object.fromEntries(fields());
+    const ctrl = new AbortController(); const t = setTimeout(() => ctrl.abort(), 15000);
+    try {
+      if (C.submit.webhook){ const r = await fetch(C.submit.webhook, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data), signal: ctrl.signal }); return r.ok; }
+      const subject = state.club ? 'Заявка на карту ÉCLAT Private' : `Новая запись: ${data['Процедура']}, ${data['Когда']}`;
+      const r = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(C.submit.email)}`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ ...data, _subject: subject, _template: 'table' }), signal: ctrl.signal });
+      const j = await r.json().catch(() => ({}));
+      return r.ok && (j.success === true || j.success === 'true');
+    } catch (e) { return false; } finally { clearTimeout(t); }
+  }
+  function stepSend(){
+    if (sending) return; sending = true; const my = runId;
+    const t = document.createElement('div'); t.className = 'msg bot typing'; t.innerHTML = '<i></i><i></i><i></i>'; body.appendChild(t); scroll();
+    submit().then(ok => {
+      if (my !== runId) return; sending = false; t.remove();
+      if (ok) say(state.club
+          ? `Заявка отправлена. Администратор позвонит на ${state.phone} и расскажет об условиях клуба.`
+          : `Заявка отправлена. Администратор позвонит на ${state.phone} и подтвердит запись.`,
+        () => chips([{ label: 'Новая запись', value: 1 }], () => start()), 'ok');
+      else say('Не получилось отправить заявку. Проверьте интернет и попробуйте ещё раз или позвоните нам.', () => chips([
+          { label: 'Отправить ещё раз', primary: true, value: 'retry' }, { label: 'Позвонить', href: 'tel:' + C.phoneRaw }, { label: 'Изменить', value: 'edit' }
+        ], v => v === 'retry' ? stepSend() : stepEdit()), 'err');
+    });
+  }
+  function start(opts){
+    opts = opts || {}; started = true; runId++;
+    timers.forEach(clearTimeout); timers = []; body.innerHTML = ''; form.hidden = true;
+    onText = null; askBack = null; snapshot = null; sending = false; state = {};
+    if (opts.club){ state.club = true; say('Добрый день! Оставьте имя и телефон, администратор расскажет об условиях клуба ÉCLAT Private.', stepName); }
+    else if (opts.item){ state.item = opts.item; say(C.botHello, () => { me(opts.item.title); stepDay(); }); }
+    else say(C.botHello, stepItem);
+  }
+})();
+</script>
+</body>
+</html>

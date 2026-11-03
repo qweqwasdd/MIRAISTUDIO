@@ -1,0 +1,931 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ORLO — вычисления на грани</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="ORLO — облачная платформа для запуска нейросетей на узлах рядом с данными. Концепт-проект MIRAI: промо-сайт и живое веб-приложение.">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="ORLO — вычисления на грани">
+<meta property="og:description" content="Промо-сайт и живая консоль платформы граничных вычислений. Концепт MIRAI.">
+<meta property="og:image" content="https://qweqwasdd.github.io/miraistudio/img/orlo.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='16' fill='%23000'/%3E%3Cpath d='M16 6 25 11v10l-9 5-9-5V11z' fill='none' stroke='white' stroke-width='1.8' stroke-linejoin='round'/%3E%3Cpath d='M16 16v10M16 16l9-5M16 16 7 11' stroke='white' stroke-width='1.8' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preload" href="fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Inter";src:url(fonts/inter-var.woff2) format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"JetBrains Mono";src:url(../../fonts/jetbrainsmono.woff2) format("woff2"),url(../../fonts/jetbrainsmono.woff) format("woff");font-weight:400 500;font-display:swap}
+</style>
+<style>*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com*/*,:after,:before{border:0 solid #e5e7eb;box-sizing:border-box}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;font-family:Inter,system-ui,Segoe UI,Roboto,sans-serif;font-feature-settings:normal;font-variation-settings:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-tap-highlight-color:transparent}body{line-height:inherit;margin:0}hr{border-top-width:1px;color:inherit;height:0}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-size:1em;font-variation-settings:normal}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{border-collapse:collapse;border-color:inherit;text-indent:0}button,input,optgroup,select,textarea{color:inherit;font-family:inherit;font-feature-settings:inherit;font-size:100%;font-variation-settings:inherit;font-weight:inherit;letter-spacing:inherit;line-height:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{color:#9ca3af;opacity:1}input::placeholder,textarea::placeholder{color:#9ca3af;opacity:1}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{height:auto;max-width:100%}[hidden]:where(:not([hidden=until-found])){display:none}.pointer-events-none{pointer-events:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.inset-0{inset:0}.z-10{z-index:10}.z-20{z-index:20}.z-50{z-index:50}.z-\[60\]{z-index:60}.order-3{order:3}.mx-auto{margin-left:auto;margin-right:auto}.mb-3{margin-bottom:.75rem}.mb-5{margin-bottom:1.25rem}.mb-7{margin-bottom:1.75rem}.mb-9{margin-bottom:2.25rem}.ml-0\.5{margin-left:.125rem}.ml-1{margin-left:.25rem}.mt-0\.5{margin-top:.125rem}.mt-1{margin-top:.25rem}.mt-1\.5{margin-top:.375rem}.mt-10{margin-top:2.5rem}.mt-14{margin-top:3.5rem}.mt-16{margin-top:4rem}.mt-2{margin-top:.5rem}.mt-3{margin-top:.75rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.mt-9{margin-top:2.25rem}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-10{height:2.5rem}.h-7{height:1.75rem}.h-8{height:2rem}.h-9{height:2.25rem}.h-\[100dvh\]{height:100dvh}.h-\[170px\]{height:170px}.h-full{height:100%}.min-h-0{min-height:0}.min-h-\[100dvh\]{min-height:100dvh}.min-h-\[190px\]{min-height:190px}.min-h-\[280px\]{min-height:280px}.min-h-\[3\.3em\]{min-height:3.3em}.min-h-screen{min-height:100vh}.w-10{width:2.5rem}.w-7{width:1.75rem}.w-8{width:2rem}.w-9{width:2.25rem}.w-full{width:100%}.min-w-0{min-width:0}.max-w-\[1180px\]{max-width:1180px}.max-w-\[1280px\]{max-width:1280px}.max-w-\[48ch\]{max-width:48ch}.max-w-\[52ch\]{max-width:52ch}.max-w-\[560px\]{max-width:560px}.max-w-\[640px\]{max-width:640px}.max-w-\[70ch\]{max-width:70ch}.max-w-\[720px\]{max-width:720px}.max-w-\[780px\]{max-width:780px}.flex-1{flex:1 1 0%}.flex-none{flex:none}.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.resize{resize:both}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid-cols-\[auto_1fr_auto\]{grid-template-columns:auto 1fr auto}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-end{align-items:flex-end}.items-center{align-items:center}.items-baseline{align-items:baseline}.items-stretch{align-items:stretch}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:.25rem}.gap-1\.5{gap:.375rem}.gap-12{gap:3rem}.gap-2{gap:.5rem}.gap-2\.5{gap:.625rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-5{gap:1.25rem}.gap-6{gap:1.5rem}.gap-7{gap:1.75rem}.gap-8{gap:2rem}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.overflow-y-auto{overflow-y:auto}.overflow-x-hidden{overflow-x:hidden}.truncate{overflow:hidden;text-overflow:ellipsis}.truncate,.whitespace-nowrap{white-space:nowrap}.rounded-2xl{border-radius:1rem}.rounded-\[24px\]{border-radius:24px}.rounded-\[28px\]{border-radius:28px}.rounded-\[32px\]{border-radius:32px}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-l{border-left-width:1px}.border-t{border-top-width:1px}.border-white\/10{border-color:hsla(0,0%,100%,.1)}.border-white\/12{border-color:hsla(0,0%,100%,.12)}.border-white\/15{border-color:hsla(0,0%,100%,.15)}.border-white\/20{border-color:hsla(0,0%,100%,.2)}.border-white\/25{border-color:hsla(0,0%,100%,.25)}.border-white\/\[\.06\]{border-color:hsla(0,0%,100%,.06)}.bg-\[\#0b0b0b\]{--tw-bg-opacity:1;background-color:rgb(11 11 11/var(--tw-bg-opacity,1))}.bg-\[var\(--ok\)\]{background-color:var(--ok)}.bg-black{--tw-bg-opacity:1;background-color:rgb(0 0 0/var(--tw-bg-opacity,1))}.bg-black\/30{background-color:rgba(0,0,0,.3)}.bg-black\/35{background-color:rgba(0,0,0,.35)}.bg-black\/55{background-color:rgba(0,0,0,.55)}.bg-black\/60{background-color:rgba(0,0,0,.6)}.bg-black\/85{background-color:rgba(0,0,0,.85)}.bg-transparent{background-color:transparent}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1))}.bg-white\/10{background-color:hsla(0,0%,100%,.1)}.bg-white\/15{background-color:hsla(0,0%,100%,.15)}.bg-white\/\[\.03\]{background-color:hsla(0,0%,100%,.03)}.bg-white\/\[\.05\]{background-color:hsla(0,0%,100%,.05)}.bg-white\/\[\.06\]{background-color:hsla(0,0%,100%,.06)}.bg-white\/\[\.07\]{background-color:hsla(0,0%,100%,.07)}.bg-white\/\[\.08\]{background-color:hsla(0,0%,100%,.08)}.bg-gradient-to-b{background-image:linear-gradient(to bottom,var(--tw-gradient-stops))}.from-black\/70{--tw-gradient-from:rgba(0,0,0,.7) var(--tw-gradient-from-position);--tw-gradient-to:transparent var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.via-black\/90{--tw-gradient-to:transparent var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),rgba(0,0,0,.9) var(--tw-gradient-via-position),var(--tw-gradient-to)}.to-black{--tw-gradient-to:#000 var(--tw-gradient-to-position)}.p-1{padding:.25rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-7{padding:1.75rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-2\.5{padding-left:.625rem;padding-right:.625rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-3\.5{padding-left:.875rem;padding-right:.875rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.px-8{padding-left:2rem;padding-right:2rem}.py-0\.5{padding-bottom:.125rem;padding-top:.125rem}.py-1{padding-bottom:.25rem;padding-top:.25rem}.py-1\.5{padding-bottom:.375rem;padding-top:.375rem}.py-10{padding-bottom:2.5rem;padding-top:2.5rem}.py-14{padding-bottom:3.5rem;padding-top:3.5rem}.py-2{padding-bottom:.5rem;padding-top:.5rem}.py-2\.5{padding-bottom:.625rem;padding-top:.625rem}.py-24{padding-bottom:6rem;padding-top:6rem}.py-3{padding-bottom:.75rem;padding-top:.75rem}.py-3\.5{padding-bottom:.875rem;padding-top:.875rem}.py-6{padding-bottom:1.5rem;padding-top:1.5rem}.py-8{padding-bottom:2rem;padding-top:2rem}.pb-10{padding-bottom:2.5rem}.pb-24{padding-bottom:6rem}.pl-3{padding-left:.75rem}.pl-4{padding-left:1rem}.pl-6{padding-left:1.5rem}.pr-4{padding-right:1rem}.pr-5{padding-right:1.25rem}.pt-16{padding-top:4rem}.pt-4{padding-top:1rem}.pt-5{padding-top:1.25rem}.pt-6{padding-top:1.5rem}.pt-8{padding-top:2rem}.text-left{text-align:left}.text-center{text-align:center}.text-\[11\.5px\]{font-size:11.5px}.text-\[12\.5px\]{font-size:12.5px}.text-\[12px\]{font-size:12px}.text-\[13\.5px\]{font-size:13.5px}.text-\[13px\]{font-size:13px}.text-\[14px\]{font-size:14px}.text-\[15px\]{font-size:15px}.text-\[16px\]{font-size:16px}.text-\[17px\]{font-size:17px}.text-\[19px\]{font-size:19px}.text-\[20px\]{font-size:20px}.text-\[22px\]{font-size:22px}.text-\[26px\]{font-size:26px}.text-\[28px\]{font-size:28px}.text-\[30px\]{font-size:30px}.text-\[34px\]{font-size:34px}.text-\[40px\]{font-size:40px}.text-\[44px\]{font-size:44px}.text-\[56px\]{font-size:56px}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-\[1\.02\]{line-height:1.02}.leading-\[1\.05\]{line-height:1.05}.leading-\[1\.1\]{line-height:1.1}.leading-\[1\.65\]{line-height:1.65}.leading-\[1\.6\]{line-height:1.6}.leading-\[1\.7\]{line-height:1.7}.leading-\[1\.8\]{line-height:1.8}.leading-none{line-height:1}.tracking-\[-0\.02em\]{letter-spacing:-.02em}.tracking-\[-0\.03em\]{letter-spacing:-.03em}.tracking-\[-0\.04em\]{letter-spacing:-.04em}.tracking-\[\.14em\]{letter-spacing:.14em}.tracking-normal{letter-spacing:0}.tracking-wider{letter-spacing:.05em}.text-black{--tw-text-opacity:1;color:rgb(0 0 0/var(--tw-text-opacity,1))}.text-black\/55{color:rgba(0,0,0,.55)}.text-black\/80{color:rgba(0,0,0,.8)}.text-white{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.text-white\/35{color:hsla(0,0%,100%,.35)}.text-white\/40{color:hsla(0,0%,100%,.4)}.text-white\/45{color:hsla(0,0%,100%,.45)}.text-white\/50{color:hsla(0,0%,100%,.5)}.text-white\/55{color:hsla(0,0%,100%,.55)}.text-white\/60{color:hsla(0,0%,100%,.6)}.text-white\/65{color:hsla(0,0%,100%,.65)}.text-white\/70{color:hsla(0,0%,100%,.7)}.text-white\/75{color:hsla(0,0%,100%,.75)}.text-white\/80{color:hsla(0,0%,100%,.8)}.text-white\/85{color:hsla(0,0%,100%,.85)}.underline{text-decoration-line:underline}.decoration-white\/40{text-decoration-color:hsla(0,0%,100%,.4)}.underline-offset-4{text-underline-offset:4px}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.opacity-0{opacity:0}.opacity-60{opacity:.6}.shadow-\[0_0_60px_rgba\(255\2c 255\2c 255\2c \.18\)\]{--tw-shadow:0 0 60px hsla(0,0%,100%,.18);--tw-shadow-colored:0 0 60px var(--tw-shadow-color)}.shadow-\[0_0_60px_rgba\(255\2c 255\2c 255\2c \.18\)\],.shadow-\[0_0_8px_var\(--ok\)\]{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-\[0_0_8px_var\(--ok\)\]{--tw-shadow:0 0 8px var(--ok);--tw-shadow-colored:0 0 8px var(--tw-shadow-color)}.outline-none{outline:2px solid transparent;outline-offset:2px}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px)}.backdrop-blur-md,.backdrop-blur-sm{-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px)}.backdrop-blur-xl{--tw-backdrop-blur:blur(24px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition-colors{transition-duration:.15s;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1)}.transition-opacity{transition-duration:.15s;transition-property:opacity;transition-timing-function:cubic-bezier(.4,0,.2,1)}.ease-in-out{transition-timing-function:cubic-bezier(.4,0,.2,1)}.\[text-wrap\:balance\]{text-wrap:balance}.placeholder\:text-white\/30::-moz-placeholder{color:hsla(0,0%,100%,.3)}.placeholder\:text-white\/30::placeholder{color:hsla(0,0%,100%,.3)}.last\:border-0:last-child{border-width:0}.hover\:bg-black\/80:hover{background-color:rgba(0,0,0,.8)}.hover\:bg-white\/10:hover{background-color:hsla(0,0%,100%,.1)}.hover\:bg-white\/20:hover{background-color:hsla(0,0%,100%,.2)}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.hover\:decoration-white:hover{text-decoration-color:#fff}@media (min-width:640px){.sm\:inline{display:inline}.sm\:text-\[56px\]{font-size:56px}}@media (min-width:768px){.md\:order-none{order:0}.md\:mt-20{margin-top:5rem}.md\:mt-24{margin-top:6rem}.md\:block{display:block}.md\:flex{display:flex}.md\:inline-flex{display:inline-flex}.md\:hidden{display:none}.md\:h-auto{height:auto}.md\:max-h-\[min\(860px\2c calc\(100dvh-48px\)\)\]{max-height:min(860px,calc(100dvh - 48px))}.md\:w-auto{width:auto}.md\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.md\:grid-cols-\[1fr_1\.3fr\]{grid-template-columns:1fr 1.3fr}.md\:items-center{align-items:center}.md\:gap-16{gap:4rem}.md\:rounded-\[28px\]{border-radius:28px}.md\:border-b-0{border-bottom-width:0}.md\:border-l{border-left-width:1px}.md\:p-10{padding:2.5rem}.md\:p-5{padding:1.25rem}.md\:p-6{padding:1.5rem}.md\:p-7{padding:1.75rem}.md\:p-8{padding:2rem}.md\:px-10{padding-left:2.5rem;padding-right:2.5rem}.md\:px-6{padding-left:1.5rem;padding-right:1.5rem}.md\:py-20{padding-bottom:5rem;padding-top:5rem}.md\:py-32{padding-bottom:8rem;padding-top:8rem}.md\:py-36{padding-bottom:9rem;padding-top:9rem}.md\:pb-14{padding-bottom:3.5rem}.md\:pb-32{padding-bottom:8rem}.md\:pl-10{padding-left:2.5rem}.md\:pl-8{padding-left:2rem}.md\:pr-10{padding-right:2.5rem}.md\:pt-8{padding-top:2rem}.md\:text-\[18px\]{font-size:18px}.md\:text-\[26px\]{font-size:26px}.md\:text-\[44px\]{font-size:44px}.md\:text-\[52px\]{font-size:52px}.md\:text-\[64px\]{font-size:64px}.md\:text-\[68px\]{font-size:68px}}@media (min-width:1024px){.lg\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.lg\:grid-cols-\[1\.2fr_1fr\]{grid-template-columns:1.2fr 1fr}.lg\:grid-cols-\[1fr_1\.35fr\]{grid-template-columns:1fr 1.35fr}.lg\:grid-cols-\[minmax\(0\2c 1\.55fr\)_minmax\(0\2c 1fr\)\]{grid-template-columns:minmax(0,1.55fr) minmax(0,1fr)}.lg\:gap-20{gap:5rem}}</style>
+<style>
+/* Кинематографичный монохром: чёрный, белый, свечение. Один акцент — белый свет; цвет только у статусов. */
+:root{
+  --bg:#000; --ink:#fff; --soft:rgba(255,255,255,.72); --dim:rgba(255,255,255,.48); --line:rgba(255,255,255,.12);
+  --ok:#7ee2a8; --warn:#f2c46b; --bad:#ff8a7a;
+  --ease:cubic-bezier(.22,1,.36,1);
+  color-scheme:dark;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:"Inter",system-ui,"Segoe UI",Roboto,sans-serif;font-feature-settings:"cv11","ss03"}
+::selection{background:#fff;color:#000}
+.tnum{font-variant-numeric:tabular-nums}
+.mono{font-family:"JetBrains Mono",ui-monospace,Consolas,"Liberation Mono",monospace}
+:focus-visible{outline:2px solid #fff;outline-offset:3px}
+#termIn:focus-visible{outline:none}
+.gut{padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+@media (min-width:768px){.gut{padding-left:max(64px,env(safe-area-inset-left,0px));padding-right:max(64px,env(safe-area-inset-right,0px))}}
+
+/* ---- фон: видео + запасной «свет на грани», если видео не загрузится ---- */
+.bg-fallback{position:fixed;inset:0;z-index:-20;overflow:hidden;background:#030303}
+.bg-fallback i{position:absolute;border-radius:50%;filter:blur(70px);opacity:.28;mix-blend-mode:screen}
+.bg-fallback i:nth-child(1){width:60vmax;height:22vmax;left:-10vmax;top:22%;background:radial-gradient(closest-side,rgba(255,255,255,.55),transparent);transform:rotate(-14deg);animation:drift1 22s ease-in-out infinite alternate}
+.bg-fallback i:nth-child(2){width:46vmax;height:46vmax;right:-14vmax;top:-12vmax;background:radial-gradient(closest-side,rgba(170,186,214,.5),transparent);animation:drift2 26s ease-in-out infinite alternate}
+.bg-fallback i:nth-child(3){width:70vmax;height:16vmax;left:10vmax;bottom:6%;background:radial-gradient(closest-side,rgba(222,214,200,.35),transparent);transform:rotate(8deg);animation:drift1 30s ease-in-out infinite alternate-reverse}
+.bg-fallback::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,transparent 0 46px,rgba(255,255,255,.035) 46px 47px)}
+@keyframes drift1{to{transform:translate(8vmax,-4vmax) rotate(-6deg)}}
+@keyframes drift2{to{transform:translate(-10vmax,8vmax)}}
+.hero-shade{background:linear-gradient(90deg,rgba(0,0,0,.92) 0%,rgba(0,0,0,.72) 38%,rgba(0,0,0,.15) 70%,transparent 100%),linear-gradient(0deg,#000 0%,transparent 28%)}
+@media (max-width:767px){.hero-shade{background:linear-gradient(0deg,#000 8%,rgba(0,0,0,.72) 55%,rgba(0,0,0,.35) 100%)}}
+#edge{opacity:0;transition:opacity 2s ease .2s}
+#edge.on{opacity:1}
+
+/* ---- пошаговая анимация ---- */
+@keyframes wordFadeUp{from{opacity:0;transform:translateY(15px);filter:blur(6px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes dropIn{from{opacity:0;transform:translateY(-18px);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
+.word-wrap{animation:wordFadeUp .9s var(--ease) both}
+.drop{animation:dropIn 1s var(--ease) both}
+.rise{animation:wordFadeUp 1s var(--ease) both}
+.cta{transition:box-shadow .35s var(--ease),transform .35s var(--ease),background .25s}
+.cta:hover{box-shadow:0 0 32px rgba(255,255,255,.55);transform:translateY(-2px)}
+.cta:active{transform:translateY(0)}
+.ghost{transition:background .25s,border-color .25s}
+.ghost:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.5)}
+.navlink{position:relative}
+.navlink::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:#fff;transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.navlink:hover::after{transform:scaleX(1)}
+
+/* появление секций: элементы видимы по умолчанию, анимация только добавляется */
+.js .reveal{transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.js .reveal.pre{opacity:0;transform:translateY(24px)}
+
+/* мобильное меню */
+#menu{transition:opacity .35s var(--ease),visibility 0s .35s}
+#menu.open{transition:opacity .35s var(--ease),visibility 0s}
+#menu:not(.open){opacity:0;visibility:hidden}
+#menu a{transition:opacity .2s}
+#menu.open li{animation:wordFadeUp .6s var(--ease) both}
+
+/* архитектура */
+.stage{transition:background .3s,border-color .3s,color .3s}
+.stage[aria-pressed="true"]{background:#fff;color:#000;border-color:#fff}
+.stage[aria-pressed="true"] .stage-sub{color:rgba(0,0,0,.6)}
+.flow{stroke:rgba(255,255,255,.35);stroke-width:1.5;stroke-dasharray:3 6;animation:flow 1s linear infinite;fill:none}
+@keyframes flow{to{stroke-dashoffset:-18}}
+.range{-webkit-appearance:none;appearance:none;width:100%;height:28px;background:transparent;cursor:pointer;--p:70%}
+.range::-webkit-slider-runnable-track{height:2px;background:linear-gradient(90deg,#fff var(--p),rgba(255,255,255,.2) var(--p))}
+.range::-moz-range-track{height:2px;background:linear-gradient(90deg,#fff var(--p),rgba(255,255,255,.2) var(--p))}
+.range::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:#fff;margin-top:-9px;box-shadow:0 0 18px rgba(255,255,255,.6)}
+.range::-moz-range-thumb{width:20px;height:20px;border:0;border-radius:50%;background:#fff;box-shadow:0 0 18px rgba(255,255,255,.6)}
+
+/* код */
+.code{white-space:pre;overflow-x:auto;tab-size:2}
+.code .c{color:rgba(255,255,255,.4)}
+.code .s{color:#e8dcc6}
+.code .k{color:#fff;font-weight:500}
+.tabbtn[aria-selected="true"]{background:#fff;color:#000}
+
+/* тарифы */
+.seg button[aria-pressed="true"]{background:#fff;color:#000}
+
+/* ---- консоль (веб-приложение) ---- */
+#console{transition:opacity .45s var(--ease),visibility 0s .45s}
+#console.open{transition:opacity .45s var(--ease),visibility 0s}
+#console:not(.open){opacity:0;visibility:hidden;pointer-events:none}
+#console .win{transition:transform .6s var(--ease)}
+#console:not(.open) .win{transform:translateY(28px) scale(.98)}
+.glass{background:rgba(12,12,12,.62);-webkit-backdrop-filter:blur(28px) saturate(140%);backdrop-filter:blur(28px) saturate(140%);border:1px solid rgba(255,255,255,.14)}
+.tile{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09)}
+.pill-on{background:#fff;color:#000}
+.sw{position:relative;width:36px;height:20px;border-radius:999px;background:rgba(255,255,255,.18);transition:background .25s;flex:none}
+.sw::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .3s var(--ease)}
+.sw[aria-checked="true"]{background:var(--ok)}
+.sw[aria-checked="true"]::after{transform:translateX(16px)}
+.bar{height:4px;border-radius:2px;background:rgba(255,255,255,.12);overflow:hidden}
+.bar i{display:block;height:100%;background:#fff;border-radius:2px;transition:width .8s var(--ease),background .4s}
+.dot{width:7px;height:7px;border-radius:50%;flex:none}
+.term{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.2) transparent}
+.term .ln{animation:wordFadeUp .35s var(--ease) both;white-space:pre-wrap;word-break:break-word}
+.chip{transition:background .2s,border-color .2s}
+.chip:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.35)}
+.caret{display:inline-block;width:8px;height:15px;background:#fff;vertical-align:-2px;animation:blinkc 1s steps(2) infinite}
+@keyframes blinkc{50%{opacity:0}}
+.flash{animation:flashv .9s ease}
+@keyframes flashv{0%{color:#fff;text-shadow:0 0 14px rgba(255,255,255,.9)}100%{text-shadow:none}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .word-wrap{opacity:1!important}
+}
+</style>
+</head>
+<body class="min-h-screen text-white bg-black antialiased overflow-x-hidden">
+
+<!-- фон под всей страницей -->
+<div class="bg-fallback" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<!-- HERO: своя генеративная «грань» вместо видео; рисуется кодом, поэтому у анимации нет начала и конца -->
+<section class="relative min-h-[100dvh] flex flex-col overflow-hidden" id="top">
+  <canvas id="edge" class="absolute inset-0 w-full h-full" aria-hidden="true"></canvas>
+  <div class="hero-shade absolute inset-0 pointer-events-none"></div>
+
+  <header class="relative z-20 gut pt-6 md:pt-8 flex items-center justify-between gap-6">
+    <a href="#top" class="drop flex items-center gap-2.5" style="animation-delay:.1s" aria-label="ORLO, на главную">
+      <svg width="26" height="26" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 4 41 13.8v20.4L24 44 7 34.2V13.8z" stroke="white" stroke-width="3" stroke-linejoin="round"/><path d="M24 24v20M24 24l17-10.2M24 24 7 13.8" stroke="white" stroke-width="3" stroke-linejoin="round"/></svg>
+      <span class="font-semibold text-[19px] tracking-[-0.02em]">orlo</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-1 p-1 rounded-full border border-white/12 bg-black/30 backdrop-blur-md drop" style="animation-delay:.15s" aria-label="Основное меню">
+      <a class="navpill px-4 py-2 rounded-full text-[14px] text-white/80 hover:text-white hover:bg-white/10 transition-colors" href="#platform">Платформа</a>
+      <a class="navpill px-4 py-2 rounded-full text-[14px] text-white/80 hover:text-white hover:bg-white/10 transition-colors" href="#architecture">Архитектура</a>
+      <a class="navpill px-4 py-2 rounded-full text-[14px] text-white/80 hover:text-white hover:bg-white/10 transition-colors" href="#docs">Документация</a>
+      <a class="navpill px-4 py-2 rounded-full text-[14px] text-white/80 hover:text-white hover:bg-white/10 transition-colors" href="#pricing">Тарифы</a>
+    </nav>
+    <div class="flex items-center gap-2 drop" style="animation-delay:.2s">
+      <button type="button" data-open-console class="hidden md:inline-flex items-center gap-2 ghost border border-white/25 rounded-full px-4 py-2 text-[14px] font-medium"><span class="dot bg-[var(--ok)] shadow-[0_0_8px_var(--ok)]"></span>Консоль</button>
+      <button id="menuBtn" type="button" class="md:hidden w-10 h-10 rounded-full border border-white/20 bg-black/30 backdrop-blur-md flex items-center justify-center" aria-label="Открыть меню" aria-expanded="false" aria-controls="menu">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="relative z-10 flex-1 flex items-end gut pt-16">
+    <div class="w-full max-w-[1280px] mx-auto pb-10 md:pb-14">
+      <div class="max-w-[780px]">
+        <p class="rise inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-black/35 backdrop-blur-md pl-3 pr-4 py-1.5 text-[13px] text-white/80 mb-7" style="animation-delay:.25s">
+          <span class="dot bg-[var(--ok)] shadow-[0_0_8px_var(--ok)]"></span>
+          <span><b class="font-semibold text-white tnum" id="liveNodes">312</b> узлов в сети · p99 <b class="font-semibold text-white tnum" id="liveLat">8,2</b> мс</span>
+        </p>
+        <h1 id="heroTitle" class="text-[40px] sm:text-[56px] md:text-[68px] font-semibold tracking-[-0.04em] leading-[1.02] mb-7">Вычисления на грани<br><span class="text-white/45">максимальной скорости</span></h1>
+        <p id="heroSub" class="text-[16px] md:text-[18px] text-white/75 leading-[1.6] max-w-[560px] mb-9">Разворачивайте нейросети, управляйте потоками данных и масштабируйте кластеры в реальном времени — в одном веб-приложении.</p>
+        <div id="heroCtas" class="opacity-0 flex flex-wrap gap-3">
+          <button type="button" data-open-console class="cta bg-white text-black pl-6 pr-5 py-3.5 rounded-full font-medium text-[15px] inline-flex items-center gap-2">Запустить консоль <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <a href="#architecture" class="ghost border border-white/25 rounded-full px-6 py-3.5 text-[15px] font-medium">Как это работает</a>
+        </div>
+      </div>
+
+      <dl class="rise mt-14 md:mt-20 grid grid-cols-3 border-t border-white/12 pt-5 max-w-[720px]" style="animation-delay:2.4s">
+        <div><dt class="text-[12px] text-white/50">Регионов</dt><dd class="text-[20px] md:text-[26px] font-semibold tnum mt-1">14</dd></div>
+        <div class="pl-4 md:pl-8 border-l border-white/12"><dt class="text-[12px] text-white/50">Запросов в секунду</dt><dd class="text-[20px] md:text-[26px] font-semibold tnum mt-1" id="liveRps">48 120</dd></div>
+        <div class="pl-4 md:pl-8 border-l border-white/12"><dt class="text-[12px] text-white/50">Аптайм за 90 дней</dt><dd class="text-[20px] md:text-[26px] font-semibold tnum mt-1">99,99%</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- мобильное меню -->
+<div id="menu" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-xl flex flex-col" role="dialog" aria-modal="true" aria-label="Меню">
+  <div class="gut py-6 flex items-center justify-between">
+    <span class="font-medium text-[16px] tracking-wider uppercase">ORLO</span>
+    <button id="menuClose" type="button" class="w-10 h-10 rounded-full bg-white/15 flex items-center justify-center" aria-label="Закрыть меню">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <ul class="flex-1 flex flex-col items-center justify-center gap-7 text-[28px] font-semibold tracking-[-0.02em]">
+    <li style="animation-delay:.05s"><a href="#platform">Платформа</a></li>
+    <li style="animation-delay:.1s"><a href="#architecture">Архитектура</a></li>
+    <li style="animation-delay:.15s"><a href="#docs">Документация</a></li>
+    <li style="animation-delay:.2s"><a href="#pricing">Тарифы</a></li>
+    <li style="animation-delay:.25s" class="pt-4"><button type="button" data-open-console class="cta bg-white text-black px-8 py-3.5 rounded-full font-medium text-[15px] tracking-normal">Запустить консоль</button></li>
+  </ul>
+</div>
+
+<main class="relative bg-gradient-to-b from-black/70 via-black/90 to-black">
+
+  <!-- ПЛАТФОРМА -->
+  <section id="platform" class="gut py-24 md:py-36 max-w-[1280px] mx-auto">
+    <div class="reveal grid md:grid-cols-[1fr_1.3fr] gap-8 md:gap-16 items-end">
+      <div>
+        <p class="text-[13px] font-medium text-white/50 uppercase tracking-[.14em] mb-5">Платформа</p>
+        <h2 class="text-[34px] md:text-[52px] font-semibold tracking-[-0.03em] leading-[1.05] [text-wrap:balance]">Модель работает там, где&nbsp;рождаются данные</h2>
+      </div>
+      <p class="text-[17px] leading-[1.65] text-white/70 max-w-[52ch]">ORLO — от итальянского «грань, предел». Платформа запускает нейросети на&nbsp;узлах рядом с&nbsp;камерами, датчиками и&nbsp;пользователями, а&nbsp;управлять ими можно из&nbsp;одной консоли в&nbsp;браузере.</p>
+    </div>
+
+    <div class="mt-16 md:mt-24 grid md:grid-cols-3 border-t border-white/12">
+      <article class="reveal py-10 md:pr-10 border-b md:border-b-0 border-white/12">
+        <p class="text-[56px] md:text-[64px] font-semibold tracking-[-0.04em] leading-none tnum"><span data-count="8">8</span><span class="text-[28px] text-white/50 font-medium ml-1">мс</span></p>
+        <p class="text-[13px] text-white/50 mt-2">до ближайшего узла</p>
+        <h3 class="text-[20px] font-semibold mt-8 mb-3">Узлы на грани сети</h3>
+        <p class="text-[15px] leading-[1.65] text-white/65">Ответ модели приходит с&nbsp;узла в&nbsp;вашем городе, без поездки запроса в&nbsp;далёкий дата-центр.</p>
+      </article>
+      <article class="reveal py-10 md:px-10 border-b md:border-b-0 md:border-l border-white/12">
+        <p class="text-[56px] md:text-[64px] font-semibold tracking-[-0.04em] leading-none tnum"><span data-count="312">312</span></p>
+        <p class="text-[13px] text-white/50 mt-2">узлов под одной консолью</p>
+        <h3 class="text-[20px] font-semibold mt-8 mb-3">Единая оркестрация</h3>
+        <p class="text-[15px] leading-[1.65] text-white/65">Один план развёртывания на&nbsp;сотни узлов. ORLO сам распределяет модели, следит за&nbsp;нагрузкой и&nbsp;переносит задачи при сбое.</p>
+      </article>
+      <article class="reveal py-10 md:pl-10 md:border-l border-white/12">
+        <p class="text-[56px] md:text-[64px] font-semibold tracking-[-0.04em] leading-none tnum">−<span data-count="83">83</span><span class="text-[28px] text-white/50 font-medium ml-1">%</span></p>
+        <p class="text-[13px] text-white/50 mt-2">трафика в облако</p>
+        <h3 class="text-[20px] font-semibold mt-8 mb-3">Потоки данных на месте</h3>
+        <p class="text-[15px] leading-[1.65] text-white/65">Видео и&nbsp;телеметрия обрабатываются на&nbsp;узле. В&nbsp;облако уходят результаты, а&nbsp;не&nbsp;терабайты сырых данных.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- АРХИТЕКТУРА -->
+  <section id="architecture" class="gut py-24 md:py-32 max-w-[1280px] mx-auto">
+    <div class="reveal max-w-[720px]">
+      <p class="text-[13px] font-medium text-white/50 uppercase tracking-[.14em] mb-5">Архитектура</p>
+      <h2 class="text-[34px] md:text-[52px] font-semibold tracking-[-0.03em] leading-[1.05] [text-wrap:balance]">Путь запроса: три&nbsp;остановки вместо&nbsp;десяти</h2>
+    </div>
+
+    <div class="reveal mt-14 rounded-[28px] border border-white/12 bg-white/[.03] p-5 md:p-10">
+      <div class="relative">
+        <svg class="absolute inset-0 w-full h-full pointer-events-none hidden md:block" id="archLines" aria-hidden="true"></svg>
+        <div class="relative grid md:grid-cols-3 gap-3 md:gap-16" role="group" aria-label="Этапы обработки запроса" id="stages">
+          <button type="button" class="stage text-left rounded-2xl border border-white/15 p-5 md:p-6" data-stage="0" aria-pressed="false">
+            <span class="text-[12px] text-white/50 stage-sub">Шаг 1</span>
+            <span class="block text-[19px] font-semibold mt-1">Устройство</span>
+            <span class="block text-[13px] text-white/55 stage-sub mt-1">камера, датчик, приложение</span>
+          </button>
+          <button type="button" class="stage text-left rounded-2xl border border-white/15 p-5 md:p-6" data-stage="1" aria-pressed="true">
+            <span class="text-[12px] text-white/50 stage-sub">Шаг 2</span>
+            <span class="block text-[19px] font-semibold mt-1">Узел на грани</span>
+            <span class="block text-[13px] text-white/55 stage-sub mt-1">в радиусе 50 км от данных</span>
+          </button>
+          <button type="button" class="stage text-left rounded-2xl border border-white/15 p-5 md:p-6" data-stage="2" aria-pressed="false">
+            <span class="text-[12px] text-white/50 stage-sub">Шаг 3</span>
+            <span class="block text-[19px] font-semibold mt-1">Ядро ORLO</span>
+            <span class="block text-[13px] text-white/55 stage-sub mt-1">оркестрация и хранилище</span>
+          </button>
+        </div>
+      </div>
+      <p id="stageText" class="mt-6 text-[15px] leading-[1.65] text-white/75 min-h-[3.3em] max-w-[70ch]" aria-live="polite"></p>
+
+      <div class="mt-8 pt-8 border-t border-white/12 grid lg:grid-cols-[1.2fr_1fr] gap-8 items-center">
+        <div>
+          <div class="flex items-baseline justify-between gap-4">
+            <label for="edgeShare" class="text-[15px] font-medium">Доля обработки на грани</label>
+            <output id="edgeOut" for="edgeShare" class="text-[22px] font-semibold tnum">70%</output>
+          </div>
+          <input id="edgeShare" class="range mt-3" type="range" min="0" max="100" step="5" value="70">
+          <div class="flex justify-between text-[12px] text-white/45 mt-1"><span>всё в облаке</span><span>всё на узлах</span></div>
+        </div>
+        <dl class="grid grid-cols-3 gap-3">
+          <div class="rounded-2xl bg-white/[.05] p-4"><dt class="text-[12px] text-white/55">Задержка</dt><dd class="text-[22px] md:text-[26px] font-semibold tnum mt-1"><span id="mLat">25</span><span class="text-[13px] text-white/50 ml-1">мс</span></dd></div>
+          <div class="rounded-2xl bg-white/[.05] p-4"><dt class="text-[12px] text-white/55">В облако</dt><dd class="text-[22px] md:text-[26px] font-semibold tnum mt-1"><span id="mTraf">400</span><span class="text-[13px] text-white/50 ml-1">ГБ/сут</span></dd></div>
+          <div class="rounded-2xl bg-white/[.05] p-4"><dt class="text-[12px] text-white/55">Счёт</dt><dd class="text-[22px] md:text-[26px] font-semibold tnum mt-1"><span id="mCost">84</span><span class="text-[13px] text-white/50 ml-1">тыс ₽</span></dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ДОКУМЕНТАЦИЯ -->
+  <section id="docs" class="gut py-24 md:py-32 max-w-[1280px] mx-auto">
+    <div class="grid lg:grid-cols-[1fr_1.35fr] gap-12 lg:gap-20">
+      <div class="reveal min-w-0">
+        <p class="text-[13px] font-medium text-white/50 uppercase tracking-[.14em] mb-5">Документация</p>
+        <h2 class="text-[34px] md:text-[52px] font-semibold tracking-[-0.03em] leading-[1.05] [text-wrap:balance]">Первая модель на&nbsp;узле за&nbsp;пять минут</h2>
+        <ol class="mt-10 grid gap-6">
+          <li class="flex gap-5"><span class="w-8 h-8 rounded-full border border-white/25 flex items-center justify-center text-[13px] font-semibold flex-none">1</span><div><h3 class="font-semibold text-[17px]">Установите CLI</h3><p class="text-[15px] text-white/60 mt-1 leading-[1.6]">Одна команда для macOS, Linux и Windows.</p></div></li>
+          <li class="flex gap-5"><span class="w-8 h-8 rounded-full border border-white/25 flex items-center justify-center text-[13px] font-semibold flex-none">2</span><div><h3 class="font-semibold text-[17px]">Подключите узел</h3><p class="text-[15px] text-white/60 mt-1 leading-[1.6]">Свой сервер или узел ORLO в нужном регионе.</p></div></li>
+          <li class="flex gap-5"><span class="w-8 h-8 rounded-full border border-white/25 flex items-center justify-center text-[13px] font-semibold flex-none">3</span><div><h3 class="font-semibold text-[17px]">Разверните модель</h3><p class="text-[15px] text-white/60 mt-1 leading-[1.6]">Укажите модель и число реплик. Остальное ORLO сделает сам.</p></div></li>
+        </ol>
+      </div>
+      <div class="reveal min-w-0">
+        <div class="rounded-[24px] border border-white/12 bg-[#0b0b0b] overflow-hidden">
+          <div class="flex items-center justify-between gap-3 px-4 py-3 border-b border-white/10">
+            <div class="flex gap-1 p-1 rounded-full bg-white/[.06]" role="tablist" aria-label="Примеры кода">
+              <button type="button" role="tab" class="tabbtn px-3.5 py-1.5 rounded-full text-[13px] font-medium" aria-selected="true" data-code="cli">CLI</button>
+              <button type="button" role="tab" class="tabbtn px-3.5 py-1.5 rounded-full text-[13px] font-medium text-white/70" aria-selected="false" data-code="py">Python</button>
+              <button type="button" role="tab" class="tabbtn px-3.5 py-1.5 rounded-full text-[13px] font-medium text-white/70" aria-selected="false" data-code="http">HTTP</button>
+            </div>
+            <button type="button" id="copyBtn" class="ghost border border-white/20 rounded-full px-3.5 py-1.5 text-[13px] font-medium">Скопировать</button>
+          </div>
+          <pre id="codeBox" class="code mono text-[13.5px] leading-[1.8] p-5 md:p-7 text-white/85 min-h-[280px]" tabindex="0" aria-label="Пример кода"></pre>
+        </div>
+        <p class="text-[13px] text-white/45 mt-4">Нужен ответ на вопрос? Введите <span class="mono text-white/70">help</span> в терминале консоли.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ТАРИФЫ -->
+  <section id="pricing" class="gut py-24 md:py-32 max-w-[1280px] mx-auto">
+    <div class="reveal flex flex-wrap items-end justify-between gap-8">
+      <div class="max-w-[640px]">
+        <p class="text-[13px] font-medium text-white/50 uppercase tracking-[.14em] mb-5">Тарифы</p>
+        <h2 class="text-[34px] md:text-[52px] font-semibold tracking-[-0.03em] leading-[1.05] [text-wrap:balance]">Платите за&nbsp;узлы, а&nbsp;не&nbsp;за&nbsp;простой</h2>
+      </div>
+      <div class="seg flex gap-1 p-1 rounded-full bg-white/[.08] border border-white/10" role="group" aria-label="Период оплаты">
+        <button type="button" class="px-4 py-2 rounded-full text-[14px] font-medium" data-period="m" aria-pressed="true">Помесячно</button>
+        <button type="button" class="px-4 py-2 rounded-full text-[14px] font-medium" data-period="y" aria-pressed="false">За год <span class="opacity-60">−20%</span></button>
+      </div>
+    </div>
+
+    <div class="mt-14 grid md:grid-cols-3 gap-4">
+      <article class="reveal rounded-[28px] border border-white/12 p-7 md:p-8 flex flex-col">
+        <h3 class="text-[20px] font-semibold">Старт</h3>
+        <p class="text-[14px] text-white/55 mt-1">Пилот и эксперименты</p>
+        <p class="mt-8 text-[44px] font-semibold tracking-[-0.03em] tnum leading-none">0 ₽</p>
+        <p class="text-[13px] text-white/50 mt-2">навсегда</p>
+        <ul class="mt-8 grid gap-3 text-[15px] text-white/80 flex-1">
+          <li>До 3 узлов</li><li>1 регион</li><li>Сообщество и база знаний</li>
+        </ul>
+        <button type="button" data-open-console data-plan="Старт" class="ghost mt-10 border border-white/25 rounded-full py-3 text-[15px] font-medium">Начать бесплатно</button>
+      </article>
+      <article class="reveal rounded-[28px] bg-white text-black p-7 md:p-8 flex flex-col shadow-[0_0_60px_rgba(255,255,255,.18)]">
+        <div class="flex items-center justify-between gap-3"><h3 class="text-[20px] font-semibold">Команда</h3><span class="text-[12px] font-semibold rounded-full bg-black text-white px-3 py-1">Чаще выбирают</span></div>
+        <p class="text-[14px] text-black/55 mt-1">Продукт в эксплуатации</p>
+        <p class="mt-8 text-[44px] font-semibold tracking-[-0.03em] tnum leading-none"><span data-price="24900">24 900</span> ₽</p>
+        <p class="text-[13px] text-black/55 mt-2" data-per>в месяц</p>
+        <ul class="mt-8 grid gap-3 text-[15px] text-black/80 flex-1">
+          <li>До 50 узлов</li><li>Все регионы и автомасштабирование</li><li>Поддержка 24/7, ответ за 30 минут</li>
+        </ul>
+        <button type="button" data-open-console data-plan="Команда" class="mt-10 bg-black text-white rounded-full py-3 text-[15px] font-medium hover:bg-black/80 transition-colors">Запустить консоль</button>
+      </article>
+      <article class="reveal rounded-[28px] border border-white/12 p-7 md:p-8 flex flex-col">
+        <h3 class="text-[20px] font-semibold">Корпорация</h3>
+        <p class="text-[14px] text-white/55 mt-1">Свои узлы и требования к данным</p>
+        <p class="mt-8 text-[44px] font-semibold tracking-[-0.03em] tnum leading-none">от <span data-price="190000">190 000</span> ₽</p>
+        <p class="text-[13px] text-white/50 mt-2" data-per>в месяц</p>
+        <ul class="mt-8 grid gap-3 text-[15px] text-white/80 flex-1">
+          <li>Без ограничений по узлам</li><li>Хранение данных в РФ, 152-ФЗ</li><li>SLA 99,99% и выделенный инженер</li>
+        </ul>
+        <button type="button" data-open-console data-plan="Корпорация" class="ghost mt-10 border border-white/25 rounded-full py-3 text-[15px] font-medium">Открыть демо</button>
+      </article>
+    </div>
+  </section>
+
+  <!-- финальный призыв -->
+  <section class="gut pb-24 md:pb-32 max-w-[1280px] mx-auto">
+    <div class="reveal rounded-[32px] border border-white/12 bg-white/[.03] px-6 py-14 md:py-20 text-center">
+      <h2 class="text-[30px] md:text-[44px] font-semibold tracking-[-0.03em] leading-[1.1] [text-wrap:balance]">Консоль работает прямо на этой странице</h2>
+      <p class="text-[16px] text-white/65 mt-4 max-w-[48ch] mx-auto leading-[1.6]">Переключайте кластеры, отключайте узлы и разворачивайте модели командами в терминале.</p>
+      <button type="button" data-open-console class="cta mt-9 bg-white text-black px-8 py-3.5 rounded-full font-medium text-[15px]">Запустить консоль</button>
+    </div>
+  </section>
+
+  <footer class="gut py-8 border-t border-white/10 flex flex-wrap justify-between gap-4 text-[13px] text-white/50 max-w-[1280px] mx-auto">
+    <span>ORLO · вычисления на грани · 2026</span>
+    <span>Концепт-проект MIRAI: дизайн и разработка промо-сайта с живым веб-приложением. <a class="text-white underline underline-offset-4 decoration-white/40 hover:decoration-white" href="../../#work">← к работам MIRAI</a></span>
+  </footer>
+</main>
+
+<!-- КОНСОЛЬ: само веб-приложение -->
+<div id="console" class="fixed inset-0 z-[60] flex items-stretch md:items-center justify-center md:p-6 bg-black/60 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="cTitle">
+  <div class="win glass w-full max-w-[1180px] md:rounded-[28px] flex flex-col overflow-hidden md:max-h-[min(860px,calc(100dvh-48px))] h-[100dvh] md:h-auto">
+    <!-- верхняя панель -->
+    <div class="flex flex-wrap items-center gap-3 justify-between px-4 md:px-6 py-3.5 border-b border-white/10">
+      <div class="flex items-center gap-3 min-w-0">
+        <span class="w-7 h-7 rounded-full bg-white/15 border border-white/15 flex items-center justify-center flex-none"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8 20 7.4v9.2l-8 4.6-8-4.6V7.4z"/><path d="M12 12v9.2M12 12l8-4.6M12 12 4 7.4"/></svg></span>
+        <h2 id="cTitle" class="font-semibold text-[15px] whitespace-nowrap">ORLO Консоль</h2>
+        <span id="cPlan" class="hidden sm:inline text-[12px] text-white/60 border border-white/15 rounded-full px-2.5 py-0.5 whitespace-nowrap">Тариф: Команда</span>
+      </div>
+      <div class="flex items-center gap-2 order-3 md:order-none w-full md:w-auto overflow-x-auto">
+        <div class="flex gap-1 p-1 rounded-full bg-white/[.07]" role="group" aria-label="Кластер" id="clusterSw"></div>
+      </div>
+      <div class="flex items-center gap-2">
+        <button type="button" id="deployBtn" class="cta bg-white text-black rounded-full px-4 py-2 text-[13px] font-medium whitespace-nowrap">Развернуть<span class="hidden sm:inline"> модель</span></button>
+        <button type="button" id="cClose" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 transition-colors flex items-center justify-center" aria-label="Закрыть консоль">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="flex-1 min-h-0 overflow-y-auto overflow-x-hidden p-4 md:p-6 flex flex-col gap-4">
+      <!-- показатели -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 flex-none">
+        <div class="tile rounded-2xl p-4 min-w-0"><p class="text-[12px] text-white/55 truncate">Загрузка кластера</p><p class="text-[26px] font-semibold tnum mt-1"><span id="kLoad">0</span><span class="text-[14px] text-white/50 ml-0.5">%</span></p></div>
+        <div class="tile rounded-2xl p-4 min-w-0"><p class="text-[12px] text-white/55 truncate">Задержка p99</p><p class="text-[26px] font-semibold tnum mt-1"><span id="kLat">0</span><span class="text-[14px] text-white/50 ml-1">мс</span></p></div>
+        <div class="tile rounded-2xl p-4 min-w-0"><p class="text-[12px] text-white/55 truncate">Запросов в секунду</p><p class="text-[26px] font-semibold tnum mt-1" id="kRps">0</p></div>
+        <div class="tile rounded-2xl p-4 min-w-0"><p class="text-[12px] text-white/55 truncate">Узлов в сети</p><p class="text-[26px] font-semibold tnum mt-1"><span id="kNodes">0</span><span class="text-[14px] text-white/50" id="kNodesT"> / 0</span></p></div>
+      </div>
+
+      <div class="grid lg:grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)] gap-4 flex-none">
+        <!-- график -->
+        <div class="tile rounded-2xl p-4 md:p-5 flex flex-col min-w-0">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div><h3 class="text-[14px] font-semibold">Нагрузка в реальном времени</h3><p class="text-[12px] text-white/50 mt-0.5" id="chartSub">Москва-1 · обновление каждую секунду</p></div>
+            <div class="flex gap-1 p-1 rounded-full bg-white/[.07]" role="group" aria-label="Период графика" id="tfSw">
+              <button type="button" class="px-3 py-1 rounded-full text-[12px] font-medium pill-on" data-tf="5" aria-pressed="true">5 мин</button>
+              <button type="button" class="px-3 py-1 rounded-full text-[12px] font-medium" data-tf="60" aria-pressed="false">1 час</button>
+              <button type="button" class="px-3 py-1 rounded-full text-[12px] font-medium" data-tf="1440" aria-pressed="false">24 часа</button>
+            </div>
+          </div>
+          <div class="relative flex-1 min-h-[190px] mt-4" id="chartWrap">
+            <canvas id="chart" class="absolute inset-0 w-full h-full" role="img" aria-label="График загрузки кластера"></canvas>
+            <div id="chartTip" class="absolute pointer-events-none bg-white text-black text-[12px] font-medium rounded-lg px-2 py-1 opacity-0 transition-opacity tnum whitespace-nowrap"></div>
+          </div>
+        </div>
+        <!-- узлы -->
+        <div class="tile rounded-2xl p-4 md:p-5 min-w-0">
+          <div class="flex items-center justify-between"><h3 class="text-[14px] font-semibold">Узлы кластера</h3><span class="text-[12px] text-white/50">вкл / выкл</span></div>
+          <ul id="nodeList" class="mt-3 grid gap-1"></ul>
+        </div>
+      </div>
+
+      <!-- терминал -->
+      <div class="rounded-2xl bg-black/55 border border-white/10 flex flex-col flex-none min-w-0">
+        <div class="flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 border-b border-white/10">
+          <span class="text-[12px] text-white/55 mono">терминал · <span id="promptHost">orlo@moskva-1</span></span>
+          <div class="flex flex-wrap gap-1.5" id="chips">
+            <button type="button" class="chip mono text-[11.5px] border border-white/15 rounded-full px-2.5 py-1" data-cmd="help">help</button>
+            <button type="button" class="chip mono text-[11.5px] border border-white/15 rounded-full px-2.5 py-1" data-cmd="status">status</button>
+            <button type="button" class="chip mono text-[11.5px] border border-white/15 rounded-full px-2.5 py-1" data-cmd="deploy llama-3-8b">deploy llama-3-8b</button>
+            <button type="button" class="chip mono text-[11.5px] border border-white/15 rounded-full px-2.5 py-1" data-cmd="scale 4">scale 4</button>
+          </div>
+        </div>
+        <div id="term" class="term mono text-[12.5px] leading-[1.7] px-4 py-3 h-[170px] overflow-y-auto text-white/80" role="log" aria-live="polite"></div>
+        <form id="termForm" class="flex items-center gap-2 px-4 py-2.5 border-t border-white/10 mono text-[12.5px]" autocomplete="off">
+          <label for="termIn" class="text-white/50 whitespace-nowrap"><span id="promptHost2">orlo@moskva-1</span>:~$</label>
+          <input id="termIn" class="flex-1 min-w-0 bg-transparent outline-none text-white placeholder:text-white/30" placeholder="введите команду, например help" spellcheck="false" autocapitalize="off">
+          <button type="submit" class="text-white/60 hover:text-white text-[12px]">Ввод ↵</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.documentElement.classList.add("js");
+(function(){
+"use strict";
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const rand=(a,b)=>a+Math.random()*(b-a), clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const fmt=n=>Math.round(n).toLocaleString("ru-RU");
+const dec=n=>n.toFixed(1).replace(".",",");
+const plural=(n,a,b,c)=>{const m=n%10,h=n%100;return m===1&&h!==11?a:m>=2&&m<=4&&(h<12||h>14)?b:c};
+
+/* ---------- «грань»: сетчатая призма, импульсы бегут по рёбрам от узла к узлу ---------- */
+(function edge(){
+  const cv=$("#edge");if(!cv)return;const ctx=cv.getContext("2d");
+  let W=0,H=0,dpr=1,cx=0,cy=0,R=0,mx=0,my=0,tx=0,ty=0,running=true;
+  // икосаэдр: 12 вершин, 30 рёбер
+  const p=(1+Math.sqrt(5))/2;
+  const V=[[-1,p,0],[1,p,0],[-1,-p,0],[1,-p,0],[0,-1,p],[0,1,p],[0,-1,-p],[0,1,-p],[p,0,-1],[p,0,1],[-p,0,-1],[-p,0,1]].map(v=>{const l=Math.hypot(...v);return v.map(c=>c/l)});
+  const E=[];for(let a=0;a<12;a++)for(let b=a+1;b<12;b++){const d=Math.hypot(V[a][0]-V[b][0],V[a][1]-V[b][1],V[a][2]-V[b][2]);if(d<1.1)E.push([a,b])}
+  const adj=V.map((_,i)=>E.map((e,k)=>e[0]===i?[k,e[1]]:e[1]===i?[k,e[0]]:null).filter(Boolean));
+  // внутренний октаэдр
+  const OV=[[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]],OE=[];
+  for(let a=0;a<6;a++)for(let b=a+1;b<6;b++)if(Math.abs(OV[a][0]+OV[b][0])+Math.abs(OV[a][1]+OV[b][1])+Math.abs(OV[a][2]+OV[b][2])>0.5)OE.push([a,b]);
+  // импульсы данных
+  const pulses=Array.from({length:14},()=>{const e=Math.floor(Math.random()*E.length);return{e,from:E[e][0],to:E[e][1],t:Math.random(),sp:.35+Math.random()*.5}});
+  // пыль по орбитам
+  const dust=Array.from({length:90},()=>({r:1.25+Math.random()*.9,a:Math.random()*6.283,y:(Math.random()-.5)*.5,s:(.02+Math.random()*.05)*(Math.random()<.5?-1:1),z:.4+Math.random()*1.2}));
+  function size(){
+    dpr=Math.min(2,devicePixelRatio||1);W=cv.clientWidth;H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+    const wide=W>=768;cx=wide?W*.72:W*.5;cy=wide?H*.46:H*.33;R=wide?Math.min(W*.2,H*.33):Math.min(W*.42,H*.24);
+  }
+  size();addEventListener("resize",size);
+  addEventListener("pointermove",e=>{tx=(e.clientX/innerWidth-.5);ty=(e.clientY/innerHeight-.5)},{passive:true});
+  function rot(v,ay,ax){
+    let [x,y,z]=v;
+    let c=Math.cos(ay),s=Math.sin(ay);[x,z]=[x*c+z*s,-x*s+z*c];
+    c=Math.cos(ax);s=Math.sin(ax);[y,z]=[y*c-z*s,y*s+z*c];
+    return [x,y,z];
+  }
+  const proj=(v,r)=>{const f=3.2/(3.2-v[2]);return [cx+v[0]*r*f,cy+v[1]*r*f,v[2]]};
+  let last=performance.now(),T=0;
+  function frame(now){
+    const dt=Math.min(.05,(now-last)/1000);last=now;
+    if(running){T+=dt;draw(dt)}
+    requestAnimationFrame(frame);
+  }
+  function draw(dt){
+    mx+=(tx-mx)*.04;my+=(ty-my)*.04;
+    const ay=T*.12+mx*.6, ax=.42+Math.sin(T*.07)*.12+my*.4;
+    ctx.clearRect(0,0,W,H);
+    // свечение ядра
+    const g=ctx.createRadialGradient(cx,cy,0,cx,cy,R*1.5);g.addColorStop(0,"rgba(255,255,255,.10)");g.addColorStop(1,"rgba(255,255,255,0)");
+    ctx.fillStyle=g;ctx.beginPath();ctx.arc(cx,cy,R*1.5,0,6.283);ctx.fill();
+    // орбитальная пыль
+    for(const d of dust){
+      d.a+=d.s*dt*4;
+      const v=rot([Math.cos(d.a)*d.r,d.y,Math.sin(d.a)*d.r],ay*.3,ax*.6),q=proj(v,R);
+      ctx.fillStyle=`rgba(255,255,255,${.12+(v[2]+1.5)*.12})`;ctx.fillRect(q[0],q[1],d.z,d.z);
+    }
+    // внутренний октаэдр, вращается в другую сторону
+    const OP=OV.map(v=>proj(rot(v.map(c=>c*.45),-T*.3,ax+.4),R));
+    ctx.lineWidth=1;
+    for(const [a,b] of OE){ctx.strokeStyle="rgba(255,255,255,.22)";ctx.beginPath();ctx.moveTo(OP[a][0],OP[a][1]);ctx.lineTo(OP[b][0],OP[b][1]);ctx.stroke()}
+    // внешняя призма
+    const P=V.map(v=>proj(rot(v,ay,ax),R));
+    for(const [a,b] of E){
+      const z=(P[a][2]+P[b][2])/2,al=.1+(z+1)*.22;
+      ctx.strokeStyle=`rgba(255,255,255,${al.toFixed(3)})`;ctx.lineWidth=z>0?1.3:.9;
+      ctx.beginPath();ctx.moveTo(P[a][0],P[a][1]);ctx.lineTo(P[b][0],P[b][1]);ctx.stroke();
+    }
+    // узлы
+    P.forEach(q=>{const front=q[2]>0;ctx.fillStyle=front?"#fff":"rgba(255,255,255,.4)";ctx.beginPath();ctx.arc(q[0],q[1],front?2.6:1.6,0,6.283);ctx.fill();
+      if(front){ctx.strokeStyle="rgba(255,255,255,.18)";ctx.beginPath();ctx.arc(q[0],q[1],7,0,6.283);ctx.stroke()}});
+    // импульсы: дошёл до узла — выбирает следующее ребро
+    for(const u of pulses){
+      u.t+=dt*u.sp;
+      if(u.t>=1){u.t-=1;u.from=u.to;const opts=adj[u.from].filter(o=>o[1]!==u.prev);const n=opts[Math.floor(Math.random()*opts.length)];u.prev=u.from;u.e=n[0];u.to=n[1]}
+      const a=P[u.from],b=P[u.to],k=u.t,x=a[0]+(b[0]-a[0])*k,y=a[1]+(b[1]-a[1])*k,z=a[2]+(b[2]-a[2])*k;
+      const tk=Math.max(0,k-.18),x0=a[0]+(b[0]-a[0])*tk,y0=a[1]+(b[1]-a[1])*tk;
+      const lg=ctx.createLinearGradient(x0,y0,x,y);lg.addColorStop(0,"rgba(255,255,255,0)");lg.addColorStop(1,`rgba(255,255,255,${z>0?.95:.45})`);
+      ctx.strokeStyle=lg;ctx.lineWidth=z>0?2:1.2;ctx.beginPath();ctx.moveTo(x0,y0);ctx.lineTo(x,y);ctx.stroke();
+      ctx.fillStyle=z>0?"#fff":"rgba(255,255,255,.5)";ctx.shadowColor="#fff";ctx.shadowBlur=z>0?12:0;ctx.beginPath();ctx.arc(x,y,z>0?2.4:1.5,0,6.283);ctx.fill();ctx.shadowBlur=0;
+    }
+  }
+  if(reduce){draw(0)}else requestAnimationFrame(frame);
+  requestAnimationFrame(()=>cv.classList.add("on"));
+  if("IntersectionObserver" in window)new IntersectionObserver(es=>es.forEach(e=>running=e.isIntersecting)).observe(cv);
+  document.addEventListener("visibilitychange",()=>{last=performance.now()});
+})();
+
+/* живые цифры на первом экране */
+setInterval(()=>{
+  if(document.hidden)return;
+  const n=$("#liveNodes"),l=$("#liveLat"),r=$("#liveRps");
+  if(n)n.textContent=310+Math.floor(Math.random()*5);
+  if(l)l.textContent=(7.8+Math.random()*.9).toFixed(1).replace(".",",");
+  if(r)r.textContent=fmt(46000+Math.random()*4500);
+},2200);
+
+/* ---------- пословная анимация с сохранением <br> ---------- */
+function splitWords(el,start,step){
+  let i=0;
+  const walk=parent=>Array.from(parent.childNodes).forEach(node=>{
+    if(node.nodeType===Node.ELEMENT_NODE&&node.tagName!=="BR"){walk(node);return}
+    if(node.nodeType===Node.TEXT_NODE){
+      const frag=document.createDocumentFragment();
+      node.textContent.split(/(\s+)/).forEach(part=>{
+        if(!part)return;
+        if(/^\s+$/.test(part)){frag.appendChild(document.createTextNode(" "));return}
+        const s=document.createElement("span");
+        s.className="word-wrap inline-block opacity-0";
+        s.textContent=part;
+        s.style.animationDelay=(start+i*step).toFixed(3)+"s";
+        frag.appendChild(s);i++;
+      });
+      parent.replaceChild(frag,node);
+    }
+  });
+  walk(el);
+  return start+(i-1)*step;
+}
+document.addEventListener("DOMContentLoaded",init);
+if(document.readyState!=="loading")init();
+let inited=false;
+function init(){
+  if(inited)return;inited=true;
+  const t=$("#heroTitle"),s=$("#heroSub"),cta=$("#heroCtas");
+  const titleEnd=splitWords(t,.35,.08);
+  const subEnd=splitWords(s,titleEnd+.08,.045);
+  cta.classList.remove("opacity-0");cta.classList.add("rise");cta.style.animationDelay=(subEnd+.05).toFixed(2)+"s";
+  setupReveal();setupArch();setupDocs();setupPricing();setupMenu();setupConsole();
+}
+
+/* ---------- появление секций ---------- */
+function setupReveal(){
+  const els=$$(".reveal");
+  if(!("IntersectionObserver" in window)||reduce)return;
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.remove("pre");io.unobserve(e.target);countUp(e.target)}
+  }),{threshold:.12,rootMargin:"0px 0px -8% 0px"});
+  els.forEach(el=>{const r=el.getBoundingClientRect();if(r.top>innerHeight){el.classList.add("pre");io.observe(el)}});
+}
+function countUp(root){
+  $$("[data-count]",root).forEach(el=>{
+    const to=+el.dataset.count,t0=performance.now();
+    const step=n=>{const p=Math.min(1,(n-t0)/1100),e=1-Math.pow(1-p,3);el.textContent=fmt(to*e);if(p<1)requestAnimationFrame(step)};
+    requestAnimationFrame(step);
+  });
+}
+
+/* ---------- архитектура ---------- */
+function setupArch(){
+  const texts=[
+    "Устройство отправляет кадр, событие или запрос к модели. ORLO выбирает ближайший здоровый узел по задержке и текущей нагрузке.",
+    "Узел на грани запускает модель локально и отвечает за миллисекунды. Сырые данные остаются в регионе, наружу уходит только результат.",
+    "Ядро ORLO хранит версии моделей, раскатывает обновления на узлы и переносит задачи, если узел перегружен или недоступен."
+  ];
+  const stages=$$("#stages .stage"),txt=$("#stageText");
+  function pick(i){stages.forEach((b,k)=>b.setAttribute("aria-pressed",k===i));txt.textContent=texts[i]}
+  stages.forEach((b,i)=>b.addEventListener("click",()=>pick(i)));pick(1);
+
+  const svg=$("#archLines"),wrap=svg.parentElement;
+  function lines(){
+    if(innerWidth<768)return;
+    const W=wrap.offsetWidth,H=wrap.offsetHeight;svg.setAttribute("viewBox",`0 0 ${W} ${H}`);
+    let d="";
+    for(let i=0;i<2;i++){
+      const a=stages[i],b=stages[i+1];
+      const x1=a.offsetLeft+a.offsetWidth,x2=b.offsetLeft,y=a.offsetTop+a.offsetHeight/2;
+      d+=`<path class="flow" id="fl${i}" d="M${x1+6} ${y} L${x2-6} ${y}"/>`;
+      if(!reduce)d+=`<circle r="3" fill="#fff"><animateMotion dur="${1.4+i*.3}s" repeatCount="indefinite"><mpath href="#fl${i}"/></animateMotion></circle>`;
+    }
+    svg.innerHTML=d;
+  }
+  lines();addEventListener("resize",lines);if(document.fonts)document.fonts.ready.then(lines);
+
+  const r=$("#edgeShare");
+  function calc(){
+    const p=r.value/100;
+    r.style.setProperty("--p",r.value+"%");
+    $("#edgeOut").textContent=r.value+"%";
+    $("#mLat").textContent=Math.round(8*p+64*(1-p));
+    $("#mTraf").textContent=fmt(1300*(1-p)+10);
+    $("#mCost").textContent=fmt(42+240*(1-p)*(1-p)+38*p);
+  }
+  r.addEventListener("input",calc);calc();
+}
+
+/* ---------- документация ---------- */
+function setupDocs(){
+  const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+  const CODE={
+    cli:{raw:`# 1. Установить CLI
+curl -fsSL https://get.orlo.example | sh
+
+# 2. Войти и подключить узел в Москве
+orlo login
+orlo node add --region moskva-1 --gpu a100
+
+# 3. Развернуть модель на трёх узлах
+orlo deploy llama-3-8b --replicas 3 --edge
+✓ модель доступна: https://moskva-1.orlo.example/v1`,
+      html:null},
+    py:{raw:`from orlo import Client
+
+client = Client(token="ORLO_TOKEN")
+
+deployment = client.deploy(
+    model="llama-3-8b",
+    replicas=3,
+    placement="edge",
+    region="moskva-1",
+)
+
+print(deployment.url)   # https://moskva-1.orlo.example/v1`},
+    http:{raw:`POST /v1/deployments
+Authorization: Bearer ORLO_TOKEN
+Content-Type: application/json
+
+{
+  "model": "llama-3-8b",
+  "replicas": 3,
+  "placement": "edge",
+  "region": "moskva-1"
+}
+
+→ 201 Created  { "status": "running", "latency_ms": 8 }`}
+  };
+  function hl(src){
+    return src.split("\n").map(l=>{
+      let e=esc(l);
+      if(/^\s*#/.test(l)&&!/^#!/.test(l))return `<span class="c">${e}</span>`;
+      e=e.replace(/(&quot;|")([^"]*)(")/g,'<span class="s">"$2"</span>');
+      e=e.replace(/^(curl|orlo|from|import|print|POST)\b/,'<span class="k">$1</span>');
+      e=e.replace(/(  # .*)$/,'<span class="c">$1</span>').replace(/(   # .*)$/,'<span class="c">$1</span>');
+      return e;
+    }).join("\n");
+  }
+  let cur="cli";const box=$("#codeBox"),tabs=$$(".tabbtn");
+  function show(k){cur=k;box.innerHTML=hl(CODE[k].raw);tabs.forEach(t=>{const on=t.dataset.code===k;t.setAttribute("aria-selected",on);t.classList.toggle("text-white/70",!on)})}
+  tabs.forEach(t=>t.addEventListener("click",()=>show(t.dataset.code)));show("cli");
+  const btn=$("#copyBtn");
+  btn.addEventListener("click",()=>{
+    const done=ok=>{btn.textContent=ok?"Скопировано":"Выделено, нажмите Ctrl+C";setTimeout(()=>btn.textContent="Скопировать",1800)};
+    const sel=()=>{const r=document.createRange();r.selectNodeContents(box);const s=getSelection();s.removeAllRanges();s.addRange(r);done(false)};
+    try{navigator.clipboard.writeText(CODE[cur].raw).then(()=>done(true),sel)}catch(e){sel()}
+  });
+}
+
+/* ---------- тарифы ---------- */
+function setupPricing(){
+  const btns=$$("[data-period]");
+  btns.forEach(b=>b.addEventListener("click",()=>{
+    const y=b.dataset.period==="y";
+    btns.forEach(x=>x.setAttribute("aria-pressed",x===b));
+    $$("[data-price]").forEach(el=>el.textContent=fmt(+el.dataset.price*(y?.8:1)));
+    $$("[data-per]").forEach(el=>el.textContent=y?"в месяц при оплате за год":"в месяц");
+  }));
+}
+
+/* ---------- меню ---------- */
+function setupMenu(){
+  const m=$("#menu"),btn=$("#menuBtn");
+  const open=o=>{m.classList.toggle("open",o);btn.setAttribute("aria-expanded",o);document.body.style.overflow=o?"hidden":"";if(o)$("#menuClose").focus()};
+  btn.addEventListener("click",()=>open(true));
+  $("#menuClose").addEventListener("click",()=>{open(false);btn.focus()});
+  $$("#menu a").forEach(a=>a.addEventListener("click",()=>open(false)));
+  addEventListener("keydown",e=>{if(e.key==="Escape"&&m.classList.contains("open")){open(false);btn.focus()}});
+  window.__closeMenu=()=>open(false);
+}
+
+/* ---------- КОНСОЛЬ ---------- */
+function setupConsole(){
+  const C=$("#console");let lastFocus=null,started=false;
+  const CL={
+    msk:{name:"Москва-1",host:"moskva-1",base:62,lat:8,nodes:["msk-edge-01","msk-edge-02","msk-edge-03","msk-edge-04","msk-edge-05","msk-gpu-a100"]},
+    nsk:{name:"Новосибирск-2",host:"novosib-2",base:48,lat:11,nodes:["nsk-edge-01","nsk-edge-02","nsk-edge-03","nsk-gpu-h100"]},
+    ala:{name:"Алматы-3",host:"almaty-3",base:71,lat:14,nodes:["ala-edge-01","ala-edge-02","ala-edge-03","ala-edge-04","ala-gpu-a100"]}
+  };
+  const S={cl:"msk",tf:5,state:{},series:[],models:2,boost:0};
+  for(const k in CL)S.state[k]=CL[k].nodes.map((n,i)=>({name:n,on:true,load:clamp(CL[k].base+rand(-18,18),15,92)}));
+
+  // переключатель кластеров
+  const sw=$("#clusterSw");
+  sw.innerHTML=Object.entries(CL).map(([k,c])=>`<button type="button" class="px-3 py-1.5 rounded-full text-[12.5px] font-medium whitespace-nowrap" data-cl="${k}" aria-pressed="${k===S.cl}">${c.name}</button>`).join("");
+  const swBtns=$$("button",sw);
+  function paintSw(){swBtns.forEach(b=>{const on=b.dataset.cl===S.cl;b.setAttribute("aria-pressed",on);b.classList.toggle("pill-on",on)})}
+  swBtns.forEach(b=>b.addEventListener("click",()=>setCluster(b.dataset.cl,true)));
+
+  function nodes(){return S.state[S.cl]}
+  function stats(){
+    const ns=nodes(),on=ns.filter(n=>n.on);
+    const load=on.length?on.reduce((a,n)=>a+n.load,0)/on.length:0;
+    const lat=CL[S.cl].lat*(1+Math.max(0,load-60)/45)*(on.length<ns.length?1.12:1);
+    const rps=on.length*load*96;
+    return{load,lat,rps,on:on.length,total:ns.length};
+  }
+  function redistribute(){
+    const ns=nodes(),on=ns.filter(n=>n.on);if(!on.length)return;
+    const totalWork=ns.length*CL[S.cl].base+S.boost;
+    const avg=clamp(totalWork/on.length,8,99);
+    on.forEach(n=>n.load=clamp(avg+rand(-9,9),5,99));
+    ns.filter(n=>!n.on).forEach(n=>n.load=0);
+  }
+  function renderNodes(){
+    const ul=$("#nodeList");
+    ul.innerHTML=nodes().map((n,i)=>{
+      const col=!n.on?"rgba(255,255,255,.3)":n.load>85?"var(--bad)":n.load>70?"var(--warn)":"var(--ok)";
+      return `<li class="grid grid-cols-[auto_1fr_auto] items-center gap-3 py-2 border-b border-white/[.06] last:border-0">
+        <span class="dot" style="background:${col};box-shadow:0 0 8px ${n.on?col:"transparent"}"></span>
+        <div class="min-w-0"><div class="flex justify-between gap-2 text-[12.5px]"><span class="mono truncate ${n.on?"":"text-white/40"}">${n.name}</span><span class="tnum ${n.on?"text-white/70":"text-white/35"}">${n.on?Math.round(n.load)+"%":"выкл"}</span></div>
+        <div class="bar mt-1.5"><i style="width:${n.on?n.load:0}%;background:${n.on&&n.load>85?"var(--bad)":"#fff"}"></i></div></div>
+        <button type="button" class="sw" role="switch" aria-checked="${n.on}" aria-label="Узел ${n.name}" data-i="${i}"></button></li>`;
+    }).join("");
+    $$(".sw",ul).forEach(b=>b.addEventListener("click",()=>toggleNode(+b.dataset.i)));
+  }
+  function toggleNode(i,silent){
+    const n=nodes()[i];
+    if(n.on&&nodes().filter(x=>x.on).length===1){print("✕ нельзя отключить последний узел кластера","bad");return}
+    n.on=!n.on;redistribute();renderNodes();renderKpi(true);
+    if(!silent)print(n.on?`узел ${n.name} в сети, нагрузка перераспределена`:`узел ${n.name} выведен из ротации, задачи перенесены`,n.on?"ok":"warn");
+  }
+  function renderKpi(flash){
+    const s=stats();
+    const set=(id,val)=>{const el=$(id);el.textContent=val;if(flash){el.classList.remove("flash");void el.offsetWidth;el.classList.add("flash")}};
+    set("#kLoad",Math.round(s.load));set("#kLat",dec(s.lat));set("#kRps",fmt(s.rps));set("#kNodes",s.on);
+    $("#kNodesT").textContent=" / "+s.total;
+  }
+
+  // график
+  const cv=$("#chart"),ctx=cv.getContext("2d"),tip=$("#chartTip");let W=0,H=0,dpr=1,hover=-1;
+  const N=60;
+  function seed(){
+    const b=stats().load;S.series=[];
+    for(let i=0;i<N;i++){
+      const amp=S.tf===5?7:S.tf===60?12:20;
+      const wave=S.tf===1440?Math.sin(i/N*Math.PI*2-1.6)*16:Math.sin(i*.35)*amp*.4;
+      S.series.push(clamp(b+wave+rand(-amp,amp)*.5,3,99));
+    }
+  }
+  function size(){dpr=Math.min(2,devicePixelRatio||1);W=cv.clientWidth;H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);draw()}
+  const PL=30,PB=20,PT=8;
+  const X=i=>PL+(W-PL-6)*i/(N-1),Y=v=>PT+(H-PB-PT)*(1-v/100);
+  function labelX(i){
+    const back=(N-1-i)*S.tf/N;
+    if(S.tf===5)return back<.05?"сейчас":"−"+(back).toFixed(1).replace(".",",")+" мин";
+    if(S.tf===60)return back<1?"сейчас":"−"+Math.round(back)+" мин";
+    return back<.5?"сейчас":"−"+(back/60).toFixed(1).replace(".",",")+" ч";
+  }
+  function draw(){
+    if(!W||!S.series.length)return;
+    ctx.clearRect(0,0,W,H);
+    ctx.font="11px Inter,system-ui,sans-serif";ctx.textBaseline="middle";
+    [0,50,100].forEach(v=>{ctx.strokeStyle="rgba(255,255,255,.08)";ctx.beginPath();ctx.moveTo(PL,Y(v));ctx.lineTo(W,Y(v));ctx.stroke();ctx.fillStyle="rgba(255,255,255,.45)";ctx.fillText(v+"%",0,Y(v))});
+    // порог
+    ctx.setLineDash([3,5]);ctx.strokeStyle="rgba(255,138,122,.5)";ctx.beginPath();ctx.moveTo(PL,Y(85));ctx.lineTo(W,Y(85));ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle="rgba(255,138,122,.8)";ctx.textAlign="right";ctx.fillText("порог 85%",W-4,Y(85)-9);ctx.textAlign="left";
+    const pts=S.series.map((v,i)=>[X(i),Y(v)]);
+    const path=()=>{ctx.beginPath();ctx.moveTo(pts[0][0],pts[0][1]);for(let i=1;i<pts.length;i++){const [x0,y0]=pts[i-1],[x1,y1]=pts[i],mx=(x0+x1)/2;ctx.bezierCurveTo(mx,y0,mx,y1,x1,y1)}};
+    path();ctx.lineTo(X(N-1),Y(0));ctx.lineTo(X(0),Y(0));ctx.closePath();
+    const g=ctx.createLinearGradient(0,PT,0,H-PB);g.addColorStop(0,"rgba(255,255,255,.28)");g.addColorStop(1,"rgba(255,255,255,0)");ctx.fillStyle=g;ctx.fill();
+    path();ctx.strokeStyle="#fff";ctx.lineWidth=1.8;ctx.stroke();ctx.lineWidth=1;
+    const [lx,ly]=pts[N-1];
+    ctx.fillStyle="rgba(255,255,255,.25)";ctx.beginPath();ctx.arc(lx,ly,8,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle="#fff";ctx.beginPath();ctx.arc(lx,ly,3.5,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle="rgba(255,255,255,.45)";
+    [0,Math.round(N/2),N-1].forEach((i,k)=>{ctx.textAlign=k===0?"left":k===2?"right":"center";ctx.fillText(labelX(i),X(i),H-7)});ctx.textAlign="left";
+    if(hover>=0){const [hx,hy]=pts[hover];ctx.strokeStyle="rgba(255,255,255,.4)";ctx.beginPath();ctx.moveTo(hx,PT);ctx.lineTo(hx,H-PB);ctx.stroke();ctx.fillStyle="#fff";ctx.beginPath();ctx.arc(hx,hy,4,0,Math.PI*2);ctx.fill()}
+  }
+  const wrap=$("#chartWrap");
+  wrap.addEventListener("pointermove",e=>{
+    const r=wrap.getBoundingClientRect();hover=clamp(Math.round((e.clientX-r.left-PL)/(W-PL-6)*(N-1)),0,N-1);draw();
+    tip.textContent=`${Math.round(S.series[hover])}% · ${labelX(hover)}`;
+    tip.style.left=clamp(X(hover)-tip.offsetWidth/2,0,W-tip.offsetWidth)+"px";tip.style.top=Math.max(0,Y(S.series[hover])-34)+"px";tip.style.opacity=1;
+  });
+  wrap.addEventListener("pointerleave",()=>{hover=-1;tip.style.opacity=0;draw()});
+  if("ResizeObserver" in window)new ResizeObserver(size).observe(wrap);else addEventListener("resize",size);
+  $$("#tfSw button").forEach(b=>b.addEventListener("click",()=>{
+    S.tf=+b.dataset.tf;$$("#tfSw button").forEach(x=>{const on=x===b;x.setAttribute("aria-pressed",on);x.classList.toggle("pill-on",on)});seed();draw();
+  }));
+
+  function tick(){
+    if(!C.classList.contains("open")||document.hidden)return;
+    S.boost=Math.max(0,S.boost-2);
+    nodes().forEach(n=>{if(n.on)n.load=clamp(n.load+rand(-4,4)+(S.boost>0?1.2:0)-(n.load>80?1.5:0),5,99)});
+    if(S.tf===5){S.series.shift();S.series.push(clamp(stats().load+rand(-3,3),3,99))}
+    else S.series[N-1]=clamp(stats().load+rand(-2,2),3,99);
+    renderNodes();renderKpi(false);draw();
+  }
+  setInterval(tick,1000);
+
+  function setCluster(k,log){
+    S.cl=k;paintSw();redistribute();renderNodes();renderKpi(true);seed();draw();
+    $("#chartSub").textContent=CL[k].name+" · обновление каждую секунду";
+    $("#promptHost").textContent=$("#promptHost2").textContent="orlo@"+CL[k].host;
+    if(log)print(`переключено на кластер ${CL[k].name}: ${CL[k].nodes.length} ${plural(CL[k].nodes.length,"узел","узла","узлов")}, базовая задержка ${CL[k].lat} мс`,"ok");
+  }
+
+  // терминал
+  const term=$("#term"),inp=$("#termIn");const hist=[];let hi=-1;let busy=false;
+  function print(text,kind){
+    const d=document.createElement("div");d.className="ln";
+    const col=kind==="ok"?"color:var(--ok)":kind==="warn"?"color:var(--warn)":kind==="bad"?"color:var(--bad)":kind==="cmd"?"color:#fff":kind==="dim"?"color:rgba(255,255,255,.5)":"";
+    d.style.cssText=col;d.textContent=text;term.appendChild(d);
+    while(term.children.length>120)term.firstChild.remove();
+    term.scrollTop=term.scrollHeight;
+  }
+  const MODELS=["llama-3-8b","whisper-large","yolo-v8","qwen-2-7b"];
+  const later=(ms,fn)=>setTimeout(fn,reduce?0:ms);
+  function run(raw){
+    const line=raw.trim();if(!line)return;
+    print(`$ ${line}`,"cmd");hist.unshift(line);hi=-1;
+    const [cmd,...args]=line.split(/\s+/);const c=cmd.toLowerCase();
+    switch(c){
+      case "help":case "помощь":
+        ["команды:","  status            сводка по кластеру","  nodes             список узлов","  deploy <модель>   развернуть модель ("+MODELS.join(", ")+")","  scale <n>         оставить в сети n узлов","  region <msk|nsk|ala>  переключить кластер","  clear             очистить терминал"].forEach(t=>print(t,"dim"));break;
+      case "status":{const s=stats();print(`кластер ${CL[S.cl].name} · узлов ${s.on}/${s.total} · загрузка ${Math.round(s.load)}% · p99 ${dec(s.lat)} мс · ${fmt(s.rps)} запр/с · моделей ${S.models}`,s.load>85?"warn":"ok");break}
+      case "nodes":nodes().forEach(n=>print(`${n.on?"●":"○"} ${n.name.padEnd(14)} ${n.on?Math.round(n.load)+"%":"выкл"}`,n.on?"":"dim"));break;
+      case "deploy":{
+        const m=(args[0]||"").toLowerCase();
+        if(!MODELS.includes(m)){print(`укажите модель: deploy ${MODELS.join(" | ")}`,"warn");break}
+        if(busy){print("дождитесь окончания текущего развёртывания","warn");break}
+        busy=true;$("#deployBtn").disabled=true;
+        const on=nodes().filter(n=>n.on).length,rep=Math.min(3,on);
+        print(`→ загружаю ${m} из реестра…`,"dim");
+        later(600,()=>print(`→ проверяю подпись образа · sha256:${Math.random().toString(16).slice(2,10)}`,"dim"));
+        later(1200,()=>{print(`→ раскатываю на ${rep} узл${rep===1?"е":"ах"} кластера ${CL[S.cl].name}…`,"dim");S.boost+=on*14;redistribute();renderNodes();renderKpi(true)});
+        later(2100,()=>{S.models++;print(`✓ ${m} работает: ${rep} ${plural(rep,"реплика","реплики","реплик")}, задержка ${dec(stats().lat)} мс`,"ok");busy=false;$("#deployBtn").disabled=false;renderKpi(true)});
+        break}
+      case "scale":{
+        const n=parseInt(args[0],10),ns=nodes();
+        if(!(n>=1&&n<=ns.length)){print(`укажите число от 1 до ${ns.length}: scale 3`,"warn");break}
+        ns.forEach((x,i)=>x.on=i<n);redistribute();renderNodes();renderKpi(true);
+        print(`✓ в сети ${n} из ${ns.length} ${plural(ns.length,"узла","узлов","узлов")}, нагрузка перераспределена`,"ok");break}
+      case "region":{
+        const k=(args[0]||"").toLowerCase();
+        if(!CL[k]){print("укажите кластер: region msk | nsk | ala","warn");break}
+        setCluster(k,true);break}
+      case "clear":term.innerHTML="";break;
+      default:print(`команда «${cmd}» не найдена. Введите help, чтобы увидеть список`,"bad");
+    }
+  }
+  $("#termForm").addEventListener("submit",e=>{e.preventDefault();run(inp.value);inp.value=""});
+  inp.addEventListener("keydown",e=>{
+    if(e.key==="ArrowUp"&&hist.length){hi=Math.min(hist.length-1,hi+1);inp.value=hist[hi];e.preventDefault()}
+    if(e.key==="ArrowDown"){hi=Math.max(-1,hi-1);inp.value=hi<0?"":hist[hi];e.preventDefault()}
+  });
+  $$("#chips [data-cmd]").forEach(b=>b.addEventListener("click",()=>run(b.dataset.cmd)));
+  $("#deployBtn").addEventListener("click",()=>run("deploy "+MODELS[Math.floor(Math.random()*MODELS.length)]));
+
+  // открыть / закрыть
+  function open(plan){
+    lastFocus=document.activeElement;
+    if(window.__closeMenu)window.__closeMenu();
+    $("#cPlan").textContent="Тариф: "+(plan||"Команда");
+    C.classList.add("open");document.body.style.overflow="hidden";
+    if(!started){started=true;setCluster("msk",false);
+      print("ORLO Консоль · демо-режим, данные смоделированы в браузере","dim");
+      print(`подключено к кластеру ${CL[S.cl].name} · ${nodes().length} ${plural(nodes().length,"узел","узла","узлов")} в сети`,"ok");
+      print("введите help или нажмите на подсказку выше","dim");}
+    requestAnimationFrame(size);
+    setTimeout(()=>{if(matchMedia("(pointer:fine)").matches)inp.focus();else $("#cClose").focus()},350);
+  }
+  function close(){C.classList.remove("open");document.body.style.overflow="";if(lastFocus&&lastFocus.focus)lastFocus.focus()}
+  $$("[data-open-console]").forEach(b=>b.addEventListener("click",()=>open(b.dataset.plan)));
+  $("#cClose").addEventListener("click",close);
+  C.addEventListener("click",e=>{if(e.target===C)close()});
+  addEventListener("keydown",e=>{
+    if(!C.classList.contains("open"))return;
+    if(e.key==="Escape"){close();return}
+    if(e.key==="Tab"){
+      const f=$$("button,input,[tabindex]:not([tabindex='-1'])",C).filter(x=>x.offsetParent!==null&&!x.disabled);
+      const first=f[0],last=f[f.length-1];
+      if(e.shiftKey&&document.activeElement===first){last.focus();e.preventDefault()}
+      else if(!e.shiftKey&&document.activeElement===last){first.focus();e.preventDefault()}
+    }
+  });
+  if(location.hash==="#console")open();
+}
+})();
+</script>
+</body>
+</html>

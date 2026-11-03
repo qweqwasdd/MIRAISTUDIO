@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SmartGlobal Systems, кейс | MIRAI</title>
+<meta name="description" content="Кейс MIRAI: сайт для SmartGlobal Systems, компании по монтажу видеонаблюдения и систем безопасности в Казахстане. Desktop и мобильная версия.">
+<meta property="og:title" content="SmartGlobal Systems, кейс MIRAI">
+<meta property="og:image" content="https://qweqwasdd.github.io/miraistudio/works/smartglobal/img/hero.jpg">
+<link rel="stylesheet" href="../../fonts/fonts.css">
+<style>
+.logo{display:inline-flex;align-items:center;gap:.4em;font:700 19px/1 "Unbounded","Geologica",sans-serif;letter-spacing:-.04em;white-space:nowrap;color:inherit;text-decoration:none}
+.lk{display:flex;gap:.17em;padding:.17em;border-radius:.5em;background:linear-gradient(#E6E8E2,#DCDFD7);box-shadow:inset 0 1px 0 #fff,0 1px 2px rgb(40 48 30 / .14)}
+.lk i{display:block;width:1.42em;height:1.42em;border-radius:.34em;padding-bottom:.12em;background:#A8D21E;font-style:normal}
+.lk b{display:grid;place-items:center;height:100%;border-radius:.32em;background:#C8F53C;box-shadow:inset 0 0 0 1px #D4FA5A;font-size:.66em;font-weight:700;padding-bottom:.1em;color:#101211}
+@font-face{font-family:"Manrope";src:url("fonts/manrope.woff") format("woff");font-weight:200 800;font-display:swap}
+@font-face{font-family:"Montserrat";src:url("fonts/montserrat.woff") format("woff");font-weight:100 900;font-display:swap}
+
+:root{
+  --bg:#0c0c0d; --bg-2:#121212; --card:#18181a; --card-2:#202022; --line:#2a2a2d;
+  --ink:#f5f5f4; --muted:#a1a1a6; --faint:#6e6e73;
+  --paper:#ecebe8; --paper-2:#e2e1dd; --paper-ink:#141414; --paper-muted:#6b6b68;
+  --wf:#d3d2ce; --wf-2:#c2c1bc; --grid:rgba(255,77,77,.09); --grid-edge:rgba(255,77,77,.35);
+  --ui-bg:#121212; --ui-btn:#f2f2f2; --ui-chip:rgba(255,255,255,.16); --ui-muted:#9a9a9a;
+  --case:"Manrope",system-ui,"Segoe UI",sans-serif; --ui:"Montserrat","Manrope",system-ui,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 var(--case);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+h1,h2,h3,h4{margin:0;font-weight:600;letter-spacing:-.03em;line-height:1.05;text-wrap:balance}
+p{margin:0}
+
+/* ---------- site chrome ---------- */
+.topbar{position:sticky;top:0;z-index:20;background:rgba(12,12,13,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.topbar .in{max-width:1400px;margin:auto;padding:0 clamp(16px,4vw,48px);height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font-weight:800;font-size:18px;text-decoration:none;letter-spacing:-.03em}
+.brand b{color:#c8f169;font-weight:800}
+.back{color:var(--muted);text-decoration:none;font-size:15px}
+.back:hover{color:var(--ink)}
+
+/* ---------- slide base ---------- */
+.slide{position:relative;overflow:hidden}
+.in{max-width:1400px;margin-inline:auto;padding:clamp(56px,8vw,120px) clamp(16px,8.6vw,120px)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.eyebrow::before{content:"";width:22px;height:1px;background:currentColor}
+.h-xl{font-size:clamp(44px,6.4vw,96px)}
+.h-l{font-size:clamp(34px,4.6vw,68px)}
+.h-m{font-size:clamp(26px,3vw,40px)}
+.lead{font-size:clamp(17px,1.5vw,21px);color:var(--muted);max-width:60ch;line-height:1.55}
+.dim{color:var(--faint)}
+.paper{background:var(--paper);color:var(--paper-ink)}
+.paper .eyebrow,.paper .lead{color:var(--paper-muted)}
+
+/* ---------- 01 cover ---------- */
+.cover{background:#080808;min-height:860px}
+.cover .bgimg{position:absolute;inset:0;background:url(img/hero.jpg) center/cover;filter:blur(28px) brightness(.35) saturate(.6);transform:scale(1.15)}
+.cover .in{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 210px;gap:40px;align-items:center;padding-block:96px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.tag{border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:7px 14px;font-size:14px;font-weight:600;color:#e7e7e7;background:rgba(255,255,255,.04)}
+.frame{background:#1d1d1f;border:1px solid #333336;border-radius:28px;padding:12px;box-shadow:0 60px 120px -40px rgba(0,0,0,.9)}
+.frame img{border-radius:18px}
+.browser{background:#1d1d1f;border:1px solid #333336;border-radius:22px;overflow:hidden;box-shadow:0 50px 110px -40px rgba(0,0,0,.85)}
+.browser .bar{height:38px;display:flex;align-items:center;gap:7px;padding:0 16px;border-bottom:1px solid #2c2c2f}
+.browser .bar i{width:11px;height:11px;border-radius:50%;background:#3a3a3d}
+.browser .bar span{margin-left:14px;height:22px;flex:1;max-width:340px;border-radius:7px;background:#2a2a2d;color:#8a8a8f;font-size:12px;display:flex;align-items:center;padding:0 10px}
+.vtitle{writing-mode:vertical-rl;transform:rotate(180deg);font-size:118px;line-height:.9;font-weight:700;letter-spacing:-.04em;white-space:nowrap;justify-self:center}
+.vtitle span{color:rgba(255,255,255,.28)}
+.cover-foot{position:relative;display:flex;justify-content:space-between;gap:24px;margin-top:40px;color:var(--muted);font-size:15px}
+
+/* ---------- cards ---------- */
+.card{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:clamp(24px,3vw,40px)}
+.card.light{background:#f2f2f0;color:#151515;border-color:transparent}
+.card.light p{color:#4c4c4a}
+.card h3{font-size:clamp(28px,3vw,44px);margin-bottom:22px}
+.card p{color:var(--muted);font-size:clamp(16px,1.35vw,19px);line-height:1.6}
+.tr-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:48px}
+.stack{display:grid;gap:16px}
+.photo{border-radius:28px;overflow:hidden;position:relative;min-height:100%}
+.photo img{width:100%;height:100%;object-fit:cover}
+.meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:22px;overflow:hidden;margin-top:16px}
+.meta div{background:var(--card);padding:20px 24px}
+.meta small{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:6px;font-weight:700}
+.meta b{font-weight:600;font-size:17px}
+
+/* ---------- process / flow ---------- */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:48px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px;display:grid;gap:10px;align-content:start}
+.step .n{font-size:14px;font-weight:700;color:var(--faint)}
+.step h4{font-size:22px}
+.step p{color:var(--muted);font-size:15px;line-height:1.55}
+.aud{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:12px}
+.aud .step{background:transparent}
+.flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;margin-top:56px;position:relative}
+.flow::before{content:"";position:absolute;left:10%;right:10%;top:27px;height:1px;background:linear-gradient(90deg,#3a3a3d,#6b6b70,#3a3a3d)}
+.node{position:relative;display:grid;justify-items:center;text-align:center;gap:14px;padding:0 10px}
+.node .dot{width:56px;height:56px;border-radius:50%;background:var(--bg);border:1px solid #4a4a4e;display:grid;place-items:center;font-weight:700;font-size:16px}
+.node.goal .dot{background:#f2f2f2;color:#111;border-color:#f2f2f2}
+.node h4{font-size:19px}
+.node p{color:var(--muted);font-size:14.5px;line-height:1.5}
+.node .q{display:inline-block;margin-top:2px;font-size:13px;color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+
+/* ---------- wireframes ---------- */
+.wf-wrap{margin-top:48px;border-radius:24px;background:#f7f7f5;padding:24px;box-shadow:0 1px 0 rgba(0,0,0,.04),0 30px 60px -40px rgba(0,0,0,.25)}
+.wf-scale{width:100%;aspect-ratio:1440/var(--h);position:relative;overflow:hidden;border-radius:12px;background:#fbfbfa;container-type:inline-size}
+.wf{position:absolute;left:0;top:0;width:1440px;transform-origin:0 0;transform:scale(calc(100cqw / 1440px))}
+.wf-legend{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:20px;font-size:14px;color:var(--paper-muted)}
+.wf-legend b{color:var(--paper-ink);font-weight:700}
+.sw{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:8px;vertical-align:-1px}
+.cols{position:absolute;inset:0 40px;display:grid;grid-template-columns:repeat(12,1fr);gap:20px;pointer-events:none;z-index:3}
+.cols i{background:var(--grid);border-left:1px solid var(--grid-edge);border-right:1px solid var(--grid-edge)}
+.cols.m4{inset:0 16px;grid-template-columns:repeat(4,1fr);gap:16px}
+.blk{position:absolute;background:var(--wf);border-radius:6px}
+.blk.d{background:var(--wf-2)}
+.blk.img{background:repeating-linear-gradient(135deg,#d9d8d4 0 10px,#cfcec9 10px 20px);border-radius:10px}
+.blk.btn{background:#9c9b96;border-radius:8px}
+.blk.out{background:transparent;border:2px solid #9c9b96;border-radius:8px}
+.blk.line{height:2px;background:#b9b8b3;border-radius:0}
+.txt{position:absolute;height:14px;border-radius:7px;background:#bfbeb9}
+.txt.h{height:34px;border-radius:10px;background:#a9a8a3}
+.lbl{position:absolute;font:600 15px/1 var(--case);color:#d94a3b;background:#fff2ef;border:1px solid #f3c2b8;border-radius:6px;padding:5px 8px;white-space:nowrap;z-index:4}
+.sec-tag{position:absolute;left:12px;font:700 13px/1 var(--case);letter-spacing:.08em;text-transform:uppercase;color:#7c7b77;z-index:4}
+.meas{position:absolute;z-index:4;border:0 dashed #d94a3b}
+.meas.hz{height:0;border-top-width:1.5px}
+.meas.vt{width:0;border-left-width:1.5px}
+
+/* ---------- desktop showcase ---------- */
+.desk{margin-top:48px}
+.desk .browser{border-radius:26px}
+.desk .scroll{max-height:none}
+
+/* ---------- annotated hero ---------- */
+.anno{position:relative;margin-top:48px}
+.anno .pin{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:#f2f2f2;color:#111;font-weight:800;font-size:17px;display:grid;place-items:center;box-shadow:0 0 0 8px rgba(242,242,242,.18)}
+.notes4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:16px}
+.note{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px 24px;display:grid;gap:8px;align-content:start}
+.note .k{width:30px;height:30px;border-radius:50%;background:#f2f2f2;color:#111;font-weight:800;font-size:14px;display:grid;place-items:center}
+.note h4{font-size:19px}
+.note p{color:var(--muted);font-size:15px;line-height:1.5}
+
+/* ---------- component anatomy ---------- */
+.anat{display:grid;grid-template-columns:420px minmax(0,1fr);gap:56px;margin-top:48px;align-items:center}
+.anat .mob{position:relative}
+.anat .mob img{border-radius:24px;border:1px solid var(--line)}
+.callout{position:absolute;right:-24px;transform:translateX(100%);display:flex;align-items:center;gap:12px;font-size:15px;white-space:nowrap}
+.callout::before{content:"";width:48px;height:1px;background:#8a8a8f}
+.callout b{font-weight:700}
+.callout span{color:var(--muted)}
+.spec{display:grid;gap:12px}
+.spec .row{display:grid;grid-template-columns:200px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+.spec .row:first-child{border-top:1px solid var(--line)}
+.spec .row b{font-weight:700}
+.spec .row span{color:var(--muted)}
+
+/* ---------- phones ---------- */
+.phones{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,4vw,64px);margin-top:56px;justify-items:center}
+.phone{--w:300px;width:var(--w);aspect-ratio:375/812;border-radius:calc(var(--w)*.16);padding:calc(var(--w)*.032);background:linear-gradient(145deg,#3b3b3e,#161618 40%,#2c2c2f);box-shadow:0 0 0 1px #4a4a4d inset,0 50px 90px -30px rgba(0,0,0,.85),0 20px 40px -20px rgba(0,0,0,.6);position:relative}
+.phone .glass{width:100%;height:100%;border-radius:calc(var(--w)*.13);overflow:hidden;position:relative;background:var(--ui-bg);container-type:inline-size}
+.phone .screen{position:absolute;left:0;top:0;width:375px;height:812px;transform-origin:0 0;transform:scale(calc(100cqw / 375px));overflow:hidden;background:var(--ui-bg);color:#fff;font-family:var(--ui)}
+.phone .island{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:120px;height:34px;border-radius:20px;background:#000;z-index:10}
+.status{height:50px;display:flex;justify-content:space-between;align-items:center;padding:6px 30px 0 34px;font:600 16px/1 var(--ui);position:relative;z-index:9}
+.status .r{display:flex;gap:6px;align-items:center}
+.status .r i{display:block;background:#fff;border-radius:2px}
+.paper .phone{box-shadow:0 0 0 1px #4a4a4d inset,0 40px 70px -30px rgba(0,0,0,.45)}
+.cap{margin-top:22px;text-align:center;color:var(--muted);font-size:15px}
+.paper .cap{color:var(--paper-muted)}
+.pcol{display:grid;justify-items:center}
+
+/* ---------- client UI (mobile) ---------- */
+.ui{padding:0 16px}
+.ui-head{display:flex;justify-content:space-between;align-items:center;height:56px;padding:0 16px}
+.ui-head img{height:28px;width:auto}
+.burger{width:26px;display:grid;gap:6px}
+.burger i{display:block;height:2px;background:#fff;border-radius:2px}
+.u-h1{font:600 31px/1.1 var(--ui);letter-spacing:-.01em}
+.u-h2{font:600 22px/1.25 var(--ui);letter-spacing:-.005em}
+.u-h3{font:500 22px/1.2 var(--ui)}
+.u-p{font:400 15.5px/1.35 var(--ui);color:#ececec}
+.u-s{font:400 13px/1.4 var(--ui);color:var(--ui-muted)}
+.u-btn{height:52px;border-radius:9px;background:var(--ui-btn);color:#111;font:600 16px/1 var(--ui);display:flex;align-items:center;justify-content:center;gap:12px}
+.u-btn.out{background:transparent;color:#fff;border:1.5px solid #fff}
+.u-chip{height:40px;border-radius:8px;background:var(--ui-chip);font:600 12.5px/1 var(--ui);display:inline-flex;align-items:center;padding:0 11px;white-space:nowrap}
+.u-line{height:1px;background:rgba(255,255,255,.28)}
+.u-img{border-radius:6px;overflow:hidden}
+.u-img img{width:100%;height:100%;object-fit:cover}
+.u-in{border-bottom:1px solid rgba(255,255,255,.35);height:52px;display:flex;align-items:center;font:400 16px/1 var(--ui);color:#9b9b9b}
+
+/* ---------- UI kit ---------- */
+.kit{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:16px;margin-top:48px}
+.swatches{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.swatch{border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--card)}
+.swatch i{display:block;height:110px}
+.swatch div{padding:12px 14px}
+.swatch b{display:block;font-size:14px}
+.swatch code{font:500 13px/1.4 ui-monospace,Consolas,monospace;color:var(--muted)}
+.type-scale{display:grid;gap:0;margin-top:16px}
+.ts{display:grid;grid-template-columns:120px 1fr;align-items:baseline;gap:20px;padding:16px 0;border-top:1px solid var(--line);font-family:var(--ui)}
+.ts small{font-family:var(--case);color:var(--faint);font-size:13px;font-weight:600}
+.comp{display:grid;gap:22px;align-content:start}
+.comp .lab{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:10px}
+.row-ui{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.k-btn{height:50px;border-radius:9px;background:var(--ui-btn);color:#111;font:600 14.5px/1 var(--ui);display:inline-flex;align-items:center;gap:10px;padding:0 18px}
+.k-btn.hover{background:#ffffff;box-shadow:0 0 0 4px rgba(255,255,255,.15)}
+.k-btn.out{background:transparent;color:#fff;border:1.5px solid #fff;font-weight:500}
+.k-chip{height:46px;border-radius:9px;background:#3d3d3f;font:600 15px/1 var(--ui);display:inline-flex;align-items:center;padding:0 18px}
+.k-in{font-family:var(--ui);border-bottom:1px solid #5a5a5d;padding:14px 2px;color:#8f8f8f;font-size:16px}
+.k-in.focus{border-color:#fff;color:#fff}
+.k-in.err{border-color:#ff6b5a;color:#fff}
+.k-in small{display:block;color:#ff8a7a;font-size:12.5px;margin-top:8px}
+
+/* ---------- result / contact ---------- */
+.nums{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:48px}
+.num{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:28px}
+.num b{display:block;font-size:clamp(48px,5vw,72px);letter-spacing:-.04em;line-height:1;margin-bottom:14px;font-weight:600}
+.num p{color:var(--muted);font-size:15.5px;line-height:1.5}
+.thanks{text-align:center}
+.thanks .big{font-size:clamp(56px,10vw,150px);font-weight:700;letter-spacing:-.05em;line-height:.9}
+.thanks .big span{display:block;color:rgba(255,255,255,.26)}
+.contacts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:64px;text-align:left}
+.contacts a,.contacts .copy{display:block;width:100%;text-align:left;font:inherit;color:inherit;cursor:pointer;text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px 26px;transition:transform .15s,border-color .15s}
+.contacts a:hover,.contacts .copy:hover{transform:translateY(-2px);border-color:#4a4a4e}
+.contacts .copy:focus-visible,.contacts a:focus-visible{outline:2px solid #f2f2f2;outline-offset:3px}
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);opacity:0;background:#f2f2f2;color:#111;font-weight:700;font-size:15px;padding:12px 20px;border-radius:999px;transition:.2s;pointer-events:none;z-index:50}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.contacts a.main{background:#f2f2f2;color:#111;border-color:#f2f2f2}
+.contacts small{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--faint);margin-bottom:8px}
+.contacts a.main small{color:#6a6a6a}
+.contacts b{font-size:clamp(16px,1.5vw,20px);font-weight:700;letter-spacing:-.01em;overflow-wrap:anywhere}
+.sign{display:flex;justify-content:space-between;margin-top:56px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:15px}
+.sign b{color:var(--ink);font-weight:800;letter-spacing:-.03em;font-size:20px}
+.sign b em{font-style:normal;color:#c8f169}
+
+footer.site{border-top:1px solid var(--line);color:var(--faint);font-size:14px}
+footer.site .in{padding-block:28px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* ---------- behance render mode ---------- */
+.behance .topbar,.behance footer.site{display:none}
+
+/* ---------- responsive (site) ---------- */
+@media (max-width:1100px){
+  .cover .in{grid-template-columns:1fr}
+  .vtitle{writing-mode:horizontal-tb;transform:none;font-size:clamp(44px,9vw,80px);justify-self:start;white-space:normal;order:-1}
+  .anat{grid-template-columns:1fr}
+  .callout{display:none}
+  .kit{grid-template-columns:1fr}
+}
+@media (max-width:900px){
+  .tr-grid,.notes4,.steps,.nums,.contacts{grid-template-columns:1fr 1fr}
+  .aud{grid-template-columns:1fr}
+  .flow{grid-template-columns:1fr;gap:28px}
+  .flow::before{display:none}
+  .node{grid-template-columns:56px 1fr;justify-items:start;text-align:left;column-gap:16px}
+  .node .dot{grid-row:span 3}
+  .meta{grid-template-columns:1fr 1fr}
+  .phones{grid-template-columns:1fr}
+  .swatches{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .spec .row{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .tr-grid,.notes4,.steps,.nums,.contacts,.meta{grid-template-columns:1fr}
+  .cover-foot{flex-direction:column}
+  .sign{flex-direction:column;gap:8px}
+  .swatches{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ts{grid-template-columns:1fr;gap:6px}
+  .anno .pin{width:28px;height:28px;margin:-14px 0 0 -14px;font-size:13px;box-shadow:0 0 0 5px rgba(242,242,242,.18)}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="in">
+    <a class="logo" href="../../#top" aria-label="MIRAI, на главную"><span class="lw" style="font-weight:800;letter-spacing:.02em">MIRAI</span></a>
+    <a class="back" href="../../#work">← Все работы</a>
+  </div>
+</header>
+
+<main>
+
+<!-- 01 COVER -->
+<section class="slide cover" id="s01-cover">
+  <div class="bgimg" aria-hidden="true"></div>
+  <div class="in">
+    <div>
+      <div class="tags"><span class="tag">Web design</span><span class="tag">Desktop + Mobile</span><span class="tag">Казахстан · 2026</span></div>
+      <div class="browser">
+        <div class="bar"><i></i><i></i><i></i><span>smartglobal.kz</span></div>
+        <img src="img/hero.jpg" width="1172" height="797" alt="Первый экран сайта SmartGlobal Systems">
+      </div>
+      <div class="cover-foot"><span>Сайт для компании по системам безопасности</span><span>Дизайн: MIRAI</span></div>
+    </div>
+    <h1 class="vtitle">SmartGlobal<br><span>Systems</span></h1>
+  </div>
+</section>
+
+<!-- 02 TASK / SOLUTION -->
+<section class="slide" id="s02-task" style="background:var(--bg)">
+  <div class="in">
+    <span class="eyebrow">О проекте</span>
+    <div class="tr-grid">
+      <div class="stack">
+        <div class="card">
+          <h3>Это задача</h3>
+          <p>SmartGlobal Systems монтирует видеонаблюдение, сигнализацию, контроль доступа и IT-инфраструктуру для бизнеса и жилых комплексов. Нужен сайт, который с первых секунд вызывает доверие, понятно показывает шесть направлений работы и быстро приводит посетителя к заявке.</p>
+        </div>
+        <div class="card light">
+          <h3>Это решение</h3>
+          <p>Тёмный технологичный сайт с одним сильным образом на первом экране, аргументами доверия рядом с кнопкой, услугами в едином шаблоне и короткой формой с обещанием ответа за 15 минут. Две версии: для компьютера и для телефона.</p>
+        </div>
+      </div>
+      <div class="photo"><img src="img/about-photo.jpg" width="539" height="633" alt="Камеры видеонаблюдения на фасаде здания"></div>
+    </div>
+    <div class="meta">
+      <div><small>Заказчик</small><b>SmartGlobal Systems</b></div>
+      <div><small>Страна</small><b>Казахстан</b></div>
+      <div><small>Роль</small><b>Веб-дизайнер</b></div>
+      <div><small>Что сделано</small><b>Анализ, структура, прототип, дизайн</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 PROCESS + AUDIENCE -->
+<section class="slide" id="s03-process" style="background:var(--bg-2)">
+  <div class="in">
+    <span class="eyebrow">Процесс</span>
+    <h2 class="h-l" style="margin-top:22px;max-width:22ch">Безопасность продают через доверие</h2>
+    <p class="lead" style="margin-top:22px">Клиенты компании выбирают подрядчика, которому можно доверить охрану объекта. Им важны гарантии, опыт и скорость реакции, а не технические характеристики камер.</p>
+    <div class="steps">
+      <div class="step"><span class="n">01</span><h4>Анализ</h4><p>Разобрал аудиторию заказчика и сайты компаний этой ниши: что обещают, где теряют клиента.</p></div>
+      <div class="step"><span class="n">02</span><h4>Структура</h4><p>Собрал путь посетителя от первого экрана до заявки и порядок блоков.</p></div>
+      <div class="step"><span class="n">03</span><h4>Прототип</h4><p>Сетка 12 колонок для десктопа и 4 для телефона, вайрфреймы ключевых экранов.</p></div>
+      <div class="step"><span class="n">04</span><h4>Дизайн</h4><p>Финальные макеты Desktop и Mobile, компоненты и стили. Передал заказчику.</p></div>
+    </div>
+    <div class="aud">
+      <div class="step"><span class="n">Аудитория</span><h4>Бизнес</h4><p>Офисы, склады, производства, магазины. Нужна охрана объекта под ключ.</p></div>
+      <div class="step"><span class="n">Аудитория</span><h4>Жилые комплексы</h4><p>Управляющие компании: домофония, контроль доступа, видеонаблюдение.</p></div>
+      <div class="step"><span class="n">Главный вопрос</span><h4>«Им можно доверять?»</h4><p>Ответ должен быть виден на первом экране и повторяться до самой формы.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 STRUCTURE / FLOW -->
+<section class="slide" id="s04-structure" style="background:var(--bg)">
+  <div class="in">
+    <span class="eyebrow">Структура</span>
+    <h2 class="h-l" style="margin-top:22px;max-width:18ch">Каждый блок отвечает на один вопрос клиента</h2>
+    <div class="flow">
+      <div class="node"><span class="dot">1</span><h4>Первый экран</h4><p>Кто вы и чем занимаетесь, почему вам можно доверять</p><span class="q">«Куда я попал?»</span></div>
+      <div class="node"><span class="dot">2</span><h4>О компании</h4><p>Команда, опыт, работа с коммерческими объектами</p><span class="q">«Вы надёжные?»</span></div>
+      <div class="node"><span class="dot">3</span><h4>6 услуг</h4><p>Единый шаблон: что входит, фото, «Подробнее»</p><span class="q">«Вы сделаете моё?»</span></div>
+      <div class="node goal"><span class="dot">4</span><h4>Заявка</h4><p>Два поля и ответ за 15 минут</p><span class="q">«Это быстро?»</span></div>
+      <div class="node"><span class="dot">5</span><h4>Контакты</h4><p>Телефон крупно, Telegram, WhatsApp, Instagram</p><span class="q">«Как связаться?»</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 DESKTOP GRID / PROTOTYPE -->
+<section class="slide paper" id="s05-grid-desktop">
+  <div class="in">
+    <span class="eyebrow">Прототип · Desktop</span>
+    <h2 class="h-l" style="margin-top:22px;max-width:18ch">Сетка 12 колонок, всё на одних осях</h2>
+    <p class="lead" style="margin-top:22px">Макет 1440 px: поля 40, межколонник 20, контейнер 1360. Текст живёт в колонках 1–6, фото начинаются строго с 7-й, поэтому все секции читаются одной вертикалью.</p>
+    <div class="wf-wrap">
+      <div class="wf-scale" style="--h:1630">
+        <div class="wf" style="height:1630px">
+          <div class="cols"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <!-- header -->
+          <span class="sec-tag" style="top:12px">Шапка · 88</span>
+          <div class="blk d" style="left:40px;top:32px;width:135px;height:32px"></div>
+          <div class="txt" style="left:560px;top:42px;width:80px"></div>
+          <div class="txt" style="left:660px;top:42px;width:70px"></div>
+          <div class="txt" style="left:750px;top:42px;width:100px"></div>
+          <div class="blk out" style="left:1225px;top:26px;width:175px;height:46px"></div>
+          <!-- hero -->
+          <span class="sec-tag" style="top:104px">Первый экран · 900</span>
+          <div class="blk img" style="left:40px;top:96px;width:1360px;height:880px;opacity:.4"></div>
+          <div class="txt h" style="left:72px;top:606px;width:480px;height:46px"></div>
+          <div class="txt h" style="left:72px;top:662px;width:700px;height:46px"></div>
+          <div class="txt" style="left:72px;top:734px;width:540px;height:22px"></div>
+          <div class="txt" style="left:72px;top:764px;width:320px;height:22px"></div>
+          <div class="blk line" style="left:72px;top:820px;width:1296px"></div>
+          <div class="blk btn" style="left:72px;top:870px;width:290px;height:64px"></div>
+          <div class="blk d" style="left:742px;top:870px;width:200px;height:64px"></div>
+          <div class="blk d" style="left:956px;top:870px;width:200px;height:64px"></div>
+          <div class="blk d" style="left:1170px;top:870px;width:198px;height:64px"></div>
+          <span class="lbl" style="left:380px;top:888px">Кнопка заявки · колонки 1–3</span>
+          <span class="lbl" style="left:900px;top:944px">Аргументы доверия · колонки 7–12</span>
+          <!-- about -->
+          <span class="sec-tag" style="top:1004px">О компании · 120 сверху</span>
+          <div class="txt" style="left:40px;top:1060px;width:70px"></div>
+          <div class="txt h" style="left:40px;top:1100px;width:620px;height:28px"></div>
+          <div class="txt h" style="left:40px;top:1138px;width:580px;height:28px"></div>
+          <div class="txt h" style="left:40px;top:1176px;width:600px;height:28px"></div>
+          <div class="txt" style="left:40px;top:1236px;width:520px"></div>
+          <div class="txt" style="left:40px;top:1260px;width:460px"></div>
+          <div class="blk btn" style="left:40px;top:1310px;width:290px;height:62px"></div>
+          <div class="blk img" style="left:730px;top:1046px;width:670px;height:520px"></div>
+          <span class="lbl" style="left:740px;top:1056px">Фото · колонки 7–12</span>
+          <span class="lbl" style="left:40px;top:1392px">Текст · колонки 1–6</span>
+          <!-- measurements -->
+          <span class="lbl" style="left:4px;top:120px">40</span>
+          <span class="lbl" style="left:696px;top:1590px">20</span>
+          <span class="lbl" style="left:1404px;top:120px">40</span>
+        </div>
+      </div>
+      <div class="wf-legend"><span><i class="sw" style="background:rgba(255,77,77,.25)"></i><b>12 колонок</b> по 95 px</span><span><b>Поля</b> 40 px</span><span><b>Межколонник</b> 20 px</span><span><b>Отступы секций</b> 120 px</span><span><b>Шаг</b> 8 px</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 DESKTOP SHOWCASE -->
+<section class="slide" id="s06-desktop" style="background:var(--bg-2)">
+  <div class="in">
+    <div style="text-align:center"><span class="eyebrow">Desktop</span>
+      <h2 class="h-l" style="margin:22px auto 0">Так выглядит Desktop</h2></div>
+    <div class="desk">
+      <div class="browser">
+        <div class="bar"><i></i><i></i><i></i><span>smartglobal.kz</span></div>
+        <img src="img/desktop-full.jpg" width="1172" height="5170" alt="Полная страница сайта SmartGlobal Systems: первый экран, о компании, шесть услуг, форма заявки и контакты">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 HERO ANNOTATED -->
+<section class="slide" id="s07-hero" style="background:var(--bg)">
+  <div class="in">
+    <span class="eyebrow">Первый экран</span>
+    <h2 class="h-l" style="margin-top:22px;max-width:17ch">За пять секунд: кто мы, что делаем, почему нам верить</h2>
+    <div class="anno">
+      <div class="frame"><img src="img/hero.jpg" width="1172" height="797" alt="Первый экран с отметками ключевых решений"></div>
+      <span class="pin" style="left:74%;top:30%">1</span>
+      <span class="pin" style="left:59%;top:61%">2</span>
+      <span class="pin" style="left:27%;top:89%">3</span>
+      <span class="pin" style="left:84%;top:80%">4</span>
+    </div>
+    <div class="notes4">
+      <div class="note"><span class="k">1</span><h4>Один сильный образ</h4><p>Камера в темноте сразу задаёт тему и тон: технологично, спокойно, серьёзно.</p></div>
+      <div class="note"><span class="k">2</span><h4>Польза и суть</h4><p>Заголовок говорит о пользе, подзаголовок называет услугу без жаргона.</p></div>
+      <div class="note"><span class="k">3</span><h4>Заявка без прокрутки</h4><p>Самая контрастная кнопка стоит там, куда взгляд идёт после заголовка.</p></div>
+      <div class="note"><span class="k">4</span><h4>Три аргумента</h4><p>Гарантия, работа с 2014 года и полный цикл закрывают сомнения рядом с кнопкой.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 COMPONENT ANATOMY -->
+<section class="slide" id="s08-component" style="background:var(--bg-2)">
+  <div class="in">
+    <span class="eyebrow">Компонент</span>
+    <h2 class="h-l" style="margin-top:22px;max-width:18ch">Одна карточка — шесть услуг</h2>
+    <p class="lead" style="margin-top:22px">Все направления собраны из одного компонента. Поменять фото, текст или добавить седьмую услугу можно без пересборки страницы, а глаз читает список в одном ритме.</p>
+    <div class="anat">
+      <div class="mob">
+        <img src="img/mobile-card.jpg" width="436" height="586" alt="Мобильная карточка услуги «Техническое обслуживание и поддержка 24/7»">
+      </div>
+      <div class="spec">
+        <div class="row"><b>Заголовок</b><span>до двух строк, 26 px. Название услуги, как его ищет клиент</span></div>
+        <div class="row"><b>Описание</b><span>до трёх коротких строк: что входит, без технических терминов</span></div>
+        <div class="row"><b>Фото</b><span>16:9, радиус 6 px. Реальная работа, а не абстрактные «технологии»</span></div>
+        <div class="row"><b>Кнопка</b><span>«Подробнее», на телефоне на всю ширину, высота 60 px: удобно попасть пальцем</span></div>
+        <div class="row"><b>Разделитель</b><span>1 px, 30 % белого: отбивает услуги друг от друга без лишних плашек</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 MOBILE GRID / PROTOTYPE -->
+<section class="slide paper" id="s09-grid-mobile">
+  <div class="in">
+    <span class="eyebrow">Прототип · Mobile</span>
+    <h2 class="h-l" style="margin-top:22px;max-width:18ch">4 колонки и всё главное — под большой палец</h2>
+    <p class="lead" style="margin-top:22px">Макет 375 px: поля 16, межколонник 16. Кнопки на всю ширину и высотой от 52 px, фото услуг перенесены под текст, аргументы доверия идут плашками.</p>
+    <div class="phones">
+      <!-- wf hero -->
+      <div class="pcol"><div class="phone"><div class="glass" style="background:#fbfbfa"><div class="screen" style="background:#fbfbfa">
+        <div class="cols m4"><i></i><i></i><i></i><i></i></div>
+        <div class="blk d" style="left:16px;top:62px;width:110px;height:26px"></div>
+        <div class="blk d" style="left:327px;top:66px;width:32px;height:18px"></div>
+        <div class="blk img" style="left:16px;top:110px;width:343px;height:250px"></div>
+        <div class="txt h" style="left:16px;top:384px;width:300px"></div>
+        <div class="txt h" style="left:16px;top:426px;width:250px"></div>
+        <div class="txt" style="left:16px;top:480px;width:320px"></div>
+        <div class="txt" style="left:16px;top:502px;width:200px"></div>
+        <div class="blk line" style="left:16px;top:548px;width:343px"></div>
+        <div class="blk btn" style="left:16px;top:572px;width:343px;height:52px"></div>
+        <div class="blk d" style="left:16px;top:640px;width:163px;height:40px"></div>
+        <div class="blk d" style="left:195px;top:640px;width:164px;height:40px"></div>
+        <div class="blk d" style="left:16px;top:692px;width:163px;height:40px"></div>
+        <span class="lbl" style="left:120px;top:586px">52 px</span>
+      </div></div></div><p class="cap">Первый экран</p></div>
+      <!-- wf services -->
+      <div class="pcol"><div class="phone"><div class="glass" style="background:#fbfbfa"><div class="screen" style="background:#fbfbfa">
+        <div class="cols m4"><i></i><i></i><i></i><i></i></div>
+        <div class="txt h" style="left:16px;top:70px;width:300px;height:24px"></div>
+        <div class="txt h" style="left:16px;top:102px;width:270px;height:24px"></div>
+        <div class="blk line" style="left:16px;top:150px;width:343px"></div>
+        <div class="txt h" style="left:16px;top:176px;width:240px;height:26px"></div>
+        <div class="txt" style="left:16px;top:224px;width:320px"></div>
+        <div class="txt" style="left:16px;top:246px;width:280px"></div>
+        <div class="txt" style="left:16px;top:268px;width:200px"></div>
+        <div class="blk img" style="left:16px;top:304px;width:343px;height:200px"></div>
+        <div class="blk btn" style="left:16px;top:528px;width:343px;height:56px"></div>
+        <div class="blk line" style="left:16px;top:612px;width:343px"></div>
+        <div class="txt h" style="left:16px;top:638px;width:280px;height:26px"></div>
+        <div class="txt" style="left:16px;top:686px;width:300px"></div>
+        <div class="txt" style="left:16px;top:708px;width:240px"></div>
+        <span class="lbl" style="left:30px;top:396px">16:9</span>
+        <span class="lbl" style="left:248px;top:574px">24</span>
+      </div></div></div><p class="cap">Услуги</p></div>
+      <!-- wf form -->
+      <div class="pcol"><div class="phone"><div class="glass" style="background:#fbfbfa"><div class="screen" style="background:#fbfbfa">
+        <div class="cols m4"><i></i><i></i><i></i><i></i></div>
+        <div class="txt h" style="left:16px;top:70px;width:290px;height:28px"></div>
+        <div class="txt h" style="left:16px;top:106px;width:260px;height:28px"></div>
+        <div class="txt" style="left:16px;top:156px;width:330px"></div>
+        <div class="txt" style="left:16px;top:178px;width:290px"></div>
+        <div class="blk line" style="left:16px;top:252px;width:343px"></div>
+        <div class="blk line" style="left:16px;top:320px;width:343px"></div>
+        <div class="txt" style="left:16px;top:344px;width:300px;height:10px"></div>
+        <div class="txt" style="left:16px;top:360px;width:240px;height:10px"></div>
+        <div class="blk btn" style="left:16px;top:394px;width:343px;height:52px"></div>
+        <div class="txt h" style="left:16px;top:500px;width:170px;height:48px"></div>
+        <div class="txt" style="left:16px;top:560px;width:150px"></div>
+        <div class="blk line" style="left:16px;top:620px;width:343px"></div>
+        <div class="txt h" style="left:16px;top:660px;width:280px;height:32px"></div>
+        <div class="txt" style="left:16px;top:712px;width:260px"></div>
+        <span class="lbl" style="left:250px;top:230px">2 поля</span>
+      </div></div></div><p class="cap">Заявка и контакты</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 MOBILE SCREENS 1 -->
+<section class="slide" id="s10-mobile-1" style="background:var(--bg)">
+  <div class="in">
+    <div style="text-align:center"><span class="eyebrow">Mobile</span>
+      <h2 class="h-l" style="margin:22px auto 0">А так мобильная версия</h2></div>
+    <div class="phones">
+      <!-- hero -->
+      <div class="pcol"><div class="phone"><span class="island"></span><div class="glass"><div class="screen">
+        <div class="status"><span>9:41</span><span class="r"><i style="width:18px;height:11px"></i><i style="width:16px;height:11px;border-radius:3px"></i><i style="width:25px;height:12px;border-radius:4px"></i></span></div>
+        <div class="ui-head"><img src="img/logo.png" alt="SmartGlobal Systems"><span class="burger"><i></i><i></i><i></i></span></div>
+        <div style="position:relative;height:228px;margin-top:10px">
+          <img src="img/camera.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:50% 50%">
+          <div style="position:absolute;inset:auto 0 0 0;height:90px;background:linear-gradient(transparent,#121212)"></div>
+          <div style="position:absolute;inset:0 auto 0 0;width:40px;background:linear-gradient(90deg,#121212,transparent)"></div>
+        </div>
+        <div class="ui" style="margin-top:14px">
+          <h3 class="u-h1">Интеллектуальные решения в простом быту.</h3>
+          <p class="u-p" style="margin-top:14px;font-size:17px">Монтаж видеонаблюдения и систем физической защиты</p>
+          <div class="u-line" style="margin:24px 0 20px"></div>
+          <div class="u-btn">Оставить заявку <span style="font-size:20px">→</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px">
+            <span class="u-chip">Гарантия безопасности</span><span class="u-chip">Работаем с 2014 года</span><span class="u-chip">Полный цикл работы</span>
+          </div>
+        </div>
+      </div></div></div><p class="cap">Первый экран</p></div>
+      <!-- about -->
+      <div class="pcol"><div class="phone"><span class="island"></span><div class="glass"><div class="screen">
+        <div class="status"><span>9:41</span><span class="r"><i style="width:18px;height:11px"></i><i style="width:16px;height:11px;border-radius:3px"></i><i style="width:25px;height:12px;border-radius:4px"></i></span></div>
+        <div class="ui" style="padding-top:22px">
+          <p class="u-s" style="font-size:14px">О нас</p>
+          <h3 class="u-h2" style="margin-top:14px">SmartGlobal Systems — это команда специалистов в сфере слаботочных и инженерных систем, реализующая проекты любой сложности для коммерческих и промышленных объектов.</h3>
+          <p class="u-p" style="margin-top:16px;color:#cfcfcf">Наша цель — создавать надёжную, безопасную и технологичную инфраструктуру для бизнеса.</p>
+          <div class="u-btn" style="margin-top:22px;background:#fff">Связаться с нами</div>
+          <div class="u-img" style="height:300px;margin-top:22px;border-radius:10px"><img src="img/about-photo.jpg" alt="" style="object-position:20% 0%"></div>
+        </div>
+      </div></div></div><p class="cap">О компании</p></div>
+      <!-- services -->
+      <div class="pcol"><div class="phone"><span class="island"></span><div class="glass"><div class="screen">
+        <div class="status"><span>9:41</span><span class="r"><i style="width:18px;height:11px"></i><i style="width:16px;height:11px;border-radius:3px"></i><i style="width:25px;height:12px;border-radius:4px"></i></span></div>
+        <div class="ui" style="padding-top:20px">
+          <h3 class="u-h2" style="font-size:19px;line-height:1.3">Полный цикл работы — от анализа объекта и проектирования до пусконаладки и сопровождения</h3>
+          <div class="u-line" style="margin:22px 0"></div>
+          <h4 class="u-h3">Видеонаблюдение под ключ</h4>
+          <p class="u-p" style="margin-top:14px">Профессиональный монтаж IP и аналоговых камер, удалённый доступ через смартфон, видеостены для контроля территории.</p>
+          <div class="u-img" style="height:196px;margin-top:20px"><img src="img/svc-video.jpg" alt=""></div>
+          <div class="u-btn" style="margin-top:22px;height:56px">Подробнее</div>
+          <div class="u-line" style="margin:26px 0 22px"></div>
+          <h4 class="u-h3">Охранная и пожарная сигнализация</h4>
+          <p class="u-p" style="margin-top:14px">Защита от проникновения и пожара, круглосуточный мониторинг.</p>
+        </div>
+      </div></div></div><p class="cap">Услуги</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 MOBILE SCREENS 2 -->
+<section class="slide" id="s11-mobile-2" style="background:var(--bg-2)">
+  <div class="in">
+    <div class="phones" style="margin-top:0">
+      <!-- menu -->
+      <div class="pcol"><div class="phone"><span class="island"></span><div class="glass"><div class="screen">
+        <div class="status"><span>9:41</span><span class="r"><i style="width:18px;height:11px"></i><i style="width:16px;height:11px;border-radius:3px"></i><i style="width:25px;height:12px;border-radius:4px"></i></span></div>
+        <div class="ui-head"><img src="img/logo.png" alt="SmartGlobal Systems"><span style="font:300 34px/1 var(--ui);margin-top:-4px">×</span></div>
+        <div class="ui" style="padding-top:40px">
+          <div style="display:grid;gap:0">
+            <div style="font:600 34px/1 var(--ui);padding:20px 0;border-bottom:1px solid rgba(255,255,255,.16)">услуги</div>
+            <div style="font:600 34px/1 var(--ui);padding:20px 0;border-bottom:1px solid rgba(255,255,255,.16)">о нас</div>
+            <div style="font:600 34px/1 var(--ui);padding:20px 0;border-bottom:1px solid rgba(255,255,255,.16)">контакты</div>
+          </div>
+          <div class="u-btn out" style="margin-top:36px">связаться с нами</div>
+          <p class="u-s" style="margin-top:96px">Контакты</p>
+          <p style="font:600 30px/1.1 var(--ui);margin-top:12px">+7 747 610 37 20</p>
+          <p style="font:600 16px/1 var(--ui);margin-top:16px">telegram&nbsp;&nbsp;•&nbsp;&nbsp;whatsapp&nbsp;&nbsp;•&nbsp;&nbsp;instagram</p>
+        </div>
+      </div></div></div><p class="cap">Меню</p></div>
+      <!-- services 2 -->
+      <div class="pcol"><div class="phone"><span class="island"></span><div class="glass"><div class="screen">
+        <div class="status"><span>9:41</span><span class="r"><i style="width:18px;height:11px"></i><i style="width:16px;height:11px;border-radius:3px"></i><i style="width:25px;height:12px;border-radius:4px"></i></span></div>
+        <div class="ui" style="padding-top:14px">
+          <h4 class="u-h3">Системы контроля доступа</h4>
+          <p class="u-p" style="margin-top:14px">Турникеты, биометрия, электронные замки. Контроль входа на предприятие, в офис, в ЖК.</p>
+          <div class="u-img" style="height:196px;margin-top:20px"><img src="img/svc-access.jpg" alt=""></div>
+          <div class="u-btn" style="margin-top:22px;height:56px">Подробнее</div>
+          <div class="u-line" style="margin:26px 0 22px"></div>
+          <h4 class="u-h3">Техническое обслуживание и поддержка 24/7</h4>
+          <p class="u-p" style="margin-top:14px">Обслуживание оборудования, обучение персонала, облачные решения, оперативный выезд.</p>
+          <div class="u-img" style="height:196px;margin-top:20px"><img src="img/svc-service.jpg" alt=""></div>
+        </div>
+      </div></div></div><p class="cap">Услуги</p></div>
+      <!-- form -->
+      <div class="pcol"><div class="phone"><span class="island"></span><div class="glass"><div class="screen">
+        <div class="status"><span>9:41</span><span class="r"><i style="width:18px;height:11px"></i><i style="width:16px;height:11px;border-radius:3px"></i><i style="width:25px;height:12px;border-radius:4px"></i></span></div>
+        <div class="ui" style="padding-top:20px">
+          <h3 class="u-h2" style="font-size:26px;line-height:1.15">Получите бесплатную консультацию специалистов</h3>
+          <p class="u-s" style="margin-top:14px;font-size:14.5px;color:#b5b5b5">Укажите свои контактные данные — мы свяжемся с вами в кратчайшие сроки и подберём подходящий вариант</p>
+          <div class="u-in" style="margin-top:14px">Ваше имя*</div>
+          <div class="u-in">▾&nbsp;&nbsp;+7 (000) 000 00 00*</div>
+          <p style="font:400 11px/1.4 var(--ui);color:#cfcfcf;margin-top:14px">Отправляя заявку, вы соглашаетесь с политикой конфиденциальности и согласием на обработку персональных данных</p>
+          <div class="u-btn" style="margin-top:18px">Отправить</div>
+          <div style="display:flex;align-items:baseline;gap:10px;margin-top:40px"><span style="font:600 64px/1 var(--ui);letter-spacing:-.03em">15</span><span style="font:600 26px/1 var(--ui)">минут</span></div>
+          <p class="u-s" style="margin-top:8px;font-size:14px">Среднее время ответа</p>
+          <div class="u-line" style="margin:28px 0 22px;background:rgba(255,255,255,.2)"></div>
+          <p class="u-s">Контакты</p>
+          <p style="font:600 28px/1.1 var(--ui);margin-top:10px">+7 747 610 37 20</p>
+        </div>
+      </div></div></div><p class="cap">Заявка</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 UI KIT -->
+<section class="slide" id="s12-uikit" style="background:var(--bg)">
+  <div class="in">
+    <span class="eyebrow">UI-kit</span>
+    <h2 class="h-l" style="margin-top:22px;max-width:18ch">Тёмный, сдержанный, технологичный</h2>
+    <p class="lead" style="margin-top:22px">Почти чёрный фон, белый текст и светлые кнопки. Единственные яркие пятна: фотографии, поэтому взгляд идёт к услугам и действиям.</p>
+    <div class="swatches" style="margin-top:48px">
+      <div class="swatch"><i style="background:#121212;border-bottom:1px solid var(--line)"></i><div><b>Фон</b><code>#121212</code></div></div>
+      <div class="swatch"><i style="background:#ffffff"></i><div><b>Текст</b><code>#FFFFFF</code></div></div>
+      <div class="swatch"><i style="background:#f2f2f2"></i><div><b>Кнопка</b><code>#F2F2F2</code></div></div>
+      <div class="swatch"><i style="background:#4a4a4a"></i><div><b>Плашка</b><code>#4A4A4A</code></div></div>
+      <div class="swatch"><i style="background:#9a9a9a"></i><div><b>Вторичный</b><code>#9A9A9A</code></div></div>
+    </div>
+    <div class="kit">
+      <div class="card" style="padding:32px">
+        <div class="comp"><div><div class="lab">Типографика · Desktop / Mobile</div>
+          <div class="type-scale">
+            <div class="ts"><small>H1 · 56 / 31</small><span style="font:600 44px/1.05 var(--ui)">Решения в быту</span></div>
+            <div class="ts"><small>H2 · 32 / 22</small><span style="font:600 28px/1.2 var(--ui)">О компании</span></div>
+            <div class="ts"><small>H3 · 28 / 22</small><span style="font:500 24px/1.2 var(--ui)">Видеонаблюдение под ключ</span></div>
+            <div class="ts"><small>Текст · 18 / 15</small><span style="font:400 17px/1.4 var(--ui);color:#e6e6e6">Монтаж IP и аналоговых камер, удалённый доступ</span></div>
+            <div class="ts" style="border-bottom:1px solid var(--line)"><small>Акцент-цифра</small><span style="font:600 56px/1 var(--ui);letter-spacing:-.03em">15 <span style="font-size:26px;letter-spacing:0">минут</span></span></div>
+          </div></div></div>
+      </div>
+      <div class="card" style="padding:32px">
+        <div class="comp">
+          <div><div class="lab">Кнопки · default / hover / outline</div>
+            <div class="row-ui"><span class="k-btn">Оставить заявку →</span><span class="k-btn hover">Оставить заявку →</span><span class="k-btn out">связаться с нами</span></div></div>
+          <div><div class="lab">Плашки доверия</div>
+            <div class="row-ui"><span class="k-chip">Гарантия безопасности</span><span class="k-chip">Работаем с 2014 года</span></div></div>
+          <div><div class="lab">Поля · default / focus / error</div>
+            <div style="display:grid;gap:6px">
+              <div class="k-in">Ваше имя*</div>
+              <div class="k-in focus">Алибек</div>
+              <div><div class="k-in err">+7 (747) 61</div><small style="display:block;color:#ff8a7a;font-size:12.5px;margin-top:8px">Проверьте номер: не хватает цифр</small></div>
+            </div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 13 RESULT -->
+<section class="slide" id="s13-result" style="background:var(--bg-2)">
+  <div class="in">
+    <span class="eyebrow">Итог</span>
+    <h2 class="h-l" style="margin-top:22px;max-width:18ch">Дизайн Desktop и Mobile передан заказчику</h2>
+    <p class="lead" style="margin-top:22px">Сайт ведёт посетителя по простому пути: понять, кто это, убедиться в надёжности, выбрать направление и оставить заявку — на любом экране.</p>
+    <div class="nums">
+      <div class="num"><b>6</b><p>направлений услуг в одном компоненте</p></div>
+      <div class="num"><b>2</b><p>поля в форме заявки вместо длинной анкеты</p></div>
+      <div class="num"><b>1</b><p>клик до заявки с первого экрана</p></div>
+      <div class="num"><b>12/4</b><p>колонки сетки для Desktop и Mobile</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 14 THANKS -->
+<section class="slide" id="s14-thanks" style="background:#080808">
+  <div class="in thanks">
+    <p class="dim" style="font-size:20px">это был сайт для SmartGlobal Systems</p>
+    <h2 class="big" style="margin-top:26px">Спасибо<span>за просмотр</span></h2>
+    <div class="contacts">
+      <a class="main" href="https://t.me/qweqwasdd" target="_blank" rel="noopener"><small>Telegram</small><b>@qweqwasdd</b></a>
+      <button type="button" class="copy" data-copy="sempervukhin@mail.ru" aria-label="Скопировать почту sempervukhin@mail.ru"><small>Почта · нажмите, чтобы скопировать</small><b>sempervukhin@mail.ru</b></button>
+      <a href="../../#work"><small>Портфолио</small><b>Все работы MIRAI</b></a>
+    </div>
+    <div class="sign"><b><em>qwe</em>studio</b><span>Семён Первухин · веб-дизайнер</span></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site"><div class="in"><span>© 2026 MIRAI</span><a class="back" href="../../#work">← Все работы</a></div></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+  var t=document.getElementById('toast'),timer;
+  function show(m){t.textContent=m;t.classList.add('on');clearTimeout(timer);timer=setTimeout(function(){t.classList.remove('on')},1800)}
+  function fallback(v){var a=document.createElement('textarea');a.value=v;a.setAttribute('readonly','');a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}document.body.removeChild(a);return ok}
+  document.querySelectorAll('[data-copy]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var v=btn.getAttribute('data-copy');
+      var done=function(){show('Почта скопирована: '+v)};
+      var fail=function(){if(fallback(v)){done()}else{location.href='mailto:'+v}};
+      if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(v).then(done,fail)}else{fail()}
+    });
+  });
+})();
+</script>
+</body>
+</html>
