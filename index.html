@@ -120,7 +120,7 @@ section{position:relative}
 
 /* ---------- works ---------- */
 .works{display:grid;grid-template-columns:repeat(6,1fr);gap:20px}
-.work{grid-column:span 3;display:flex;flex-direction:column;border-radius:var(--radius);background:var(--card);border:1px solid var(--line);overflow:hidden;transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .3s}
+.work{clip-path:inset(0 round var(--radius));grid-column:span 3;display:flex;flex-direction:column;border-radius:var(--radius);background:var(--card);border:1px solid var(--line);overflow:hidden;transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .3s}
 .work:hover{transform:translateY(-4px);border-color:var(--line-2)}
 .work.wide{grid-column:span 6;display:grid;grid-template-columns:1.35fr 1fr}
 .work.third{grid-column:span 2}
@@ -179,7 +179,8 @@ section{position:relative}
 
 /* ---------- approach ---------- */
 .steps{display:grid;gap:20px}
-.step{display:grid;grid-template-columns:1fr 1.1fr;gap:20px;border-radius:28px;border:1px solid var(--line);background:linear-gradient(180deg,#111116,#0c0c10);overflow:hidden}
+.sec h2.h2-wide{max-width:21ch}
+.step{clip-path:inset(0 round 28px);display:grid;grid-template-columns:1fr 1.1fr;gap:20px;border-radius:28px;border:1px solid var(--line);background:linear-gradient(180deg,#111116,#0c0c10);overflow:hidden}
 .step:nth-child(even) .step-text{order:2}
 .step-text{padding:48px;display:flex;flex-direction:column;justify-content:center;gap:16px}
 .step-num{font-size:13px;color:var(--pink);letter-spacing:.12em}
@@ -398,7 +399,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;background:var(--bg)
             <ul class="did">
               <li>Бесшовная видеопетля и отдельная версия для телефона</li>
               <li>Выбор машины, срока и живой расчёт цены со скидкой</li>
-              <li>Логотип и айдентика, адаптив до 320 px</li>
+              <li>Логотип и айдентика, версия для любых экранов</li>
             </ul>
             <div class="chips"><span>Видео</span><span>Калькулятор</span><span>Айдентика</span></div>
             <a class="work-link" href="works/zilant/" target="_blank" rel="noopener">Открыть сайт <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 11 11 5M6 5h5v5"/></svg></a>
@@ -472,7 +473,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;background:var(--bg)
       <div class="sec-head rv">
         <div>
           <span class="eyebrow mono">Подход</span>
-          <h2>Три правила, по которым собран каждый проект</h2>
+          <h2 class="h2-wide">Правила, по которым собран каждый проект</h2>
         </div>
       </div>
 
@@ -512,7 +513,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 40px;background:var(--bg)
           <div class="step-text">
             <span class="step-num mono">03 · Код</span>
             <h3>Работает, а не только выглядит</h3>
-            <p>Макет доводится до живого кода: расчёт цены, выбор дат, запись, адаптив до 320 px. Ссылку можно открыть на телефоне прямо сейчас.</p>
+            <p>Макет доводится до живого кода: расчёт цены, выбор дат, онлайн-запись. Каждый сайт удобно смотреть на телефоне, планшете и компьютере, а ссылку можно открыть прямо сейчас.</p>
           </div>
           <div class="step-vis">
             <div class="code">
