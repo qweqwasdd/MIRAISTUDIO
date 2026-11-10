@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Техноматика, кейс | MIRAI</title>
+<meta name="description" content="Кейс: Техноматика, рабочее место ПТО строительной компании. Продуктовый дизайн и интерфейс веб-приложения.">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="theme-color" content="#f4f6f8">
+<meta name="color-scheme" content="light only">
+<meta property="og:title" content="Техноматика: рабочее место ПТО строительной компании">
+<meta property="og:description" content="Кейс MIRAI: продуктовый дизайн и интерфейс веб-приложения для тендерного отдела и ПТО.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:image" content="https://qweqwasdd.github.io/miraistudio/works/tehnomatika/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/golos-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="case.css">
+<script src="case.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">К содержанию</a>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="back" href="../../#work"><span aria-hidden="true">←</span> Все работы</a>
+    <a class="studio" href="../../">MIRAI</a>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <p class="kicker"><span class="mark" aria-hidden="true"></span>Свой продукт, 2026</p>
+      <h1>Техноматика: рабочее место ПТО строительной компании</h1>
+      <p class="lead">Четыре агента находят закупки, разбирают документацию, считают выгоду и собирают КС-2. Решение остаётся за инженером.</p>
+    </div>
+    <dl class="meta">
+      <div><dt>Роль</dt><dd>Продуктовый дизайн, интерфейс</dd></div>
+      <div><dt>Формат</dt><dd>Веб-приложение</dd></div>
+      <div><dt>Команда</dt><dd>Два основателя</dd></div>
+      <div><dt>Стадия</dt><dd>Демо перед первым пилотом</dd></div>
+    </dl>
+  </div>
+  <div class="wrap">
+    <figure class="shot hero-shot">
+      <img src="img/today.webp" width="1440" height="900" alt="Экран «Сегодня»: список дел, ближайшие сроки и состояние агентов" fetchpriority="high">
+    </figure>
+  </div>
+</section>
+
+<section class="sec task">
+  <div class="wrap task-in">
+    <h2>Отдел из трёх человек делает работу десяти</h2>
+    <div class="task-cols">
+      <div>
+        <h3>Что болит</h3>
+        <p>В небольшой строительной компании тендеры и ПТО ведут два или три человека. Они вручную ищут закупки, читают документацию, считают маржу в Excel и набирают акты. Ошибка в любом звене стоит денег: проигранные торги или контракт в минус.</p>
+      </div>
+      <div>
+        <h3>Что сделано</h3>
+        <p>Техноматика собирает эту работу в одном окне. Агент готовит черновик, инженер проверяет и подтверждает. Каждое число раскрывается: видно, из чего оно сложилось и на какой странице документа найдено.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec path" id="path">
+  <div class="wrap">
+    <h2>Путь закупки: от ленты до акта</h2>
+    <div class="tabs" role="tablist" aria-label="Этапы работы с закупкой">
+      <button type="button" role="tab" id="t1" aria-controls="p1" aria-selected="true">Мониторинг</button>
+      <button type="button" role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1">Документация</button>
+      <button type="button" role="tab" id="t3" aria-controls="p3" aria-selected="false" tabindex="-1">Расчёт</button>
+      <button type="button" role="tab" id="t4" aria-controls="p4" aria-selected="false" tabindex="-1">Объект и акты</button>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p1" aria-labelledby="t1">
+      <figure class="shot"><img src="img/tenders.webp" width="1440" height="900" alt="Список закупок: срок подачи, цена, состояние документации и решение по каждой" loading="lazy"></figure>
+      <div class="panel-text">
+        <h3>Закупки приходят сами</h3>
+        <ul>
+          <li>Лента с zakupki.gov.ru по фильтрам компании: слова, цена, минус-слова</li>
+          <li>Срок подачи, состояние документации и решение видны в одной строке</li>
+          <li>Срочное поднимается на экран «Сегодня»</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
+      <figure class="shot"><img src="img/docs.webp" width="1440" height="900" alt="Разбор документации: загрузка файлов закупки и описание того, что найдёт агент" loading="lazy"></figure>
+      <div class="panel-text">
+        <h3>Документацию читает агент</h3>
+        <ul>
+          <li>Ищет ключевые условия: обеспечение, аванс, сроки оплаты, допуски, пени</li>
+          <li>К каждому пункту показывает цитату из документа</li>
+          <li>Сверяет требования с допусками и опытом компании</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p3" aria-labelledby="t3" hidden>
+      <figure class="shot"><img src="img/calc.webp" width="1440" height="900" alt="Расчёт выгоды и рисков: поля ввода слева, вердикт и разбор цены контракта справа" loading="lazy"></figure>
+      <div class="panel-text">
+        <h3>Расчёт отвечает на один вопрос: участвовать или нет</h3>
+        <ul>
+          <li>Прибыль, маржа, вероятность победы и ожидаемая выгода</li>
+          <li>Пять проверок риска с объяснением простыми словами</li>
+          <li>Агент предлагает, решение принимает сотрудник</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p4" aria-labelledby="t4" hidden>
+      <figure class="shot"><img src="img/paper.webp" width="1440" height="900" alt="Сформированный акт КС-2 в виде листа унифицированной формы" loading="lazy"></figure>
+      <div class="panel-text">
+        <h3>Акты собираются из журнала работ</h3>
+        <ul>
+          <li>Журнал сверяется со сметой, ошибки подсвечены до формирования акта</li>
+          <li>План-факт показывает, где проседает маржа объекта</li>
+          <li>КС-2, КС-3 и АОСР выгружаются в Excel и на печать</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec details">
+  <div class="wrap">
+    <h2>Четыре решения, на которых держится интерфейс</h2>
+    <div class="bento">
+      <article class="b-stamp rv">
+        <img src="img/d-stamp.webp" width="542" height="114" alt="Штамп «Участвовать» с датой расчёта" loading="lazy">
+        <h3>Вердикт выглядит как штамп</h3>
+        <p>Итог расчёта стоит на странице как отметка на документе. Это результат, а не ещё одна кнопка.</p>
+      </article>
+      <article class="b-paper rv">
+        <img src="img/d-paper.webp" width="980" height="606" alt="Акт о приёмке выполненных работ в форме КС-2" loading="lazy">
+        <h3>Акт показан листом</h3>
+        <p>Инженер проверяет документ в том виде, в каком его подпишут: унифицированная форма, а не таблица на экране.</p>
+      </article>
+      <article class="b-ledger rv">
+        <img src="img/d-ledger.webp" width="542" height="245" alt="Строки расчёта: цена контракта, затраты, прибыль, маржа" loading="lazy">
+        <h3>Суммы стоят столбцом</h3>
+        <p>Числа набраны моноширинным шрифтом и выровнены по правому краю, как в смете.</p>
+      </article>
+      <article class="b-dark rv">
+        <img src="img/calc-dark.webp" width="1440" height="900" alt="Тот же экран расчёта в тёмной теме" loading="lazy">
+        <h3>Тёмная тема без потери смысла</h3>
+        <p>Роли цветов те же: акцент, норма, внимание и риск читаются одинаково в обеих темах.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec system">
+  <div class="wrap system-in">
+    <div>
+      <h2>Один акцент, три статуса</h2>
+      <p class="sub">Зелёный, янтарный и красный заняты статусами и больше нигде не используются. Поэтому красное на экране всегда значит одно: здесь риск.</p>
+    </div>
+    <ul class="sw">
+      <li><i class="c-accent"></i><b>Патина</b><span>акцент и действия</span></li>
+      <li><i class="c-rail"></i><b>Графит</b><span>навигация</span></li>
+      <li><i class="c-ok"></i><b>Норма</b><span>проверка пройдена</span></li>
+      <li><i class="c-warn"></i><b>Внимание</b><span>нужно посмотреть</span></li>
+      <li><i class="c-risk"></i><b>Риск</b><span>ошибка или потеря денег</span></li>
+    </ul>
+    <div class="type">
+      <p class="type-a">Golos Text</p>
+      <p class="type-b">1 822 680,00 ₽</p>
+      <p class="type-n">Текст набран шрифтом Golos Text, числа и номера закупок шрифтом JetBrains Mono.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec status">
+  <div class="wrap status-in">
+    <h2>Где проект сейчас</h2>
+    <p>Это демо на вымышленных данных. Клиентов и измеренного эффекта пока нет, и в кейсе нет цифр «было и стало». Следующий шаг: пилот в строительных компаниях и замер времени на каждую операцию.</p>
+    <div class="status-cta">
+      <a class="btn" href="https://t.me/qweqwasdd" target="_blank" rel="noopener">Написать в Telegram</a>
+      <a class="lnk" href="../../#work">← Все работы</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <p>Техноматика: собственный продукт. Данные на экранах вымышлены.</p>
+    <a href="../../">Дизайн: MIRAI</a>
+  </div>
+</footer>
+</body>
+</html>
