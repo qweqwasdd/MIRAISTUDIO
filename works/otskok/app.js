@@ -5,6 +5,17 @@
   var $ = function (id) { return document.getElementById(id); };
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var OPEN = 7, CLOSE = 23;
+  /* Типографика для текстов, которые собирает скрипт: те же правила, что при сборке страницы */
+  var NB = '\u00A0';
+  var SHORT = /(^|[\s(«\u00A0])(в|во|на|с|со|к|ко|у|о|об|обо|и|а|но|да|не|ни|по|за|из|от|до|без|для|при|про|под|над|или|что|как|чем|мы|вы|он|она|оно|они|я|ты)\s+(?=\S)/gi;
+  function ty(t) {
+    var prev;
+    t = String(t);
+    do { prev = t; t = t.replace(SHORT, function (m, a, w) { return a + w + NB; }); } while (t !== prev);
+    return t.replace(/(\S)\s+(же|ли|бы)(?=[\s.,!?:;»)]|$)/gi, '$1' + NB + '$2')
+            .replace(/(\d)\s+(₽|%|м|шт\.|дн\.)/g, '$1' + NB + '$2')
+            .replace(/(\d:\d\d)\s+(до)\s+/g, '$1' + NB + '$2' + NB);
+  }
   var rub = function (n) { return n.toLocaleString('ru-RU') + ' ₽'; };
   var pad = function (n) { return (n < 10 ? '0' : '') + n; };
   var el = function (tag, cls, text) {
@@ -19,14 +30,14 @@
     var node = $('openNow'); if (!node) return;
     var h = new Date().getHours();
     var open = h >= OPEN && h < CLOSE;
-    node.textContent = open ? 'Сейчас открыто, до 23:00' : 'Сейчас закрыто. Откроемся в 7:00';
+    node.textContent = ty(open ? 'Сейчас открыто, до 23:00' : 'Сейчас закрыто. Откроемся в 7:00');
     node.classList.toggle('is-open', open);
   }
 
   /* ---------- Текст, который проявляется по словам ---------- */
   function sayWords() {
     var p = $('say'); if (!p) return;
-    var words = p.textContent.trim().split(/\s+/);
+    var words = p.textContent.trim().split(/ +/);
     p.textContent = '';
     words.forEach(function (w, i) {
       var s = el('span', 'w', w);
@@ -230,7 +241,7 @@
       pick(+c.dataset.c, +c.dataset.h);
     });
 
-    function say(text, warn) { hint.textContent = text; hint.classList.toggle('warn', !!warn); }
+    function say(text, warn) { hint.textContent = ty(text); hint.classList.toggle('warn', !!warn); }
 
     function setTab(i) {
       st.tab = i;
@@ -343,7 +354,7 @@
     /* Форма: проверка и имитация отправки */
     var form = $('bkForm'), fName = $('fName'), fPhone = $('fPhone'), fAgree = $('fAgree'), submit = $('bkSubmit'), done = $('bkDone');
     function fail(input, errId, msg) {
-      var e = $(errId); e.textContent = msg || ''; e.hidden = !msg;
+      var e = $(errId); e.textContent = ty(msg || ''); e.hidden = !msg;
       if (input) input.setAttribute('aria-invalid', msg ? 'true' : 'false');
       if (errId === 'ePhone') $('hPhone').hidden = !!msg; /* ошибка занимает место подсказки, вёрстка не прыгает под пальцем */
       return !msg;
@@ -378,7 +389,7 @@
       submit.firstElementChild.textContent = 'Проверяем время…';
       window.setTimeout(function () {
         $('doneName').textContent = name;
-        $('doneSum').textContent = COURTS[st.court].n + ', ' + dayText() + ', ' + when() + '. Итого ' + rub(st.total) + '. Код брони: ОТ-' + (1000 + Math.floor(Math.random() * 9000)) + '.';
+        $('doneSum').textContent = ty(COURTS[st.court].n + ', ' + dayText() + ', ' + when() + '. Итого ' + rub(st.total) + '. Код брони: ОТ-' + (1000 + Math.floor(Math.random() * 9000)) + '.');
         form.reset(); form.hidden = true; done.hidden = false; st.done = true; syncBar();
         submit.removeAttribute('aria-busy'); submit.firstElementChild.textContent = 'Забронировать корт';
         done.focus({ preventScroll: true });
@@ -407,7 +418,7 @@
       cur = i;
       [].forEach.call(list, function (g, k) { g.classList.toggle('on', k === i); g.setAttribute('aria-pressed', k === i ? 'true' : 'false'); });
       var d = INFO[i];
-      $('pcName').textContent = d.n; $('pcKind').textContent = d.k; $('pcText').textContent = d.t;
+      $('pcName').textContent = d.n; $('pcKind').textContent = d.k; $('pcText').textContent = ty(d.t);
       $('pcSize').textContent = d.s; $('pcFormat').textContent = d.f; $('pcPrice').textContent = d.p;
       info.classList.remove('swap'); void info.offsetWidth; info.classList.add('swap');
     }
@@ -433,11 +444,11 @@
     function tick() {
       var d = new Date(), h = d.getHours() + d.getMinutes() / 60, open = h >= OPEN && h < CLOSE;
       now.hidden = !open;
-      if (!open) { txt.textContent = 'Сейчас клуб закрыт. Откроемся в 7:00.'; return; }
+      if (!open) { txt.textContent = ty('Сейчас клуб закрыт. Откроемся в 7:00.'); return; }
       now.style.left = ((h - OPEN) / (CLOSE - OPEN) * 100).toFixed(2) + '%';
       var z = zone(d, d.getHours());
-      txt.textContent = 'Сейчас ' + d.getHours() + ':' + pad(d.getMinutes()) + ', ' + (isWe(d) ? 'выходной' : 'будний день') + ': ' +
-        (z === 1 ? 'утренний' : z === 2 ? 'дневной' : 'вечерний') + ' тариф, ' + rub(z === 1 ? 1800 : z === 2 ? 2200 : 3000) + ' в час.';
+      txt.textContent = ty('Сейчас ' + d.getHours() + ':' + pad(d.getMinutes()) + ', ' + (isWe(d) ? 'выходной' : 'будний день') + ': ' +
+        (z === 1 ? 'утренний' : z === 2 ? 'дневной' : 'вечерний') + ' тариф, ' + rub(z === 1 ? 1800 : z === 2 ? 2200 : 3000) + ' в час.');
     }
     mode(isWe(new Date())); tick(); window.setInterval(function () { tick(); openStatus(); }, 60000);
   }

@@ -24,7 +24,7 @@
 <script src="app.js" defer></script>
 </head>
 <body>
-<a class="skip" href="#main">К содержанию</a>
+<a class="skip" href="#main">К содержанию</a>
 
 <header class="nav">
   <div class="wrap nav-in">
@@ -44,12 +44,12 @@
 
 <section class="hero" id="top">
   <div class="hero-copy">
-    <p class="open" id="openNow">Открыто каждый день с 7:00 до 23:00</p>
-    <h1>Падел сегодня вечером</h1>
-    <p class="lead">Четыре крытых корта на Взлётке. Свободное время и цена видны сразу, бронь без звонка.</p>
+    <p class="open" id="openNow">Открыто каждый день с 7:00 до 23:00</p>
+    <h1>Падел сегодня вечером</h1>
+    <p class="lead">Четыре крытых корта на Взлётке. Свободное время и цена видны сразу, бронь без звонка.</p>
     <div class="hero-cta">
       <a class="btn" href="#book">Забронировать корт <svg aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"/></svg></a>
-      <a class="link" href="#first">Я ни разу не играл</a>
+      <a class="link" href="#first">Я ни разу не играл</a>
     </div>
   </div>
   <div class="hero-court" aria-hidden="true">
@@ -59,7 +59,7 @@
 
 <section class="say">
   <div class="wrap say-in">
-    <p class="say-text" id="say">Падел похож на теннис, только мяч можно принять от стекла. Корт меньше теннисного, ракетка без струн, играют двое на двое. Первый розыгрыш получается в первый же вечер.</p>
+    <p class="say-text" id="say">Падел похож на теннис, но мяч можно принять от стекла. Корт меньше, ракетка без струн, играют двое на двое. Первый розыгрыш получится уже в первый вечер.</p>
     <figure class="say-fig" aria-hidden="true">
       <svg viewBox="0 0 400 300">
         <line class="sf-floor" x1="24" y1="250" x2="376" y2="250"/>
@@ -76,10 +76,10 @@
 
 <section class="sec book" id="book">
   <div class="wrap">
-    <h2>Свободные корты</h2>
-    <p class="sub">Выберите день и время. Сумма считается сразу, вместе с прокатом.</p>
+    <h2>Свободные корты</h2>
+    <p class="sub">Выберите день и время. Сумма считается сразу, вместе с прокатом.</p>
 
-    <noscript><p class="note">Онлайн-бронь работает со включённым JavaScript. Можно позвонить: +7 (391) 000-00-00.</p></noscript>
+    <noscript><p class="note">Онлайн-бронь работает со включённым JavaScript. Можно позвонить: +7 (391) 000-00-00.</p></noscript>
 
     <div class="bk" id="bk" hidden>
       <div class="bk-main">
@@ -90,19 +90,19 @@
         <div class="bk-grid" id="bkGrid"></div>
 
         <ul class="bk-legend" aria-label="Обозначения">
-          <li><i class="sw z1"></i>Утро, <span data-zone="1">1 800 ₽</span></li>
-          <li><i class="sw z2"></i>День, <span data-zone="2">2 200 ₽</span></li>
-          <li><i class="sw z3"></i>Вечер, <span data-zone="3">3 000 ₽</span></li>
+          <li><i class="sw z1"></i>Утро, <span data-zone="1">1 800 ₽</span></li>
+          <li><i class="sw z2"></i>День, <span data-zone="2">2 200 ₽</span></li>
+          <li><i class="sw z3"></i>Вечер, <span data-zone="3">3 000 ₽</span></li>
           <li><i class="sw busy"></i>Занято</li>
         </ul>
-        <p class="bk-hint" id="bkHint" role="status">Нажмите на свободное время. Можно взять от одного до трёх часов подряд на одном корте.</p>
+        <p class="bk-hint" id="bkHint" role="status">Нажмите на свободное время. Можно взять от одного до трёх часов подряд на одном корте.</p>
 
         <fieldset class="bk-extras">
-          <legend>Добавить к игре</legend>
+          <legend>Добавить к игре</legend>
           <div class="ex">
             <div>
               <span class="ex-name" id="rkLabel">Ракетки напрокат</span>
-              <span class="ex-price">300 ₽ за штуку</span>
+              <span class="ex-price">300 ₽ за штуку</span>
             </div>
             <div class="step" role="group" aria-labelledby="rkLabel">
               <button type="button" id="rkMinus" aria-label="Меньше ракеток"><svg aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M228,128a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,128Z"/></svg></button>
@@ -113,15 +113,15 @@
           <label class="ex ex-check">
             <div>
               <span class="ex-name">Банка мячей</span>
-              <span class="ex-price">600 ₽, три мяча</span>
+              <span class="ex-price">600 ₽, три мяча</span>
             </div>
             <input type="checkbox" id="exBalls">
             <span class="box" aria-hidden="true"><svg aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg></span>
           </label>
           <label class="ex ex-check">
             <div>
-              <span class="ex-name">Тренер на первый час</span>
-              <span class="ex-price">2 500 ₽, для первой игры</span>
+              <span class="ex-name">Тренер на первый час</span>
+              <span class="ex-price">2 500 ₽, для первой игры</span>
             </div>
             <input type="checkbox" id="exCoach">
             <span class="box" aria-hidden="true"><svg aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg></span>
@@ -132,15 +132,15 @@
       <aside class="bk-side" id="bkSide" aria-label="Ваша бронь">
         <div class="tk">
           <div class="tk-head">
-            <h3>Ваша бронь</h3>
+            <h3>Ваша бронь</h3>
             <div class="tk-total" id="tkTotalRow" hidden>
               <span>Итого</span>
-              <strong id="tkTotal" aria-live="polite">0 ₽</strong>
+              <strong id="tkTotal" aria-live="polite">0 ₽</strong>
             </div>
           </div>
           <div class="tk-empty" id="tkEmpty">
-            <p>Корт пока не выбран.</p>
-            <p class="dim">Нажмите на свободное время в таблице, и здесь появится сумма.</p>
+            <p>Корт пока не выбран.</p>
+            <p class="dim">Нажмите на свободное время в таблице, и здесь появится сумма.</p>
           </div>
           <dl class="tk-rows" id="tkRows" hidden></dl>
         </div>
@@ -154,25 +154,25 @@
           <div class="fld">
             <label for="fPhone">Телефон</label>
             <input id="fPhone" name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" maxlength="18" aria-describedby="ePhone hPhone">
-            <p class="help" id="hPhone">Пришлём код брони в СМС.</p>
+            <p class="help" id="hPhone">Пришлём код брони в СМС.</p>
             <p class="err" id="ePhone" hidden></p>
           </div>
           <label class="agree">
             <input type="checkbox" id="fAgree" aria-describedby="eAgree">
             <span class="box" aria-hidden="true"><svg aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"/></svg></span>
-            <span>Согласен на обработку данных по <a href="privacy.html" target="_blank" rel="noopener">политике клуба</a></span>
+            <span>Согласен на обработку данных по <a href="privacy.html" target="_blank" rel="noopener">политике клуба</a></span>
           </label>
           <p class="err" id="eAgree" hidden></p>
           <p class="err" id="eSlot" hidden></p>
           <button class="btn btn-wide" type="submit" id="bkSubmit"><span class="btn-t">Забронировать корт</span></button>
-          <p class="demo">Это демо. Заявка никуда не отправляется.</p>
+          <p class="demo">Это демо. Заявка никуда не отправляется.</p>
         </form>
 
         <div class="done" id="bkDone" hidden tabindex="-1">
           <span class="done-ball" aria-hidden="true"></span>
-          <h3>Готово, <span id="doneName"></span>. Так выглядит успешная бронь</h3>
+          <h3>Готово, <span id="doneName"></span>. Так выглядит успешная бронь</h3>
           <p id="doneSum"></p>
-          <p class="dim">Это демо: заявка не отправлена, имя и телефон никуда не переданы и не сохранены. На рабочем сайте администратор получил бы заявку, а вы СМС с кодом.</p>
+          <p class="dim">Это демо: заявка не отправлена, имя и телефон никуда не переданы и не сохранены. На рабочем сайте администратор получил бы заявку, а вы СМС с кодом.</p>
           <button class="btn btn-ghost" type="button" id="bkAgain">Собрать ещё одну бронь</button>
         </div>
       </aside>
@@ -182,7 +182,7 @@
 
 <section class="sec first" id="first">
   <div class="wrap">
-    <h2>Ни разу не играли? Начните с часа с тренером</h2>
+    <h2>Ни разу не играли? Начните с часа с тренером</h2>
     <div class="trio">
       <article class="t-main rv">
         <svg class="t-fig" viewBox="0 0 320 200" aria-hidden="true">
@@ -191,18 +191,18 @@
           <polyline class="fly" points="58,150 300,62 236,36 118,112" pathLength="1"/>
           <circle class="b" cx="118" cy="112" r="9"/>
         </svg>
-        <h3>Первая игра с тренером</h3>
-        <p>За час разберёте правила, хват и главный приём: как принять мяч после отскока от стекла. Ракетки и мячи включены.</p>
-        <p class="t-price">2 500 ₽ к цене корта, на компанию до четырёх человек</p>
+        <h3>Первая игра с тренером</h3>
+        <p>За час разберёте правила, хват и главный приём: как принять мяч после отскока от стекла. Ракетки и мячи включены.</p>
+        <p class="t-price">2 500 ₽ к цене корта, на компанию до четырёх человек</p>
         <a class="btn btn-ball" href="#book" data-coach>Забронировать корт <svg aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"/></svg></a>
       </article>
       <article class="t-a rv">
-        <h3>Ракетки и мячи есть на месте</h3>
-        <p>Прокат ракетки стоит 300 ₽, банка мячей 600 ₽. С собой нужны только кроссовки с нескользящей подошвой.</p>
+        <h3>Ракетки и мячи есть на месте</h3>
+        <p>Прокат ракетки стоит 300 ₽, банка мячей 600 ₽. С собой нужны только кроссовки с нескользящей подошвой.</p>
       </article>
       <article class="t-b rv">
-        <h3>Нет четвёртого игрока?</h3>
-        <p>Напишите администратору. Подберём пару вашего уровня из игроков клуба.</p>
+        <h3>Нет четвёртого игрока?</h3>
+        <p>Напишите администратору. Подберём пару вашего уровня из игроков клуба.</p>
       </article>
     </div>
   </div>
@@ -210,22 +210,22 @@
 
 <section class="sec courts" id="courts">
   <div class="wrap">
-    <h2>Четыре корта под одной крышей</h2>
-    <p class="sub">В зале +18° в любой мороз. Нажмите на корт, чтобы увидеть детали.</p>
+    <h2>Четыре корта под одной крышей</h2>
+    <p class="sub">В зале +18° в любой мороз. Нажмите на корт, чтобы увидеть детали.</p>
     <div class="plan">
       <div class="plan-map">
         <svg viewBox="0 0 488 300" role="group" aria-label="Схема зала: четыре корта"><g class="pc on" tabindex="0" role="button" aria-pressed="true" aria-label="Корт 1, панорамный"><rect class="pf" x="16" y="12" width="110" height="220"/><rect class="pl" x="16" y="12" width="110" height="220" pathLength="1"/><line class="pl" x1="16" y1="45.5" x2="126" y2="45.5" pathLength="1"/><line class="pl" x1="16" y1="198.4" x2="126" y2="198.4" pathLength="1"/><line class="pl" x1="71" y1="45.5" x2="71" y2="198.4" pathLength="1"/><line class="pl pn" x1="16" y1="122" x2="126" y2="122" pathLength="1"/><text x="71" y="35" text-anchor="middle">1</text></g><g class="pc" tabindex="0" role="button" aria-pressed="false" aria-label="Корт 2, панорамный"><rect class="pf" x="146" y="12" width="110" height="220"/><rect class="pl" x="146" y="12" width="110" height="220" pathLength="1"/><line class="pl" x1="146" y1="45.5" x2="256" y2="45.5" pathLength="1"/><line class="pl" x1="146" y1="198.4" x2="256" y2="198.4" pathLength="1"/><line class="pl" x1="201" y1="45.5" x2="201" y2="198.4" pathLength="1"/><line class="pl pn" x1="146" y1="122" x2="256" y2="122" pathLength="1"/><text x="201" y="35" text-anchor="middle">2</text></g><g class="pc" tabindex="0" role="button" aria-pressed="false" aria-label="Корт 3, классический"><rect class="pf" x="276" y="12" width="110" height="220"/><rect class="pl" x="276" y="12" width="110" height="220" pathLength="1"/><line class="pl" x1="276" y1="45.5" x2="386" y2="45.5" pathLength="1"/><line class="pl" x1="276" y1="198.4" x2="386" y2="198.4" pathLength="1"/><line class="pl" x1="331" y1="45.5" x2="331" y2="198.4" pathLength="1"/><line class="pl pn" x1="276" y1="122" x2="386" y2="122" pathLength="1"/><text x="331" y="35" text-anchor="middle">3</text></g><g class="pc" tabindex="0" role="button" aria-pressed="false" aria-label="Корт 4, сингл"><rect class="pf" x="406" y="12" width="66" height="220"/><rect class="pl" x="406" y="12" width="66" height="220" pathLength="1"/><line class="pl" x1="406" y1="45.5" x2="472" y2="45.5" pathLength="1"/><line class="pl" x1="406" y1="198.4" x2="472" y2="198.4" pathLength="1"/><line class="pl" x1="439" y1="45.5" x2="439" y2="198.4" pathLength="1"/><line class="pl pn" x1="406" y1="122" x2="472" y2="122" pathLength="1"/><text x="439" y="35" text-anchor="middle">4</text></g><g class="pz" aria-hidden="true"><rect x="16" y="250" width="110" height="38"/><text x="71" y="273" text-anchor="middle">Кафе</text><rect x="134" y="250" width="56" height="38"/><text x="162" y="273" text-anchor="middle">Вход</text><rect x="198" y="250" width="142" height="38"/><text x="269" y="273" text-anchor="middle">Ресепшен</text><rect x="348" y="250" width="124" height="38"/><text x="410" y="273" text-anchor="middle">Раздевалки</text></g></svg>
       </div>
       <div class="plan-info" id="planInfo" aria-live="polite">
         <p class="plan-kind" id="pcKind">Панорамный</p>
-        <h3 id="pcName">Корт 1</h3>
-        <p id="pcText">Виден из кафе, поэтому здесь проходят турниры и игры со зрителями.</p>
+        <h3 id="pcName">Корт 1</h3>
+        <p id="pcText">Виден из кафе, поэтому здесь проходят турниры и игры со зрителями.</p>
         <dl>
-          <div><dt>Размер</dt><dd id="pcSize">20 × 10 м</dd></div>
-          <div><dt>Формат</dt><dd id="pcFormat">Двое на двое</dd></div>
-          <div><dt>Вечером</dt><dd id="pcPrice">3 000 ₽ в час</dd></div>
+          <div><dt>Размер</dt><dd id="pcSize">20 × 10 м</dd></div>
+          <div><dt>Формат</dt><dd id="pcFormat">Двое на двое</dd></div>
+          <div><dt>Вечером</dt><dd id="pcPrice">3 000 ₽ в час</dd></div>
         </dl>
-        <a class="btn btn-ghost" href="#book" id="pcBook">Смотреть время на этом корте</a>
+        <a class="btn btn-ghost" href="#book" id="pcBook">Смотреть время на этом корте</a>
       </div>
     </div>
   </div>
@@ -234,7 +234,7 @@
 <section class="sec prices" id="prices">
   <div class="wrap">
     <div class="pr-head">
-      <h2>Цена зависит от времени</h2>
+      <h2>Цена зависит от времени</h2>
       <div class="seg" role="group" aria-label="Тип дня">
         <button type="button" class="on" id="segWork" aria-pressed="true">Будни</button>
         <button type="button" id="segWeek" aria-pressed="false">Выходные</button>
@@ -242,44 +242,44 @@
     </div>
     <div class="tl" id="tl">
       <div class="tl-bar">
-        <div class="tl-z z1" id="tlZ1"><b id="tlP1">1 800 ₽</b><span>Утро</span></div>
-        <div class="tl-z z2" id="tlZ2"><b id="tlP2">2 200 ₽</b><span>День</span></div>
-        <div class="tl-z z3" id="tlZ3"><b id="tlP3">3 000 ₽</b><span>Вечер</span></div>
+        <div class="tl-z z1" id="tlZ1"><b id="tlP1">1 800 ₽</b><span>Утро</span></div>
+        <div class="tl-z z2" id="tlZ2"><b id="tlP2">2 200 ₽</b><span>День</span></div>
+        <div class="tl-z z3" id="tlZ3"><b id="tlP3">3 000 ₽</b><span>Вечер</span></div>
         <i class="tl-now" id="tlNow" hidden></i>
       </div>
       <ol class="tl-axis" aria-hidden="true"><li>7:00</li><li>12:00</li><li>17:00</li><li>23:00</li></ol>
     </div>
     <p class="pr-now" id="prNow"></p>
     <div class="pr-notes">
-      <p><strong>Цена за корт, а не с человека.</strong> Вечер на четверых выходит по 750 ₽ с игрока.</p>
-      <p><strong>Сингл-корт дешевле на 30%.</strong> Подходит для игры вдвоём и занятий с тренером.</p>
+      <p><strong>Цена за корт, а не с человека.</strong> Вечер на четверых выходит по 750 ₽ с игрока.</p>
+      <p><strong>Сингл-корт дешевле на 30%.</strong> Подходит для игры вдвоём и занятий с тренером.</p>
     </div>
   </div>
 </section>
 
 <section class="sec faq" id="faq">
   <div class="wrap faq-in">
-    <h2>Вопросы перед первой игрой</h2>
+    <h2>Вопросы перед первой игрой</h2>
     <div class="qa">
       <details>
-        <summary>Что взять с собой? <svg aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M216.49,104.49l-80,80a12,12,0,0,1-17,0l-80-80a12,12,0,0,1,17-17L128,159l71.51-71.52a12,12,0,0,1,17,17Z"/></svg></summary>
-        <p>Спортивную форму и кроссовки с нескользящей подошвой. Ракетки и мячи можно взять в прокат на ресепшене.</p>
+        <summary>Что взять с собой? <svg aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M216.49,104.49l-80,80a12,12,0,0,1-17,0l-80-80a12,12,0,0,1,17-17L128,159l71.51-71.52a12,12,0,0,1,17,17Z"/></svg></summary>
+        <p>Спортивную форму и кроссовки с нескользящей подошвой. Ракетки и мячи можно взять в прокат на ресепшене.</p>
       </details>
       <details>
         <summary>Можно прийти одному? <svg aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M216.49,104.49l-80,80a12,12,0,0,1-17,0l-80-80a12,12,0,0,1,17-17L128,159l71.51-71.52a12,12,0,0,1,17,17Z"/></svg></summary>
-        <p>Да. Напишите администратору, и мы подберём игроков вашего уровня. Второй вариант: сингл-корт с тренером.</p>
+        <p>Да. Напишите администратору, и мы подберём игроков вашего уровня. Второй вариант: сингл-корт с тренером.</p>
       </details>
       <details>
-        <summary>Как отменить бронь? <svg aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M216.49,104.49l-80,80a12,12,0,0,1-17,0l-80-80a12,12,0,0,1,17-17L128,159l71.51-71.52a12,12,0,0,1,17,17Z"/></svg></summary>
-        <p>Бесплатно за 12 часов до начала. Позже время уже не успеть отдать другим игрокам, поэтому оплата не возвращается.</p>
+        <summary>Как отменить бронь? <svg aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M216.49,104.49l-80,80a12,12,0,0,1-17,0l-80-80a12,12,0,0,1,17-17L128,159l71.51-71.52a12,12,0,0,1,17,17Z"/></svg></summary>
+        <p>Бесплатно за 12 часов до начала. Позже время уже не успеть отдать другим игрокам, поэтому оплата не возвращается.</p>
       </details>
       <details>
-        <summary>С какого возраста можно играть? <svg aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M216.49,104.49l-80,80a12,12,0,0,1-17,0l-80-80a12,12,0,0,1,17-17L128,159l71.51-71.52a12,12,0,0,1,17,17Z"/></svg></summary>
-        <p>С семи лет. Детям до 14 лет нужен взрослый на корте или тренер.</p>
+        <summary>С какого возраста можно играть? <svg aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M216.49,104.49l-80,80a12,12,0,0,1-17,0l-80-80a12,12,0,0,1,17-17L128,159l71.51-71.52a12,12,0,0,1,17,17Z"/></svg></summary>
+        <p>С семи лет. Детям до 14 лет нужен взрослый на корте или тренер.</p>
       </details>
       <details>
         <summary>Есть парковка? <svg aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M216.49,104.49l-80,80a12,12,0,0,1-17,0l-80-80a12,12,0,0,1,17-17L128,159l71.51-71.52a12,12,0,0,1,17,17Z"/></svg></summary>
-        <p>Да, бесплатная, прямо перед входом.</p>
+        <p>Да, бесплатная, прямо перед входом.</p>
       </details>
     </div>
   </div>
@@ -287,12 +287,12 @@
 
 <section class="place" id="place">
   <div class="wrap place-in">
-    <h2>Корт ждёт на Взлётке</h2>
+    <h2>Корт ждёт на Взлётке</h2>
     <ul class="place-list">
-      <li><svg aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M128,60a44,44,0,1,0,44,44A44.05,44.05,0,0,0,128,60Zm0,64a20,20,0,1,1,20-20A20,20,0,0,1,128,124Zm0-112a92.1,92.1,0,0,0-92,92c0,77.36,81.64,135.4,85.12,137.83a12,12,0,0,0,13.76,0,259,259,0,0,0,42.18-39C205.15,170.57,220,136.37,220,104A92.1,92.1,0,0,0,128,12Zm31.3,174.71A249.35,249.35,0,0,1,128,216.89a249.35,249.35,0,0,1-31.3-30.18C80,167.37,60,137.31,60,104a68,68,0,0,1,136,0C196,137.31,176,167.37,159.3,186.71Z"/></svg><span>Красноярск, Взлётка, ул. Молокова</span></li>
-      <li><svg aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M128,20A108,108,0,1,0,236,128,108.12,108.12,0,0,0,128,20Zm0,192a84,84,0,1,1,84-84A84.09,84.09,0,0,1,128,212Zm68-84a12,12,0,0,1-12,12H128a12,12,0,0,1-12-12V72a12,12,0,0,1,24,0v44h44A12,12,0,0,1,196,128Z"/></svg><span>Каждый день с 7:00 до 23:00</span></li>
+      <li><svg aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M128,60a44,44,0,1,0,44,44A44.05,44.05,0,0,0,128,60Zm0,64a20,20,0,1,1,20-20A20,20,0,0,1,128,124Zm0-112a92.1,92.1,0,0,0-92,92c0,77.36,81.64,135.4,85.12,137.83a12,12,0,0,0,13.76,0,259,259,0,0,0,42.18-39C205.15,170.57,220,136.37,220,104A92.1,92.1,0,0,0,128,12Zm31.3,174.71A249.35,249.35,0,0,1,128,216.89a249.35,249.35,0,0,1-31.3-30.18C80,167.37,60,137.31,60,104a68,68,0,0,1,136,0C196,137.31,176,167.37,159.3,186.71Z"/></svg><span>Красноярск, Взлётка, ул. Молокова</span></li>
+      <li><svg aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M128,20A108,108,0,1,0,236,128,108.12,108.12,0,0,0,128,20Zm0,192a84,84,0,1,1,84-84A84.09,84.09,0,0,1,128,212Zm68-84a12,12,0,0,1-12,12H128a12,12,0,0,1-12-12V72a12,12,0,0,1,24,0v44h44A12,12,0,0,1,196,128Z"/></svg><span>Каждый день с 7:00 до 23:00</span></li>
     </ul>
-    <a class="link place-route" href="https://yandex.ru/maps/62/krasnoyarsk/?text=%D0%9A%D1%80%D0%B0%D1%81%D0%BD%D0%BE%D1%8F%D1%80%D1%81%D0%BA%2C%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%9C%D0%BE%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%D0%B0" target="_blank" rel="noopener noreferrer">Построить маршрут в Яндекс Картах <svg aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M204,64V168a12,12,0,0,1-24,0V93L72.49,200.49a12,12,0,0,1-17-17L163,76H88a12,12,0,0,1,0-24H192A12,12,0,0,1,204,64Z"/></svg></a>
+    <a class="link place-route" href="https://yandex.ru/maps/62/krasnoyarsk/?text=%D0%9A%D1%80%D0%B0%D1%81%D0%BD%D0%BE%D1%8F%D1%80%D1%81%D0%BA%2C%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%9C%D0%BE%D0%BB%D0%BE%D0%BA%D0%BE%D0%B2%D0%B0" target="_blank" rel="noopener noreferrer">Построить маршрут в Яндекс Картах <svg aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M204,64V168a12,12,0,0,1-24,0V93L72.49,200.49a12,12,0,0,1-17-17L163,76H88a12,12,0,0,1,0-24H192A12,12,0,0,1,204,64Z"/></svg></a>
     <figure class="map" id="map"><svg class="map-svg" viewBox="0 0 600 440" role="img" aria-labelledby="mapT"><title id="mapT">Схема: клуб на улице Молокова, рядом с пересечением с улицей Взлётной</title><rect class="mb" x="0" y="0" width="53" height="63"/><rect class="mb" x="67" y="0" width="90" height="63"/><rect class="mb" x="183" y="0" width="110" height="63"/><rect class="mb" x="307" y="0" width="116" height="63"/><rect class="mb" x="437" y="0" width="96" height="63"/><rect class="mb" x="547" y="0" width="53" height="63"/><rect class="mb" x="0" y="77" width="53" height="66"/><rect class="mb" x="67" y="77" width="90" height="66"/><rect class="mb" x="183" y="77" width="110" height="66"/><rect class="mb" x="307" y="77" width="116" height="66"/><rect class="mb" x="437" y="77" width="96" height="66"/><rect class="mb" x="547" y="77" width="53" height="66"/><rect class="mb" x="0" y="157" width="53" height="80"/><rect class="mb" x="67" y="157" width="90" height="80"/><rect class="mb" x="183" y="157" width="110" height="80"/><rect class="mb club" x="307" y="157" width="116" height="80"/><rect class="mb" x="437" y="157" width="96" height="80"/><rect class="mb" x="547" y="157" width="53" height="80"/><rect class="mb" x="0" y="263" width="53" height="80"/><rect class="mb" x="67" y="263" width="90" height="80"/><rect class="mb" x="183" y="263" width="110" height="80"/><rect class="mb park" x="307" y="263" width="116" height="80"/><rect class="mb" x="437" y="263" width="96" height="80"/><rect class="mb" x="547" y="263" width="53" height="80"/><rect class="mb" x="0" y="357" width="53" height="83"/><rect class="mb" x="67" y="357" width="90" height="83"/><rect class="mb" x="183" y="357" width="110" height="83"/><rect class="mb" x="307" y="357" width="116" height="83"/><rect class="mb" x="437" y="357" width="96" height="83"/><rect class="mb" x="547" y="357" width="53" height="83"/><line class="ms" x1="170" y1="0" x2="170" y2="440" pathLength="1"/><line class="ms" x1="0" y1="250" x2="600" y2="250" pathLength="1"/><text class="ml" x="590" y="244" text-anchor="end">ул. Молокова</text><text class="ml" x="178" y="14" transform="rotate(90 178 14)">ул. Взлётная</text><text class="mp" x="365" y="306" text-anchor="middle">P</text><text class="mpl" x="365" y="324" text-anchor="middle">парковка</text><text class="mc" x="365" y="226" text-anchor="middle">ОТСКОК</text><g class="pin" transform="translate(365 186)"><circle class="pin-ring" r="14"/><circle class="pin-ball" r="11"/></g></svg></figure>
     <a class="btn btn-ball place-btn" href="#book">Забронировать корт <svg aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"/></svg></a>
   </div>
@@ -304,10 +304,10 @@
   <div class="wrap">
     <p class="foot-mark" aria-hidden="true">Отскок</p>
     <div class="foot-row">
-      <p>Концепт-проект. Клуб «Отскок» вымышлен, бронь никуда не отправляется, цены условные.</p>
+      <p>Концепт-проект. Клуб «Отскок» вымышлен, бронь никуда не отправляется, цены условные.</p>
       <ul>
         <li><a href="privacy.html">Политика обработки данных</a></li>
-        <li><a href="../../">Дизайн и разработка: MIRAI <svg aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M204,64V168a12,12,0,0,1-24,0V93L72.49,200.49a12,12,0,0,1-17-17L163,76H88a12,12,0,0,1,0-24H192A12,12,0,0,1,204,64Z"/></svg></a></li>
+        <li><a href="../../">Дизайн и разработка: MIRAI <svg aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M204,64V168a12,12,0,0,1-24,0V93L72.49,200.49a12,12,0,0,1-17-17L163,76H88a12,12,0,0,1,0-24H192A12,12,0,0,1,204,64Z"/></svg></a></li>
       </ul>
     </div>
   </div>

@@ -520,3 +520,13 @@ input:checked+.box{background:var(--court)}
 
 @media (max-width:400px){.nav-in{gap:1rem}.btn-sm{padding:0 .8rem}}
 @media (max-width:360px){.mark{font-size:1.1rem}.btn-sm{font-size:.86rem;padding:0 .7rem}}
+
+/* Типографика переносов: абзацы без висячих слов, заголовки ровными строками */
+p,li,dd,dt,summary,.ex-name,.ex-price,.tk-rows dd{text-wrap:pretty}
+h1,h2,h3,legend,.plan-info h3{text-wrap:balance}
+body{hyphens:manual;overflow-wrap:break-word}
+.say-text{text-wrap:pretty;max-width:none}
+@media (max-width:719px){.say-text{font-size:clamp(1.45rem,6.6vw,1.9rem);max-width:none}}
+
+.say-text{font-size:clamp(1.5rem,2.7vw,2.55rem);line-height:1.18}
+@media (max-width:719px){.say-text{font-size:clamp(1.35rem,6vw,1.6rem)}}

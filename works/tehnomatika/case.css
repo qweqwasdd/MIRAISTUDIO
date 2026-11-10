@@ -162,3 +162,6 @@ h3{font-size:1.2rem;font-weight:640;letter-spacing:-.015em;line-height:1.2}
   .type{grid-column:2;grid-row:1}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important}}
+
+p,li,dd,dt{text-wrap:pretty}
+h1,h2,h3{text-wrap:balance}
