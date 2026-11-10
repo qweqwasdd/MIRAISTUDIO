@@ -337,7 +337,7 @@ input:focus-visible+.box{outline:3px solid var(--focus);outline-offset:2px}
 @media (max-width:719px){
   .nav-links{display:none}
   .nav-in{justify-content:space-between}
-  .hero{grid-template-columns:1fr;min-height:0}
+  .hero{grid-template-columns:minmax(0,1fr);min-height:0}
   .hero-copy{padding:36px var(--gut) 32px}
   .hero-court{aspect-ratio:16/10;min-height:0}
   @keyframes wipe{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0)}}
@@ -530,3 +530,16 @@ body{hyphens:manual;overflow-wrap:break-word}
 
 .say-text{font-size:clamp(1.5rem,2.7vw,2.55rem);line-height:1.18}
 @media (max-width:719px){.say-text{font-size:clamp(1.35rem,6vw,1.6rem)}}
+
+/* Мобильный h1: слово «вечером» не рвётся, размер от ширины экрана */
+@media (max-width:899px){
+  h1{font-size:clamp(1.75rem,8.6vw,3.4rem);font-stretch:108%;overflow-wrap:normal;hyphens:manual}
+  .doc h1{font-size:clamp(1.75rem,8vw,2.6rem);font-stretch:108%}
+}
+
+/* Планшет: первый экран в одну колонку, чтобы заголовок не вылезал из узкой колонки */
+@media (min-width:720px) and (max-width:899px){
+  .hero{grid-template-columns:minmax(0,1fr);min-height:0}
+  .hero-copy{padding:48px var(--gut) 40px}
+  .hero-court{aspect-ratio:16/9;min-height:0}
+}
